@@ -6,10 +6,9 @@
 package Backend;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -54,7 +53,8 @@ public class Login {
             public void displayUsers(String login_id, String password) {
         try {
             String query = "SELECT user_id, pwd FROM login";
-            ResultSet results = Statement.executeQuery(query);
+            Statement st = con.createStatement();
+            ResultSet results = st.executeQuery(query);
 
             while (results.next()) {
             String user_id = results.getString("user_id");
@@ -62,15 +62,15 @@ public class Login {
 
                if ((login_id.equals(user_id)) && (password.equals(pwd))) {
 
-                  JOptionPane.showMessageDialog(null, "Username and Password exist");  
+                   System.out.println("Username and Password exist");  
             }else {
 
-             JOptionPane.showMessageDialog(null, "Please Check Username and Password ");
+                   System.out.println("Please Check Username and Password");
             }
             results.close();
-        } catch (SQLException sql) {
+        }} catch (SQLException sql) {
 
-            out.println(sql);
+            System.out.println(sql);
         }
             
           
@@ -80,4 +80,4 @@ public class Login {
         
     
     
-}
+}}
