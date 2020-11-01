@@ -18,7 +18,6 @@ import java.time.format.DateTimeFormatter;
 
 public class EventLog {
     
-    public EventLog(){};
     
     public void Write(String msg)
     {

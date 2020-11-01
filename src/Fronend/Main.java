@@ -4,14 +4,25 @@
  * and open the template in the editor.
  */
 package Fronend;
+import Backend.Role;
+import java.sql.SQLException;
+
 /**
  *
  * @author thisa
  */
 public class Main {
     public static void main(String[] args) {
-        Backend.EventLog log = new Backend.EventLog();
-        log.Write("Test Log");
+        Role rl = new Role();
+        try{
+            rl.addRole("admin", "can access all the functions");
+            System.out.println(rl.getLastid());
+        }
+        catch(SQLException e)
+        {
+            System.out.println(e.toString());
+        }
+        
     }
     
 }
