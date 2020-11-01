@@ -5,6 +5,11 @@
  */
 package Backend;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 /**
  *
  * @author Prashan
@@ -15,7 +20,30 @@ public class customer {
     private String cus_mobile;
     private String cus_email;
     private String cus_address;
+    dbConnection db = new dbConnection();
+    private final Connection con = db.CreateConn();
 
+    
+    public int getLastid() throws SQLException
+    {
+        int id = -1;
+        
+        String sql = "SELECT id FROM roles WHERE id = (SELECT MAX(id) FROM roles)";
+        
+        Statement st = con.createStatement();
+        
+        ResultSet rs = st.executeQuery(sql);
+        
+        while (rs.next())
+      {
+        id = rs.getInt("id");       
+      }
+      st.close();
+      con.close();
+      
+      return id;
+    }
+    
     /**
      * @return the cus_id
      */

@@ -18,12 +18,18 @@ class dbConnection {
     private final String username = "sql12373402";
     private final String password = "AqtVSkkwVN";
     
-public Connection CreateConn(){  
-try{  
-    Connection con;
-    con = DriverManager.getConnection(conn_string,username,password);
-    return con;
+public Connection CreateConn()
+{  
+    try
+    {  
+        Connection con;
+        con = DriverManager.getConnection(conn_string,username,password);
+        return con;
     }
-catch(SQLException e){System.out.println(e); return null;}  
-                                }  
-                    }
+    catch(SQLException e)
+    {
+        System.out.println(e); return null;
+    }  
+}
+
+}
