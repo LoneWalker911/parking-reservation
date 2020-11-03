@@ -9,19 +9,29 @@ import java.sql.*;
 
 /**
  *
- * @author Prashan
+ * @author thisa/Prashan
  */
 public class Role {
     
-    private int role_id;
-    private String role_title;
-    private String role_des;
+    private int role_id = 0;
+    private String role_name = null;
+    private String role_des = null;
     dbConnection db = new dbConnection();
     private final Connection con = db.CreateConn();
     EventLog log = new EventLog();
     
-    public boolean addRole(String name, String desc)
+    public Role(){};
+    
+    public Role(String name,String des)
     {
+        role_name = name;
+        role_des = des;
+    }
+    
+    public boolean addRole()
+    {
+        if(role_name!=null && role_des != null)
+        {
         try
         {
             int id = getLastid();
@@ -31,8 +41,8 @@ public class Role {
             //using a prepared statement to preven SQL Injection and other simillar attacks
             PreparedStatement prest = con.prepareStatement(query);
             prest.setInt (1, id+1);
-            prest.setString (2, name);
-            prest.setString (3, desc);
+            prest.setString (2, role_name);
+            prest.setString (3, role_des);
 
             // execute the preparedstatement
             prest.execute();
@@ -46,6 +56,63 @@ public class Role {
               System.err.println(e.getMessage());
               return false;
             }
+        }
+        else return false;
+    }
+    
+    public ResultSet getRoles()
+    {
+        try
+        {
+            int id = getLastid();
+            String query = "SELECT * FROM roles";
+
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            return rs;
+
+        }
+        catch (SQLException e)
+            {
+              System.err.println("Got an exception!");
+              System.err.println(e.getMessage());
+              return null;
+            }
+    }
+    
+    public boolean updateRole()
+    {
+        if((role_name!=null || role_des != null) && role_id != 0)
+        {
+        try
+        {
+            String update = "";
+            if(role_name != null && role_des == null)
+            {update = "name='"+role_name+"'";}
+            if(role_name == null && role_des != null)
+            {update = "description='"+role_des+"'";}
+            if(role_name != null && role_des != null)
+            {update = "name='"+role_name+ "', "+ "description='"+role_des+"'";}
+            
+            String query = "UPDATE roles SET "+ update + " WHERE id=" + Integer.toString(role_id);
+
+            Statement st = con.createStatement();
+            st.executeUpdate(query);
+ 
+            
+            log.Write("Roles_ID : "+ Integer.toString(role_id) + " updated "+ update +" on roles table.");
+
+            return true;
+        }
+        catch (SQLException e)
+            {
+              System.err.println("Got an exception!");
+              System.err.println(e.getMessage());
+              return false;
+            }
+        }
+        else return false;
     }
     
     public int getLastid() throws SQLException
@@ -53,6 +120,25 @@ public class Role {
         int id = -1;
         
         String sql = "SELECT id FROM roles WHERE id = (SELECT MAX(id) FROM roles)";
+        
+        Statement st = con.createStatement();
+        
+        ResultSet rs = st.executeQuery(sql);
+        
+        while (rs.next())
+      {
+        id = rs.getInt("id");       
+      }
+      st.close();
+      
+      return id;
+    }
+    
+    public int getId(String name) throws SQLException
+    {
+        int id = -1;
+        
+        String sql = "SELECT id FROM roles WHERE name="+"'"+name+"'";
         
         Statement st = con.createStatement();
         
@@ -84,15 +170,15 @@ public class Role {
     /**
      * @return the role_title
      */
-    public String getRole_title() {
-        return role_title;
+    public String getRole_name() {
+        return role_name;
     }
 
     /**
      * @param role_title the role_title to set
      */
-    public void setRole_title(String role_title) {
-        this.role_title = role_title;
+    public void setRole_name(String role_title) {
+        this.role_name = role_title;
     }
 
     /**

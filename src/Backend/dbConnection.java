@@ -13,7 +13,7 @@ import java.sql.SQLException;
  *
  * @author thisa
  */
-class dbConnection {
+public class dbConnection {
     private final String conn_string = "jdbc:mysql://sql12.freemysqlhosting.net:3306/sql12373402";
     private final String username = "sql12373402";
     private final String password = "AqtVSkkwVN";
