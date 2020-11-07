@@ -6,31 +6,22 @@
 package Backend;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Hashtable;
+import java.util.Random;
 
 /**
  *
  * @author Prashan
  */
 public class Login {
-    private String login_id;
+    private String username;
     private String password;
 
-    /**
-     * @return the login_id
-     */
-    public String getLogin_id() {
-        return login_id;
-    }
-
-    /**
-     * @param login_id the login_id to set
-     */
-    public void setLogin_id(String login_id) {
-        this.login_id = login_id;
-    }
+    
 
     /**
      * @return the password
@@ -46,11 +37,12 @@ public class Login {
         this.password = password;
     }
     
-    
-            dbConnection db = new dbConnection();
-            Connection con = db.CreateConn();
+    EventLog log = new EventLog();
+    dbConnection db = new dbConnection();
+    Connection con = db.CreateConn();
+    Staff stf = new Staff();
             
-            public void displayUsers(String login_id, String password) {
+    public void displayUsers(String login_id, String password) {
         try {
             String query = "SELECT user_id, pwd FROM login";
             Statement st = con.createStatement();
@@ -72,12 +64,91 @@ public class Login {
 
             System.out.println(sql);
         }
-            
-          
-                 
-            
-            
+    }
+    
+    public Hashtable<String, String> CreateLogin(String username,int staff_id,int role_id) throws SQLException{
         
+        Hashtable<String, String> loginDetails = null;
+        
+       if(!isUsernameStaffExists(username,staff_id) && stf.isStaffIdExists(staff_id))
+       {
+           
+            loginDetails = new Hashtable<>();
+            Random random = new Random();
+            int aLimit = 97; // limit to 'a'
+            int zLimit = 122; // limit to 'z'
+            int StringLength = 8;
+            StringBuilder buffer = new StringBuilder(StringLength);
+            for (int i = 0; i < StringLength; i++) {
+                int randomLimitedInt = aLimit + (int) 
+                  (random.nextFloat() * (zLimit - aLimit + 1));
+                buffer.append((char) randomLimitedInt);
+            }
+            String generatedPsw = buffer.toString();
+
+           
+        String sql = "INSERT INTO login(role_id,staff_id,username,password) VALUES (?, ?, ?, ?)";
+        
+        //using a prepared statement to preven SQL Injection and other simillar attacks
+            PreparedStatement prest = con.prepareStatement(sql);
+            prest.setInt (1, role_id);
+            prest.setInt (2, staff_id);
+            prest.setString (3, username);
+            prest.setString (4, generatedPsw);
+
+            // execute the preparedstatement
+            prest.execute();
+            log.Write("Login_ID : "+ Integer.toString(getLastid()) + " added to login table.");
+            
+            loginDetails.clear();
+            loginDetails.put("username", username);
+            loginDetails.put("password", generatedPsw);
+            
+            
+       }
+       return loginDetails;
+        
+    } 
     
+    public boolean isUsernameStaffExists(String username,int staff_id) throws SQLException
+    {
+        String sql = "SELECT id FROM login WHERE username='"+username+"' OR staff_id='"+ staff_id +"'";
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        
+        return rs.next();
+    }
     
-}}
+    public int getLastid() throws SQLException
+    {
+        int id = -1;
+        
+        String sql = "SELECT id FROM login WHERE id = (SELECT MAX(id) FROM login)";
+        
+        Statement st = con.createStatement();
+        
+        ResultSet rs = st.executeQuery(sql);
+        
+        while (rs.next())
+      {
+        id = rs.getInt("id");       
+      }
+      st.close();
+      
+      return id;
+    }
+
+    /**
+     * @return the username
+     */
+    public String getUsername() {
+        return username;
+    }
+
+    /**
+     * @param username the username to set
+     */
+    public void setUsername(String username) {
+        this.username = username;
+    }
+}
