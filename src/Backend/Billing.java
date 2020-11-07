@@ -18,42 +18,7 @@ public class Billing {
     
     private String Vehicle_des;
     private int orderID;
-
     
-            dbConnection db = new dbConnection();
-            Connection con = db.CreateConn();
-            
-    public int CalculateBill (int duration, double fee) {
-        try {
-            String q1 = "SELECT duration FROM orders WHERE duration='duration'";
-            String q2 = "SELECT fee FROM fee WHERE fee='fee'";
-            Statement st = con.createStatement();
-            ResultSet results = st.executeQuery(query);
-
-            while (results.next()) {
-            String user_id = results.getString("user_id");
-            String pwd =  results.getString("pwd");
-
-               if ((login_id.equals(user_id)) && (password.equals(pwd))) {
-
-                   //System.out.println("Username and Password exist");  
-                   return 1;
-            }else {
-
-                   //System.out.println("Please Check Username and Password");
-                   return 0;
-            }
-            
-        }} catch (SQLException sql) {
-
-            System.out.println(sql);
-        }
-            
-          
-                 
-            
-         }
-
     /**
      * @return the Vehicle_des
      */
@@ -81,4 +46,40 @@ public class Billing {
     public void setOrderID(int orderID) {
         this.orderID = orderID;
     }
+
+    
+            dbConnection db = new dbConnection();
+            Connection con = db.CreateConn();
+            
+    public double CalculateBill (int OrderID, String Vehicle_des ) {
+        try {
+            String query = "SELECT orders.duration, fee.fee FROM orders,fee WHERE orders.id='OrderID' AND fee.fee_description='Vehicle_des";
+            Statement st = con.createStatement();
+            ResultSet results = st.executeQuery(query);
+
+            while (results.next()) {
+            String  duration = results.getString("duration");
+            String fee =  results.getString("fee");
+
+            double d = Double.parseDouble(duration);
+            double f = Double.parseDouble(fee);
+            
+            double total = d * f;
+            
+            return total;
+            
+        }} catch (SQLException sql) {
+
+            System.out.println(sql);
+        }
+        return 0;
+
+            
+        
+                 
+    }
 }
+         
+
+    
+
