@@ -51,20 +51,18 @@ public class Billing {
             dbConnection db = new dbConnection();
             Connection con = db.CreateConn();
             
-    public double CalculateBill (int OrderID, String Vehicle_des ) {
+    public double CalculateBill (int OrderID) {
         try {
-            String query = "SELECT orders.duration, fee.fee FROM orders,fee WHERE orders.id='OrderID' AND fee.fee_description='Vehicle_des";
+            String query = "SELECT orders.duration, fee.fee FROM orders,fee WHERE orders.id=" + OrderID + " AND orders.fee_id=fee.id";
+            System.out.println(query);
             Statement st = con.createStatement();
             ResultSet results = st.executeQuery(query);
 
             while (results.next()) {
-            String  duration = results.getString("duration");
-            String fee =  results.getString("fee");
-
-            double d = Double.parseDouble(duration);
-            double f = Double.parseDouble(fee);
-            
-            double total = d * f;
+            int  duration = results.getInt("duration");
+            double fee =  results.getDouble("fee");
+            double total = duration * fee;
+                System.out.println(duration+" "+fee+" "+total);
             
             return total;
             
