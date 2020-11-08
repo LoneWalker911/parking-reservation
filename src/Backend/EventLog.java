@@ -19,7 +19,7 @@ import java.time.format.DateTimeFormatter;
 public class EventLog {
     
     
-    public void Write(String msg)
+    public static void Write(String msg)
     {
         //Getting the date from system
         String date = java.time.LocalDate.now().toString();

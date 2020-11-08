@@ -18,8 +18,10 @@ import java.util.Random;
  * @author Prashan
  */
 public class Login {
-    private String username;
-    private String password;
+    private String username="";
+    private String password="";
+    private int staff_id=0;
+    private int role_id=0;
 
     
 
@@ -41,6 +43,26 @@ public class Login {
     dbConnection db = new dbConnection();
     Connection con = db.CreateConn();
     Staff stf = new Staff();
+    
+    public String Login() throws SQLException
+    {
+        String sql = "SELECT roles.name FROM login,roles WHERE login.username='" + getUsername() + "' AND login.password='" + getPassword() +"' AND login.role_id = roles.id";
+        
+        Statement st = con.createStatement();
+        
+        ResultSet rs = st.executeQuery(sql);
+        
+        while (rs.next())
+      {
+        String ret = rs.getString("name"); 
+        st.close();
+        return ret;
+      }
+      
+      
+      return "";
+    
+    }
             
     public void displayUsers(String login_id, String password) {
         try {
@@ -66,10 +88,11 @@ public class Login {
         }
     }
     
-    public Hashtable<String, String> CreateLogin(String username,int staff_id,int role_id) throws SQLException{
+    public Hashtable<String, String> CreateLogin() throws SQLException{
         
         Hashtable<String, String> loginDetails = null;
-        
+        if(!(username=="" || staff_id==0 || role_id==0))
+      {
        if(!isUsernameStaffExists(username,staff_id) && stf.isStaffIdExists(staff_id))
        {
            
@@ -105,7 +128,7 @@ public class Login {
             loginDetails.put("password", generatedPsw);
             
             
-       }
+       }}
        return loginDetails;
         
     } 
