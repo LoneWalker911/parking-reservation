@@ -64,12 +64,12 @@ public class Staff {
         else return 0;
     }
     
-    public int getLastid() throws SQLException
+    public int getLastid() 
     {
         int id = -1;
         
         String sql = "SELECT id FROM staff WHERE id = (SELECT MAX(id) FROM staff)";
-        
+        try{
         Statement st = con.createStatement();
         
         ResultSet rs = st.executeQuery(sql);
@@ -79,7 +79,11 @@ public class Staff {
               id = rs.getInt("id");       
             }
         st.close();
-      
+        }
+        catch(SQLException e)
+        {
+            EventLog.Write(e.getMessage());
+        }
         return id;
     }
     

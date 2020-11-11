@@ -5,6 +5,10 @@
  */
 package Fronend;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author thisa
@@ -21,6 +25,7 @@ public class StaffIF extends javax.swing.JFrame {
         initComponents();
         ut=user;
         UserType.setText(ut);
+        
     }
     public StaffIF() {
         initComponents();
@@ -39,28 +44,101 @@ public class StaffIF extends javax.swing.JFrame {
     private void initComponents() {
 
         UserType = new javax.swing.JLabel();
+        mngstaffbtn = new javax.swing.JButton();
+        UTlbl = new javax.swing.JLabel();
+        mngstaffpanel = new javax.swing.JPanel();
+        addstaffBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        UserType.setText("Usertype");
+
+        mngstaffbtn.setText("Manage Staff");
+        mngstaffbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mngstaffbtnActionPerformed(evt);
+            }
+        });
+
+        UTlbl.setText("Staff Level : ");
+
+        mngstaffpanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        mngstaffpanel.setEnabled(false);
+
+        addstaffBtn.setText("Add Staff Members");
+        addstaffBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addstaffBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout mngstaffpanelLayout = new javax.swing.GroupLayout(mngstaffpanel);
+        mngstaffpanel.setLayout(mngstaffpanelLayout);
+        mngstaffpanelLayout.setHorizontalGroup(
+            mngstaffpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mngstaffpanelLayout.createSequentialGroup()
+                .addGap(126, 126, 126)
+                .addComponent(addstaffBtn)
+                .addContainerGap(106, Short.MAX_VALUE))
+        );
+        mngstaffpanelLayout.setVerticalGroup(
+            mngstaffpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mngstaffpanelLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(addstaffBtn)
+                .addContainerGap(552, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(131, 131, 131)
-                .addComponent(UserType)
-                .addContainerGap(382, Short.MAX_VALUE))
+                .addGap(63, 63, 63)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(mngstaffbtn)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(UTlbl)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(UserType)
+                        .addGap(18, 18, 18)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
+                .addComponent(mngstaffpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(UserType)
-                .addContainerGap(326, Short.MAX_VALUE))
+                .addGap(15, 15, 15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(UserType)
+                    .addComponent(UTlbl))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addComponent(mngstaffbtn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(mngstaffpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void mngstaffbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mngstaffbtnActionPerformed
+        if(mngstaffpanel.isVisible())
+            mngstaffpanel.setVisible(false);
+        else
+            mngstaffpanel.setVisible(true);
+            
+        
+    }//GEN-LAST:event_mngstaffbtnActionPerformed
+
+    private void addstaffBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addstaffBtnActionPerformed
+        AddStaff mng = new AddStaff();
+        mng.setVisible(true);
+    }//GEN-LAST:event_addstaffBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -89,8 +167,8 @@ public class StaffIF extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-
         /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new StaffIF().setVisible(true);
@@ -99,6 +177,10 @@ public class StaffIF extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel UTlbl;
     private javax.swing.JLabel UserType;
+    private javax.swing.JButton addstaffBtn;
+    private javax.swing.JButton mngstaffbtn;
+    private javax.swing.JPanel mngstaffpanel;
     // End of variables declaration//GEN-END:variables
 }

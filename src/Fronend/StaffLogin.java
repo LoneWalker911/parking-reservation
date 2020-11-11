@@ -122,13 +122,14 @@ public class StaffLogin extends javax.swing.JFrame {
             login.setUsername(txtUname.getText());
             login.setPassword(String.valueOf(txtPsw.getPassword()));
             try {
-                String User = login.Login();
-                if(!User.equals(""))
+                String UserType = login.Login();
+                if(!UserType.equals(""))
                 {
-                    StaffIF uif = new StaffIF(User);
+                    StaffIF uif = new StaffIF(UserType);
                     EventLog.Write("User : ");
                     uif.setVisible(true);
-                    this.setVisible(false);
+                    this.rstbtnActionPerformed(evt);
+                    this.dispose();
                 } 
             else {
                     MessageBox.infoBox("Invalid Credentials", "Login Error");
