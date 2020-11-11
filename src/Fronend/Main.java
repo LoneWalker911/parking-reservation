@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Fronend;
-import Backend.Role;
+import Backend.*;
 import java.sql.SQLException;
 
 /**
@@ -13,16 +13,16 @@ import java.sql.SQLException;
  */
 public class Main {
     public static void main(String[] args) {
-        Role rl = new Role();
-        try{
-            rl.addRole("admin", "can access all the functions");
-            System.out.println(rl.getLastid());
-        }
-        catch(SQLException e)
-        {
-            System.out.println(e.toString());
-        }
+        StaffLogin cn = new StaffLogin();
+        cn.setVisible(true);
+        
+        Billing bl = new Billing();
+        System.out.println(bl.CalculateBill(2));
+        
+        
         
     }
+    
+    
     
 }
