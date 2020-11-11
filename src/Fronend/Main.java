@@ -13,11 +13,11 @@ import java.sql.SQLException;
  */
 public class Main {
     public static void main(String[] args) {
-        StaffLogin cn = new StaffLogin();
-        cn.setVisible(true);
-        
-        Billing bl = new Billing();
-        System.out.println(bl.CalculateBill(2));
+//        CustomerRegister cn = new CustomerRegister();
+//        cn.setVisible(true);
+//        
+        StaffIF stf = new StaffIF();
+        stf.setVisible(true);
         
         
         
