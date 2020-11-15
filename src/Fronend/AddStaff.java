@@ -5,7 +5,12 @@
  */
 package Fronend;
 import Backend.Staff;
-
+import Backend.Role;
+import Backend.Login;
+import Fronend.MessageBox;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Hashtable;
 /**
  *
  * @author thisa
@@ -16,11 +21,22 @@ public class AddStaff extends javax.swing.JFrame {
      * Creates new form AddStaff
      */
     Backend.Staff stf = new Backend.Staff();
+    Backend.Login login = new Backend.Login();
+    Role rl = new Role();
+    String[] res = new String[10];
     
     public AddStaff() {
         initComponents();
         Idtxt.setText(Integer.toString(stf.getLastid()+1));
         Idtxt.setEditable(false);
+
+        res = rl.getRoles();
+        int i = 0;
+             do{
+              rolecombo.addItem(res[i]);
+              i++;
+            }while(!(res[i]==null));
+ 
     }
 
     /**
@@ -47,8 +63,16 @@ public class AddStaff extends javax.swing.JFrame {
         submitbtn = new javax.swing.JButton();
         rolecombo = new javax.swing.JComboBox<>();
         rolelbl = new javax.swing.JLabel();
+        unamelbl = new javax.swing.JLabel();
+        unametxt = new javax.swing.JTextField();
+        chkbtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         IDlbl.setText("ID :");
 
@@ -76,6 +100,7 @@ public class AddStaff extends javax.swing.JFrame {
         label1.setText("label1");
 
         submitbtn.setText("Submit");
+        submitbtn.setEnabled(false);
         submitbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submitbtnActionPerformed(evt);
@@ -83,6 +108,17 @@ public class AddStaff extends javax.swing.JFrame {
         });
 
         rolelbl.setText("Role");
+
+        unamelbl.setText("Username");
+
+        unametxt.setToolTipText("Ex: 0788323221");
+
+        chkbtn.setText("Check");
+        chkbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkbtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -93,29 +129,35 @@ public class AddStaff extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(emaillbl)
-                            .addComponent(phonelbl)
-                            .addComponent(rolelbl))
-                        .addGap(60, 60, 60)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(emailtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(mobiletxt, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(rolecombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(emaillbl)
+                                    .addComponent(phonelbl)
+                                    .addComponent(rolelbl)
+                                    .addComponent(unamelbl))
+                                .addGap(37, 37, 37)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(emailtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(mobiletxt, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(unametxt, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(rolecombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(submitbtn)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(IDlbl)
+                                        .addComponent(nameLbl)
+                                        .addComponent(addresslbl))
+                                    .addGap(55, 55, 55)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(Idtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(nametxt, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addContainerGap(345, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(IDlbl)
-                            .addComponent(nameLbl)
-                            .addComponent(addresslbl))
-                        .addGap(55, 55, 55)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Idtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nametxt, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(345, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(submitbtn)
-                .addGap(284, 284, 284))
+                        .addGap(277, 277, 277)
+                        .addComponent(chkbtn)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,11 +184,16 @@ public class AddStaff extends javax.swing.JFrame {
                     .addComponent(mobiletxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(unametxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chkbtn)
+                    .addComponent(unamelbl))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rolecombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rolelbl))
-                .addGap(16, 16, 16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addComponent(submitbtn)
-                .addContainerGap(200, Short.MAX_VALUE))
+                .addGap(148, 148, 148))
         );
 
         pack();
@@ -162,7 +209,50 @@ public class AddStaff extends javax.swing.JFrame {
         stf.setName(nametxt.getText());
         stf.setAddress(addresstxt.getText());
         stf.setEmail(emailtxt.getText());
+        stf.setMobile(mobiletxt.getText());
+        
+        if(!(nametxt.getText().equals("") || addresstxt.getText().equals("") || emailtxt.getText().equals("") || mobiletxt.getText().equals("")))
+        {
+            login.setUsername(unametxt.getText());
+            login.setRole_id((rl.getId(String.valueOf(rolecombo.getSelectedItem()))));
+            login.setStaff_id(stf.addStaff());
+            
+            
+            if(login.CreateLogin())
+            { MessageBox.infoBox("Username : " + login.getUsername() + "\nPassword : " + login.getPassword() + "\nPlease make sure to remember these before click OK.", "YOUR CREDENTIALS");
+                this.dispose();
+            }
+            else 
+                MessageBox.infoBox("If this issue presists please contact admin.", "Something Went Wrong!!!");  
+        }
+        else MessageBox.infoBox("Please fill all the required information.", "Fill required fields");  
     }//GEN-LAST:event_submitbtnActionPerformed
+
+    private void chkbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkbtnActionPerformed
+        if(unametxt.getText().length() < 4)
+            MessageBox.infoBox("Username is too short. Please make sure at least it has 5 characters.", "Too short");
+        else if(chkbtn.getText().equals("Reset"))
+        {
+            chkbtn.setText("Check");
+            submitbtn.setEnabled(false);
+            unametxt.setEditable(true);
+            unametxt.setText("");
+        }
+        else if(!login.isUsernameExists(unametxt.getText()) && chkbtn.getText().equals("Check"))
+        {
+            submitbtn.setEnabled(true);
+            unametxt.setEditable(false);
+            chkbtn.setText("Reset");
+        }
+        else if(login.isUsernameExists(unametxt.getText()) && chkbtn.getText().equals("Check")){
+            MessageBox.infoBox("Username Exists. Try a different one", "Existing Username");
+            unametxt.setText("");
+        }
+    }//GEN-LAST:event_chkbtnActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
@@ -197,6 +287,9 @@ public class AddStaff extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new AddStaff().setVisible(true);
+                
+                
+                
             }
         });
     }
@@ -206,6 +299,7 @@ public class AddStaff extends javax.swing.JFrame {
     private javax.swing.JTextField Idtxt;
     private javax.swing.JLabel addresslbl;
     private javax.swing.JTextArea addresstxt;
+    private javax.swing.JButton chkbtn;
     private javax.swing.JLabel emaillbl;
     private javax.swing.JTextField emailtxt;
     private javax.swing.JScrollPane jScrollPane1;
@@ -217,5 +311,7 @@ public class AddStaff extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> rolecombo;
     private javax.swing.JLabel rolelbl;
     private javax.swing.JButton submitbtn;
+    private javax.swing.JLabel unamelbl;
+    private javax.swing.JTextField unametxt;
     // End of variables declaration//GEN-END:variables
 }

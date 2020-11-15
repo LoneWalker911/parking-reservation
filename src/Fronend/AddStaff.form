@@ -8,6 +8,9 @@
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="windowClosing" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowClosing"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -23,42 +26,51 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="emaillbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="phonelbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="rolelbl" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="emaillbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="phonelbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="rolelbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="unamelbl" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="emailtxt" min="-2" pref="212" max="-2" attributes="0"/>
+                                  <Component id="mobiletxt" min="-2" pref="140" max="-2" attributes="0"/>
+                                  <Component id="unametxt" alignment="0" min="-2" pref="159" max="-2" attributes="0"/>
+                                  <Component id="rolecombo" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                              <Component id="submitbtn" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="IDlbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="nameLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="addresslbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="Idtxt" min="-2" max="-2" attributes="0"/>
+                                      <Component id="nametxt" alignment="0" min="-2" pref="238" max="-2" attributes="0"/>
+                                      <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="emailtxt" min="-2" pref="212" max="-2" attributes="0"/>
-                          <Component id="mobiletxt" min="-2" pref="140" max="-2" attributes="0"/>
-                          <Component id="rolecombo" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <EmptySpace pref="345" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="IDlbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="nameLbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="addresslbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="Idtxt" min="-2" max="-2" attributes="0"/>
-                          <Component id="nametxt" alignment="0" min="-2" pref="238" max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <EmptySpace min="-2" pref="277" max="-2" attributes="0"/>
+                      <Component id="chkbtn" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="345" max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="submitbtn" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="284" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -90,14 +102,20 @@
                   <Component id="phonelbl" min="-2" max="-2" attributes="0"/>
                   <Component id="mobiletxt" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="unametxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="chkbtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="unamelbl" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="rolecombo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="rolelbl" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+              <EmptySpace pref="22" max="32767" attributes="0"/>
               <Component id="submitbtn" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="200" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="148" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -168,6 +186,7 @@
     <Component class="javax.swing.JButton" name="submitbtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Submit"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="submitbtnActionPerformed"/>
@@ -187,6 +206,24 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Role"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="unamelbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Username"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="unametxt">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="Ex: 0788323221"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="chkbtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Check"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chkbtnActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
