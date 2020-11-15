@@ -6,6 +6,7 @@
 package Backend;
 
 import java.sql.*;
+import java.util.Hashtable;
 
 /**
  *
@@ -16,8 +17,7 @@ public class Role {
     private int role_id = 0;
     private String role_name = null;
     private String role_des = null;
-    dbConnection db = new dbConnection();
-    private final Connection con = db.CreateConn();
+    private final Connection con = dbConnection.CreateConn();;
     EventLog log = new EventLog();
     
     public Role(){};
@@ -30,7 +30,7 @@ public class Role {
     
     public boolean addRole()
     {
-        if(role_name!=null && role_des != null)
+        if(!(getRole_name().equals("") || getRole_des().equals("")) && getId(getRole_name()) == 0)
         {
         try
         {
@@ -60,18 +60,23 @@ public class Role {
         else return false;
     }
     
-    public ResultSet getRoles()
+    public String[] getRoles()
     {
         try
         {
-            int id = getLastid();
-            String query = "SELECT * FROM roles";
+            String query = "SELECT name FROM roles";
+            String res[] = new String[10];
 
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(query);
+            
+            int i = 0;
 
-            return rs;
-
+            while(rs.next()) {
+                res[i] = rs.getString("name");
+                i++;
+            }
+            return res;
         }
         catch (SQLException e)
             {
@@ -115,12 +120,12 @@ public class Role {
         else return false;
     }
     
-    public int getLastid() throws SQLException
+    public int getLastid()
     {
-        int id = -1;
+        int id = 0;
         
         String sql = "SELECT id FROM roles WHERE id = (SELECT MAX(id) FROM roles)";
-        
+        try{
         Statement st = con.createStatement();
         
         ResultSet rs = st.executeQuery(sql);
@@ -129,28 +134,42 @@ public class Role {
       {
         id = rs.getInt("id");       
       }
-      st.close();
+      }
+        catch(SQLException e)
+        {
+            EventLog.Write("Exception : " + e.getMessage());
+            System.out.println(e.toString());
+        }
       
       return id;
     }
     
-    public int getId(String name) throws SQLException
+    public int getId(String name)
     {
-        int id = -1;
-        
-        String sql = "SELECT id FROM roles WHERE name="+"'"+name+"'";
-        
-        Statement st = con.createStatement();
-        
-        ResultSet rs = st.executeQuery(sql);
-        
-        while (rs.next())
-      {
-        id = rs.getInt("id");       
-      }
-      st.close();
+        int id = 0;
+        String sql;
+        sql = "SELECT id FROM roles WHERE name="+"'"+name+"'";
+
+        try{
+
+            Statement st = con.createStatement();
+
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next())
+          {
+            id = rs.getInt("id");       
+          }
+          return id;
+        }
+        catch (SQLException e)
+            {
+              System.err.println("GetRole id Got an exception!+\n"+ sql );
+              System.err.println(e.getMessage());
+              return id;
+            }
       
-      return id;
+      
     }
 
     /**

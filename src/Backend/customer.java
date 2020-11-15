@@ -24,12 +24,11 @@ public class customer {
     private String username = null;
     private String password = null;
     EventLog log = new EventLog();
-    dbConnection db = new dbConnection();
-    private final Connection con = db.CreateConn();
+    private final Connection con = dbConnection.CreateConn();
 
     public String addCustomer()
     {
-        if(cus_name!=null && cus_mobile != null && getPassword() != null)
+        if(getCus_mobile()!=null && getCus_name() != null && getPassword() != null)
         {
         try
         {

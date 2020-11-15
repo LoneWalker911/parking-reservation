@@ -20,15 +20,20 @@ public class StaffIF extends javax.swing.JFrame {
      * @param ut
      */
     private static String ut="";
+    private static String uname="";
     
-    public StaffIF(String user) {
+    public StaffIF(String usertype, String uname) {
         initComponents();
-        ut=user;
+//        mngstaffpanel.setVisible(false);
+//        mngrolespanel.setVisible(false);
+        ut=usertype;
         UserType.setText(ut);
         
     }
     public StaffIF() {
         initComponents();
+//        mngrolespanel.setVisible(false);
+//        mngstaffpanel.setVisible(false);
     }
 
 
@@ -46,8 +51,16 @@ public class StaffIF extends javax.swing.JFrame {
         UserType = new javax.swing.JLabel();
         mngstaffbtn = new javax.swing.JButton();
         UTlbl = new javax.swing.JLabel();
+        mngrolesbtn = new javax.swing.JButton();
+        tabpane = new javax.swing.JTabbedPane();
         mngstaffpanel = new javax.swing.JPanel();
-        addstaffBtn = new javax.swing.JButton();
+        addstaffbtn = new javax.swing.JButton();
+        changepswbtn = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        mngrolespanel = new javax.swing.JPanel();
+        addrolebtn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        unamelbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,83 +75,167 @@ public class StaffIF extends javax.swing.JFrame {
 
         UTlbl.setText("Staff Level : ");
 
-        mngstaffpanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        mngstaffpanel.setEnabled(false);
-
-        addstaffBtn.setText("Add Staff Members");
-        addstaffBtn.addActionListener(new java.awt.event.ActionListener() {
+        mngrolesbtn.setText("Manage Roles");
+        mngrolesbtn.setToolTipText("");
+        mngrolesbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addstaffBtnActionPerformed(evt);
+                mngrolesbtnActionPerformed(evt);
             }
         });
+
+        tabpane.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        mngstaffpanel.setName("Staff"); // NOI18N
+
+        addstaffbtn.setText("Add Staff Members");
+        addstaffbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addstaffbtnActionPerformed(evt);
+            }
+        });
+
+        changepswbtn.setText("Change Password");
+        changepswbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changepswbtnActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Search Staff");
 
         javax.swing.GroupLayout mngstaffpanelLayout = new javax.swing.GroupLayout(mngstaffpanel);
         mngstaffpanel.setLayout(mngstaffpanelLayout);
         mngstaffpanelLayout.setHorizontalGroup(
             mngstaffpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mngstaffpanelLayout.createSequentialGroup()
-                .addGap(126, 126, 126)
-                .addComponent(addstaffBtn)
-                .addContainerGap(106, Short.MAX_VALUE))
+                .addGap(214, 214, 214)
+                .addGroup(mngstaffpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(changepswbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(addstaffbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(235, 235, 235))
         );
         mngstaffpanelLayout.setVerticalGroup(
             mngstaffpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mngstaffpanelLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(addstaffBtn)
-                .addContainerGap(552, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addComponent(addstaffbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(changepswbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(458, 458, 458))
         );
+
+        tabpane.addTab("Staff", null, mngstaffpanel, "");
+
+        addrolebtn.setText("Add a Role");
+        addrolebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addrolebtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout mngrolespanelLayout = new javax.swing.GroupLayout(mngrolespanel);
+        mngrolespanel.setLayout(mngrolespanelLayout);
+        mngrolespanelLayout.setHorizontalGroup(
+            mngrolespanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mngrolespanelLayout.createSequentialGroup()
+                .addGap(237, 237, 237)
+                .addComponent(addrolebtn)
+                .addContainerGap(270, Short.MAX_VALUE))
+        );
+        mngrolespanelLayout.setVerticalGroup(
+            mngrolespanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mngrolespanelLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(addrolebtn)
+                .addContainerGap(587, Short.MAX_VALUE))
+        );
+
+        tabpane.addTab("Roles", null, mngrolespanel, "Manage System Roles");
+
+        jLabel1.setText("Username : ");
+
+        unamelbl.setText("Username");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(mngstaffbtn)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(UTlbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(UserType)
-                        .addGap(18, 18, 18)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
-                .addComponent(mngstaffpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65))
+                        .addGap(63, 63, 63)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(UTlbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(UserType))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(mngstaffbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(unamelbl))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(81, 81, 81)
+                        .addComponent(mngrolesbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(40, 40, 40)
+                .addComponent(tabpane, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(UserType)
-                    .addComponent(UTlbl))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addComponent(mngstaffbtn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(mngstaffpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(64, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(UserType)
+                            .addComponent(UTlbl))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(unamelbl))
+                        .addGap(41, 41, 41)
+                        .addComponent(mngstaffbtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(mngrolesbtn))
+                    .addComponent(tabpane, javax.swing.GroupLayout.PREFERRED_SIZE, 665, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void mngstaffbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mngstaffbtnActionPerformed
-        if(mngstaffpanel.isVisible())
-            mngstaffpanel.setVisible(false);
-        else
-            mngstaffpanel.setVisible(true);
+        tabpane.setSelectedIndex(0);
+            
             
         
     }//GEN-LAST:event_mngstaffbtnActionPerformed
 
-    private void addstaffBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addstaffBtnActionPerformed
-        AddStaff mng = new AddStaff();
-        mng.setVisible(true);
-    }//GEN-LAST:event_addstaffBtnActionPerformed
+    private void mngrolesbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mngrolesbtnActionPerformed
+        tabpane.setSelectedIndex(1);
+    }//GEN-LAST:event_mngrolesbtnActionPerformed
+
+    private void addstaffbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addstaffbtnActionPerformed
+        AddStaff stf = new AddStaff();
+        stf.setVisible(true);
+    }//GEN-LAST:event_addstaffbtnActionPerformed
+
+    private void addrolebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addrolebtnActionPerformed
+       AddRole addrl = new AddRole();
+        addrl.setVisible(true);
+    }//GEN-LAST:event_addrolebtnActionPerformed
+
+    private void changepswbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changepswbtnActionPerformed
+        ChangeStaffPassword newpsw = new ChangeStaffPassword();
+        newpsw.setVisible(true);
+        newpsw.newpswlbl.setVisible(false);
+    }//GEN-LAST:event_changepswbtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -179,8 +276,16 @@ public class StaffIF extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel UTlbl;
     private javax.swing.JLabel UserType;
-    private javax.swing.JButton addstaffBtn;
+    private javax.swing.JButton addrolebtn;
+    private javax.swing.JButton addstaffbtn;
+    private javax.swing.JButton changepswbtn;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton mngrolesbtn;
+    private javax.swing.JPanel mngrolespanel;
     private javax.swing.JButton mngstaffbtn;
     private javax.swing.JPanel mngstaffpanel;
+    private javax.swing.JTabbedPane tabpane;
+    private javax.swing.JLabel unamelbl;
     // End of variables declaration//GEN-END:variables
 }

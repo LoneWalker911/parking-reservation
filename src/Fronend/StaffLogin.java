@@ -5,6 +5,7 @@
  */
 package Fronend;
 import Backend.*;
+import Fronend.MessageBox;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import javax.swing.JOptionPane;
@@ -180,8 +181,8 @@ public class StaffLogin extends javax.swing.JFrame {
                 String UserType = login.Login();
                 if(!UserType.equals(""))
                 {
-                    StaffIF uif = new StaffIF(UserType);
-                    EventLog.Write("User : ");
+                    StaffIF uif = new StaffIF(UserType,txtUname.getText());
+                    EventLog.Write("User : " + txtUname.getText() + "Logged in");
                     uif.setVisible(true);
                     this.rstbtnActionPerformed(evt);
                     this.dispose();

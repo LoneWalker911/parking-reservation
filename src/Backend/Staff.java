@@ -26,23 +26,22 @@ public class Staff {
     private String mobile=null;
     private String address=null;
 
-    dbConnection db = new dbConnection();
-    private final Connection con = db.CreateConn();
+    private final Connection con = dbConnection.CreateConn();
     EventLog log = new EventLog();
     
     public int addStaff()
     {
-        if(name!=null && email!=null && mobile!=null && address!=null)
+        if(getName()!=null && getEmail()!=null && getMobile()!=null && getAddress()!=null)
         {
+            int id = getLastid()+1;
         try
-        {
-            int id = getLastid();
+        {       
             String query = "INSERT INTO staff "
-                         + " values (?, ?, ?, ?,?)";
+                         + " values (?,?, ?, ?, ?)";
 
             //using a prepared statement to preven SQL Injection and other simillar attacks
             PreparedStatement prest = con.prepareStatement(query);
-            prest.setInt (1, id+1);
+            prest.setInt (1, id);
             prest.setString (2, name);
             prest.setString (3, address);
             prest.setString (4, email);
@@ -50,14 +49,15 @@ public class Staff {
 
             // execute the preparedstatement
             prest.execute();
-            log.Write("Staff_ID : "+ Integer.toString(id+1) + " added to staff table.");
+            id=getLastid();
+            EventLog.Write("Staff_ID : "+ id + " added to staff table.");
 
-            return getLastid();
+            return id;
         }
         catch (SQLException e)
             {
-              System.err.println("Got an exception!");
-              System.err.println(e.getMessage());
+              System.err.println("addStaff Got an exception!");
+              System.err.println(e.toString());
               return 0;
             }
         }
@@ -66,13 +66,15 @@ public class Staff {
     
     public int getLastid() 
     {
-        int id = -1;
+        int id = 0;
         
         String sql = "SELECT id FROM staff WHERE id = (SELECT MAX(id) FROM staff)";
         try{
         Statement st = con.createStatement();
         
         ResultSet rs = st.executeQuery(sql);
+        
+        
         
         while (rs.next())
             {
@@ -82,7 +84,7 @@ public class Staff {
         }
         catch(SQLException e)
         {
-            EventLog.Write(e.getMessage());
+            EventLog.Write("Exception : "+e.getMessage());
         }
         return id;
     }
