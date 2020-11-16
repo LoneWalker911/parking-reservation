@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Fronend;
+import Fronend.Staff.StaffIF;
 import Backend.*;
 import Fronend.MessageBox;
 import java.sql.SQLException;

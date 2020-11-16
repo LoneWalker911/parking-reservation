@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Fronend;
+package Fronend.Staff;
 
+import Fronend.AddRole;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
