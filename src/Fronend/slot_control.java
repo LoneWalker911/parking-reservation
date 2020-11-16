@@ -171,9 +171,7 @@ public class slot_control extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void slotaddbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_slotaddbtnActionPerformed
-        stf.setName(nametxt.getText());
-        stf.setAddress(addresstxt.getText());
-        stf.setEmail(emailtxt.getText());
+        
     }//GEN-LAST:event_slotaddbtnActionPerformed
 
     private void slotupdatebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_slotupdatebtnActionPerformed
