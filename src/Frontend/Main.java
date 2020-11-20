@@ -14,7 +14,7 @@ import java.sql.SQLException;
 public class Main {
     public static void main(String[] args) {
        
-        StaffIF stf = new StaffIF();
+        Frontend.Staff.StaffIF stf = new Frontend.Staff.StaffIF();
         stf.setVisible(true);
         Role rl = new Role();
         
