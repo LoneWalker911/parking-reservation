@@ -5,7 +5,7 @@
  */
 package Backend;
 
-import Fronend.MessageBox;
+import Frontend.MessageBox;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

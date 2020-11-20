@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Fronend;
-import Fronend.Staff.StaffIF;
+package Frontend;
+import Frontend.Staff.StaffIF;
 import Backend.*;
-import Fronend.MessageBox;
+import Frontend.MessageBox;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import javax.swing.JOptionPane;

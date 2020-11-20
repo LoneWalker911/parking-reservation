@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Fronend.Staff;
+package Frontend.Staff;
 import Backend.Staff;
 import Backend.Role;
 import Backend.Login;
-import Fronend.MessageBox;
-import Fronend.MessageBox;
+import Frontend.MessageBox;
+import Frontend.MessageBox;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Hashtable;
