@@ -54,12 +54,12 @@ public class StaffIF extends javax.swing.JFrame {
         UTlbl = new javax.swing.JLabel();
         mngrolesbtn = new javax.swing.JButton();
         tabpane = new javax.swing.JTabbedPane();
+        mngrolespanel = new javax.swing.JPanel();
+        addrolebtn = new javax.swing.JButton();
         mngstaffpanel = new javax.swing.JPanel();
         addstaffbtn = new javax.swing.JButton();
         changepswbtn = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        mngrolespanel = new javax.swing.JPanel();
-        addrolebtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         unamelbl = new javax.swing.JLabel();
 
@@ -85,6 +85,32 @@ public class StaffIF extends javax.swing.JFrame {
         });
 
         tabpane.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        addrolebtn.setText("Add a Role");
+        addrolebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addrolebtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout mngrolespanelLayout = new javax.swing.GroupLayout(mngrolespanel);
+        mngrolespanel.setLayout(mngrolespanelLayout);
+        mngrolespanelLayout.setHorizontalGroup(
+            mngrolespanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mngrolespanelLayout.createSequentialGroup()
+                .addGap(237, 237, 237)
+                .addComponent(addrolebtn)
+                .addContainerGap(270, Short.MAX_VALUE))
+        );
+        mngrolespanelLayout.setVerticalGroup(
+            mngrolespanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mngrolespanelLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(addrolebtn)
+                .addContainerGap(587, Short.MAX_VALUE))
+        );
+
+        tabpane.addTab("Roles", null, mngrolespanel, "Manage System Roles");
 
         mngstaffpanel.setName("Staff"); // NOI18N
 
@@ -130,32 +156,6 @@ public class StaffIF extends javax.swing.JFrame {
 
         tabpane.addTab("Staff", null, mngstaffpanel, "");
 
-        addrolebtn.setText("Add a Role");
-        addrolebtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addrolebtnActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout mngrolespanelLayout = new javax.swing.GroupLayout(mngrolespanel);
-        mngrolespanel.setLayout(mngrolespanelLayout);
-        mngrolespanelLayout.setHorizontalGroup(
-            mngrolespanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mngrolespanelLayout.createSequentialGroup()
-                .addGap(237, 237, 237)
-                .addComponent(addrolebtn)
-                .addContainerGap(270, Short.MAX_VALUE))
-        );
-        mngrolespanelLayout.setVerticalGroup(
-            mngrolespanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mngrolespanelLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(addrolebtn)
-                .addContainerGap(587, Short.MAX_VALUE))
-        );
-
-        tabpane.addTab("Roles", null, mngrolespanel, "Manage System Roles");
-
         jLabel1.setText("Username : ");
 
         unamelbl.setText("Username");
@@ -167,45 +167,45 @@ public class StaffIF extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(mngstaffbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(mngrolesbtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(UTlbl)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(UserType))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(mngstaffbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(unamelbl))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(81, 81, 81)
-                        .addComponent(mngrolesbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(40, 40, 40)
+                                .addComponent(unamelbl)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addComponent(tabpane, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addGap(37, 37, 37))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addGap(157, 157, 157)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(UserType)
-                            .addComponent(UTlbl))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(unamelbl))
-                        .addGap(41, 41, 41)
-                        .addComponent(mngstaffbtn)
-                        .addGap(18, 18, 18)
-                        .addComponent(mngrolesbtn))
-                    .addComponent(tabpane, javax.swing.GroupLayout.PREFERRED_SIZE, 665, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                    .addComponent(UserType)
+                    .addComponent(UTlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(unamelbl))
+                .addGap(64, 64, 64)
+                .addComponent(mngstaffbtn)
+                .addGap(18, 18, 18)
+                .addComponent(mngrolesbtn)
+                .addContainerGap(377, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(tabpane, javax.swing.GroupLayout.PREFERRED_SIZE, 665, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
