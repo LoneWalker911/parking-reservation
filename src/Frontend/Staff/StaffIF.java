@@ -25,16 +25,14 @@ public class StaffIF extends javax.swing.JFrame {
     
     public StaffIF(String usertype, String uname) {
         initComponents();
-//        mngstaffpanel.setVisible(false);
-//        mngrolespanel.setVisible(false);
         ut=usertype;
+        this.uname=uname;
+        unamelbl.setText(uname);
         UserType.setText(ut);
         
     }
     public StaffIF() {
         initComponents();
-//        mngrolespanel.setVisible(false);
-//        mngstaffpanel.setVisible(false);
     }
 
 
@@ -108,7 +106,6 @@ public class StaffIF extends javax.swing.JFrame {
         tabpane.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         mngstaffpanel.setMaximumSize(null);
-        mngstaffpanel.setMinimumSize(null);
         mngstaffpanel.setName(""); // NOI18N
 
         addstaffbtn.setBackground(new java.awt.Color(0, 255, 127));
@@ -155,6 +152,11 @@ public class StaffIF extends javax.swing.JFrame {
         updatestaffbtn.setMaximumSize(null);
         updatestaffbtn.setMinimumSize(null);
         updatestaffbtn.setName(""); // NOI18N
+        updatestaffbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updatestaffbtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout mngstaffpanelLayout = new javax.swing.GroupLayout(mngstaffpanel);
         mngstaffpanel.setLayout(mngstaffpanelLayout);
@@ -555,9 +557,8 @@ public class StaffIF extends javax.swing.JFrame {
     }//GEN-LAST:event_mngstaffbtnActionPerformed
 
     private void changepswbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changepswbtnActionPerformed
-        ChangeStaffPassword newpsw = new ChangeStaffPassword();
+        ChangeStaffPassword newpsw = new ChangeStaffPassword(uname,ut);
         newpsw.setVisible(true);
-        newpsw.newpswlbl.setVisible(false);
     }//GEN-LAST:event_changepswbtnActionPerformed
 
     private void addstaffbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addstaffbtnActionPerformed
@@ -592,6 +593,11 @@ public class StaffIF extends javax.swing.JFrame {
     private void resupdatebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resupdatebtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_resupdatebtnActionPerformed
+
+    private void updatestaffbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatestaffbtnActionPerformed
+        Frontend.Staff.updatestaff upstf = new Frontend.Staff.updatestaff();
+        upstf.setVisible(true);
+    }//GEN-LAST:event_updatestaffbtnActionPerformed
 
     /**
      * @param args the command line arguments

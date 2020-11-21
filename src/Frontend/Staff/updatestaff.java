@@ -4,14 +4,11 @@
  * and open the template in the editor.
  */
 package Frontend.Staff;
-import Backend.Staff;
 import Backend.Role;
-import Backend.Login;
-import Frontend.MessageBox;
+import Backend.EventLog;
 import Frontend.MessageBox;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Hashtable;
 /**
  *
  * @author thisa
@@ -28,8 +25,6 @@ public class updatestaff extends javax.swing.JFrame {
     
     public updatestaff() {
         initComponents();
-        Idtxt.setText(Integer.toString(stf.getLastid()+1));
-        Idtxt.setEditable(false);
 
         res = rl.getRoles();
         int i = 0;
@@ -53,7 +48,7 @@ public class updatestaff extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         emailtxt = new javax.swing.JTextField();
-        chkbtn = new javax.swing.JButton();
+        idchkbtn = new javax.swing.JButton();
         phonelbl = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         addresstxt = new javax.swing.JTextArea();
@@ -70,6 +65,7 @@ public class updatestaff extends javax.swing.JFrame {
         emaillbl = new javax.swing.JLabel();
         unametxt = new javax.swing.JTextField();
         Resetbtn = new javax.swing.JButton();
+        unamechkbtn = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -87,13 +83,13 @@ public class updatestaff extends javax.swing.JFrame {
         emailtxt.setBackground(new java.awt.Color(108, 122, 137));
         emailtxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        chkbtn.setBackground(new java.awt.Color(34, 167, 240));
-        chkbtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        chkbtn.setForeground(new java.awt.Color(255, 255, 255));
-        chkbtn.setText("Check");
-        chkbtn.addActionListener(new java.awt.event.ActionListener() {
+        idchkbtn.setBackground(new java.awt.Color(34, 167, 240));
+        idchkbtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        idchkbtn.setForeground(new java.awt.Color(255, 255, 255));
+        idchkbtn.setText("Check");
+        idchkbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chkbtnActionPerformed(evt);
+                idchkbtnActionPerformed(evt);
             }
         });
 
@@ -121,17 +117,22 @@ public class updatestaff extends javax.swing.JFrame {
 
         Idtxt.setBackground(new java.awt.Color(108, 122, 137));
         Idtxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        Idtxt.setText("Error");
+        Idtxt.setToolTipText("Enter the staff id");
         Idtxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 IdtxtActionPerformed(evt);
+            }
+        });
+        Idtxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                IdtxtKeyPressed(evt);
             }
         });
 
         submitbtn.setBackground(new java.awt.Color(34, 167, 240));
         submitbtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         submitbtn.setForeground(new java.awt.Color(255, 255, 255));
-        submitbtn.setText("Submit");
+        submitbtn.setText("Update");
         submitbtn.setEnabled(false);
         submitbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -176,39 +177,58 @@ public class updatestaff extends javax.swing.JFrame {
             }
         });
 
+        unamechkbtn.setBackground(new java.awt.Color(34, 167, 240));
+        unamechkbtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        unamechkbtn.setForeground(new java.awt.Color(255, 255, 255));
+        unamechkbtn.setText("Check");
+        unamechkbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                unamechkbtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(Resetbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(submitbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(unamelbl)
+                        .addGap(37, 37, 37)
+                        .addComponent(unametxt, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(unamechkbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(addresslbl)
-                            .addComponent(IDlbl)
                             .addComponent(nameLbl)
                             .addComponent(emaillbl)
-                            .addComponent(phonelbl)
-                            .addComponent(unamelbl)
-                            .addComponent(rolelbl))
-                        .addGap(37, 37, 37)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(Idtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(emailtxt)
-                                .addComponent(mobiletxt)
-                                .addComponent(nametxt)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(unametxt, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(chkbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(rolecombo, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(phonelbl))
+                        .addGap(58, 58, 58)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(emailtxt)
+                            .addComponent(mobiletxt)
+                            .addComponent(nametxt)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(Resetbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(submitbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(IDlbl)
+                                .addComponent(rolelbl))
+                            .addGap(89, 89, 89)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(Idtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(38, 38, 38)
+                                    .addComponent(idchkbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(rolecombo, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(124, 124, 124))))
                 .addContainerGap(121, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -217,7 +237,13 @@ public class updatestaff extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Idtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(IDlbl))
+                    .addComponent(IDlbl)
+                    .addComponent(idchkbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(unamelbl)
+                    .addComponent(unametxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(unamechkbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nametxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -234,11 +260,6 @@ public class updatestaff extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(phonelbl)
                     .addComponent(mobiletxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(unamelbl)
-                    .addComponent(unametxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(chkbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rolelbl)
@@ -315,16 +336,17 @@ public class updatestaff extends javax.swing.JFrame {
     }//GEN-LAST:event_mobiletxtKeyTyped
 
     private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitbtnActionPerformed
-        stf.setName(nametxt.getText());
-        stf.setAddress(addresstxt.getText());
-        stf.setEmail(emailtxt.getText());
-        stf.setMobile(mobiletxt.getText());
-        
         if(!(nametxt.getText().equals("") || addresstxt.getText().equals("") || emailtxt.getText().equals("") || mobiletxt.getText().equals("")))
         {
+            stf.setName(nametxt.getText());
+            stf.setAddress(addresstxt.getText());
+            stf.setEmail(emailtxt.getText());
+            stf.setMobile(mobiletxt.getText());
+            stf.setUser_id(Integer.parseInt(Idtxt.getText()));
+            
             login.setUsername(unametxt.getText());
             login.setRole_id((rl.getId(String.valueOf(rolecombo.getSelectedItem()))));
-            login.setStaff_id(stf.addStaff());
+            login.setStaff_id(Integer.parseInt(Idtxt.getText()));
             
             
             if(login.CreateLogin())
@@ -337,27 +359,64 @@ public class updatestaff extends javax.swing.JFrame {
         else MessageBox.infoBox("Please fill all the required information.", "Fill required fields");  
     }//GEN-LAST:event_submitbtnActionPerformed
 
-    private void chkbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkbtnActionPerformed
-        if(unametxt.getText().length() < 4)
-            MessageBox.infoBox("Username is too short. Please make sure at least it has 5 characters.", "Too short");
-        else if(chkbtn.getText().equals("Reset"))
+    private void idchkbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idchkbtnActionPerformed
+        if(idchkbtn.getText().equals("Reset"))
         {
-            chkbtn.setText("Check");
-            submitbtn.setEnabled(false);
+            Idtxt.setEditable(true);
             unametxt.setEditable(true);
+            idchkbtn.setText("Check");
+            unamechkbtn.setText("Check");
+            submitbtn.setEnabled(false);
+            
+            Idtxt.setText("");
             unametxt.setText("");
+            nametxt.setText("");
+            addresstxt.setText("");
+            emailtxt.setText("");
+            mobiletxt.setText("");
+            rolecombo.setSelectedIndex(-1);
         }
-        else if(!login.isUsernameExists(unametxt.getText()) && chkbtn.getText().equals("Check"))
+        else if(stf.isStaffIdExists(Idtxt.getText()))
         {
-            submitbtn.setEnabled(true);
+            ResultSet rs = stf.searchById(Idtxt.getText());
+            Idtxt.setEditable(false);
             unametxt.setEditable(false);
-            chkbtn.setText("Reset");
+            idchkbtn.setText("Reset");
+            unamechkbtn.setText("Reset");
+            submitbtn.setEnabled(true);
+            try{
+                while(rs.next())
+                {
+                    unametxt.setText(rs.getString("username"));
+                    nametxt.setText(rs.getString("name"));
+                    addresstxt.setText(rs.getString("address"));
+                    emailtxt.setText(rs.getString("email"));
+                    mobiletxt.setText(rs.getString("mobile"));
+                    rolecombo.setSelectedItem(rs.getString("role"));
+                }
+            }
+            catch(SQLException e)
+        {
+            EventLog.Write("Exception : "+e.getMessage());
         }
-        else if(login.isUsernameExists(unametxt.getText()) && chkbtn.getText().equals("Check")){
-            MessageBox.infoBox("Username Exists. Try a different one", "Existing Username");
+            
+            
+        }
+        else
+        {
+            Idtxt.setEditable(true);
+            unametxt.setEditable(true);
+            submitbtn.setEnabled(false);
             unametxt.setText("");
+            nametxt.setText("");
+            addresstxt.setText("");
+            emailtxt.setText("");
+            mobiletxt.setText("");
+            MessageBox.infoBox("ID Does not exists.", "Not found");
+            Idtxt.setText("");
+            rolecombo.setSelectedIndex(-1);
         }
-    }//GEN-LAST:event_chkbtnActionPerformed
+    }//GEN-LAST:event_idchkbtnActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
 
@@ -368,8 +427,87 @@ public class updatestaff extends javax.swing.JFrame {
     }//GEN-LAST:event_IdtxtActionPerformed
 
     private void ResetbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetbtnActionPerformed
-        // TODO add your handling code here:
+        Idtxt.setEditable(true);
+            unametxt.setEditable(true);
+            idchkbtn.setText("Check");
+            unamechkbtn.setText("Check");
+            submitbtn.setEnabled(false);
+            
+            Idtxt.setText("");
+            unametxt.setText("");
+            nametxt.setText("");
+            addresstxt.setText("");
+            emailtxt.setText("");
+            mobiletxt.setText("");
+            rolecombo.setSelectedIndex(-1);
     }//GEN-LAST:event_ResetbtnActionPerformed
+
+    private void unamechkbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unamechkbtnActionPerformed
+        if(idchkbtn.getText().equals("Reset"))
+        {
+            Idtxt.setEditable(true);
+            unametxt.setEditable(true);
+            idchkbtn.setText("Check");
+            unamechkbtn.setText("Check");
+            submitbtn.setEnabled(false);
+            
+            Idtxt.setText("");
+            unametxt.setText("");
+            nametxt.setText("");
+            addresstxt.setText("");
+            emailtxt.setText("");
+            mobiletxt.setText("");
+            rolecombo.setSelectedIndex(-1);
+        }
+        else if(login.isUsernameExists(unametxt.getText()))
+        {
+            ResultSet rs = stf.searchByUsername(unametxt.getText());
+            Idtxt.setEditable(false);
+            unametxt.setEditable(false);
+            idchkbtn.setText("Reset");
+            unamechkbtn.setText("Reset");
+            submitbtn.setEnabled(true);
+            try{
+                while(rs.next())
+                {
+                    Idtxt.setText(rs.getString("id"));
+                    nametxt.setText(rs.getString("name"));
+                    addresstxt.setText(rs.getString("address"));
+                    emailtxt.setText(rs.getString("email"));
+                    mobiletxt.setText(rs.getString("mobile"));
+                    rolecombo.setSelectedItem(rs.getString("role"));
+                }
+            }
+            catch(SQLException e)
+            {
+                EventLog.Write("Exception : "+e.getMessage());
+            }
+  
+        }
+        else
+        {
+            Idtxt.setEditable(true);
+            unametxt.setEditable(true);
+            submitbtn.setEnabled(false);
+            unametxt.setText("");
+            nametxt.setText("");
+            addresstxt.setText("");
+            emailtxt.setText("");
+            mobiletxt.setText("");
+            MessageBox.infoBox("Username Does not exists.", "Not found");
+            Idtxt.setText("");
+            rolecombo.setSelectedIndex(-1);
+        }
+    }//GEN-LAST:event_unamechkbtnActionPerformed
+
+    private void IdtxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IdtxtKeyPressed
+        String value = Idtxt.getText();
+            int l = value.length();
+            if (evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9') {
+               evt.consume();
+            } 
+            
+    }//GEN-LAST:event_IdtxtKeyPressed
 
     /**
      * @param args the command line arguments
@@ -419,9 +557,9 @@ public class updatestaff extends javax.swing.JFrame {
     private javax.swing.JButton Resetbtn;
     private javax.swing.JLabel addresslbl;
     private javax.swing.JTextArea addresstxt;
-    private javax.swing.JButton chkbtn;
     private javax.swing.JLabel emaillbl;
     private javax.swing.JTextField emailtxt;
+    private javax.swing.JButton idchkbtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -435,6 +573,7 @@ public class updatestaff extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> rolecombo;
     private javax.swing.JLabel rolelbl;
     private javax.swing.JButton submitbtn;
+    private javax.swing.JButton unamechkbtn;
     private javax.swing.JLabel unamelbl;
     private javax.swing.JTextField unametxt;
     // End of variables declaration//GEN-END:variables

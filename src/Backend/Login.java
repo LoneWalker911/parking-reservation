@@ -10,7 +10,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Hashtable;
 import java.util.Random;
 
 /**
@@ -121,7 +120,7 @@ public class Login {
         try{
         if(!(username.equals("") || staff_id==0 || role_id==0))
       {
-       if(!isUsernameStaffExists(username,staff_id) && stf.isStaffIdExists(getStaff_id()))
+       if(!isUsernameStaffExists(username,staff_id) && stf.isStaffIdExists(Integer.toString(getStaff_id())))
        {
            int id = getLastid()+1;
 
@@ -196,6 +195,24 @@ public class Login {
     }
     }
     
+    public boolean changeRole(){
+        String sql = "UPDATE login SET role_id = ? WHERE staff_id= ?";
+        try{
+            PreparedStatement preparedStmt = con.prepareStatement(sql);
+            preparedStmt.setInt(1, getRole_id());
+            preparedStmt.setInt(1, getStaff_id());
+
+            // prepared-statement execution
+            preparedStmt.executeUpdate();
+            return true;
+        }
+        catch(SQLException e)
+        {
+            EventLog.Write("Exception in Login.changeRole : "+e.getMessage());
+            return false;
+        }
+    }
+    
     public boolean isUsernameExists(String username)
     {
         String sql = "SELECT username FROM login WHERE username='" + username + "'";
@@ -205,7 +222,7 @@ public class Login {
         ResultSet rs = st.executeQuery(sql);
         ret = rs.next();
         rs.close();
-        st.close();
+            System.out.println(ret);
         return ret;
         }
         catch(SQLException e){

@@ -23,6 +23,16 @@ public class ChangeStaffPassword extends javax.swing.JFrame {
      */
     Backend.Login login = new Backend.Login();
 
+    public ChangeStaffPassword(String user,String level) {
+        initComponents();
+        if(!level.equals("admin"))
+        {
+            unametxt.setText(user);
+            unametxt.setEditable(false);
+            chkbtn.setEnabled(false);
+        }
+ 
+    }
     
     public ChangeStaffPassword() {
         initComponents();
@@ -93,7 +103,7 @@ public class ChangeStaffPassword extends javax.swing.JFrame {
         chkbtn.setBackground(new java.awt.Color(34, 167, 240));
         chkbtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         chkbtn.setForeground(new java.awt.Color(255, 255, 255));
-        chkbtn.setText("CHECK");
+        chkbtn.setText("Check");
         chkbtn.setToolTipText("Check the username on the database");
         chkbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -219,7 +229,7 @@ public class ChangeStaffPassword extends javax.swing.JFrame {
     private void chkbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkbtnActionPerformed
         if(unametxt.getText().length() < 4)
             MessageBox.infoBox("Username is too short. Please make sure at least it has 5 characters.", "Too short");
-        else if(chkbtn.getText().equals("Reset"))
+        else if(chkbtn.getText().toUpperCase().equals("RESET"))
         {
             chkbtn.setText("Check");
             submitbtn.setEnabled(false);
@@ -228,9 +238,8 @@ public class ChangeStaffPassword extends javax.swing.JFrame {
             unametxt.setText("");
             newpswtxt.setText("");
         }
-        else if(login.isUsernameExists(unametxt.getText()) && chkbtn.getText().equals("Check"))
+        else if(login.isUsernameExists(unametxt.getText()) && chkbtn.getText().toUpperCase().equals("CHECK"))
         {
-            
             newpswtxt.setEditable(true);
             unametxt.setEditable(false);
             chkbtn.setText("Reset");
