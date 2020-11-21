@@ -166,6 +166,26 @@ public class Staff {
         } 
     }
     
+    public int getIdByUsername(String username) 
+    {
+        String sql = "SELECT staff.id FROM staff,login WHERE login.username='"+username+"' AND login.staff_id = staff.id";
+        int id=0;
+          try{
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        while(rs.next())
+        {
+            id = rs.getInt("id");
+        }
+        return id;
+        }
+          catch(SQLException e)
+        {
+            EventLog.Write("Exception : "+e.getMessage());
+            return id;
+        } 
+    }
+    
 
     public int getUser_id() {
         return user_id;

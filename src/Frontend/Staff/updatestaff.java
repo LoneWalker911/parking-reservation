@@ -32,7 +32,28 @@ public class updatestaff extends javax.swing.JFrame {
               rolecombo.addItem(res[i]);
               i++;
             }while(!(res[i]==null));
- 
+    }
+    
+    public updatestaff(String user,String level){
+        initComponents();
+        
+        res = rl.getRoles();
+        int i = 0;
+             do{
+                rolecombo.addItem(res[i]);
+                i++;
+                }while(!(res[i]==null));
+        if(!level.equals("admin"))
+        {
+            unametxt.setText(user);
+            //Idtxt.setText(Integer.toString(stf.getIdByUsername(user)));
+            unamechkbtnActionPerformed(null);
+            Idtxt.setEditable(true);
+            unametxt.setEditable(true);
+            unamechkbtn.setEnabled(false);
+            idchkbtn.setEnabled(false);
+            Resetbtn.setEnabled(false);
+        }
     }
 
     /**
@@ -336,7 +357,7 @@ public class updatestaff extends javax.swing.JFrame {
     }//GEN-LAST:event_mobiletxtKeyTyped
 
     private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitbtnActionPerformed
-        if(!(nametxt.getText().equals("") || addresstxt.getText().equals("") || emailtxt.getText().equals("") || mobiletxt.getText().equals("")))
+        if(!(nametxt.getText().equals("") || addresstxt.getText().equals("") || emailtxt.getText().equals("") || mobiletxt.getText().equals("") || rolecombo.getSelectedIndex() == -1))
         {
             stf.setName(nametxt.getText());
             stf.setAddress(addresstxt.getText());
@@ -344,17 +365,25 @@ public class updatestaff extends javax.swing.JFrame {
             stf.setMobile(mobiletxt.getText());
             stf.setUser_id(Integer.parseInt(Idtxt.getText()));
             
-            login.setUsername(unametxt.getText());
             login.setRole_id((rl.getId(String.valueOf(rolecombo.getSelectedItem()))));
             login.setStaff_id(Integer.parseInt(Idtxt.getText()));
             
             
-            if(login.CreateLogin())
-            { MessageBox.infoBox("Username : " + login.getUsername() + "\nPassword : " + login.getPassword() + "\nPlease make sure to remember these before click OK.", "YOUR CREDENTIALS");
-                this.dispose();
+            if(stf.updateStaff())
+            { 
+                if(login.changeRole())
+                {
+                    MessageBox.infoBox("Update Completed.", "Success");
+                    ResetbtnActionPerformed(evt);
+                }
+                else
+                {
+                    MessageBox.infoBox("Staff details updated but Changing role failed.", "Failed");
+                    ResetbtnActionPerformed(evt);
+                }
             }
             else 
-                MessageBox.infoBox("If this issue presists please contact admin.", "Something Went Wrong!!!");  
+                MessageBox.infoBox("Please try again. If this issue presists please contact admin.", "Something Went Wrong!!!");  
         }
         else MessageBox.infoBox("Please fill all the required information.", "Fill required fields");  
     }//GEN-LAST:event_submitbtnActionPerformed
@@ -399,7 +428,7 @@ public class updatestaff extends javax.swing.JFrame {
         {
             EventLog.Write("Exception : "+e.getMessage());
         }
-            
+
             
         }
         else
@@ -427,14 +456,11 @@ public class updatestaff extends javax.swing.JFrame {
     }//GEN-LAST:event_IdtxtActionPerformed
 
     private void ResetbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetbtnActionPerformed
-        Idtxt.setEditable(true);
-            unametxt.setEditable(true);
+
             idchkbtn.setText("Check");
             unamechkbtn.setText("Check");
             submitbtn.setEnabled(false);
-            
-            Idtxt.setText("");
-            unametxt.setText("");
+
             nametxt.setText("");
             addresstxt.setText("");
             emailtxt.setText("");
@@ -503,7 +529,7 @@ public class updatestaff extends javax.swing.JFrame {
     private void IdtxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IdtxtKeyPressed
         String value = Idtxt.getText();
             int l = value.length();
-            if (evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9') {
+            if (evt.getKeyChar() == '0' ) {
                evt.consume();
             } 
             

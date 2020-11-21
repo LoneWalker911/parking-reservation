@@ -595,7 +595,7 @@ public class StaffIF extends javax.swing.JFrame {
     }//GEN-LAST:event_resupdatebtnActionPerformed
 
     private void updatestaffbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatestaffbtnActionPerformed
-        Frontend.Staff.updatestaff upstf = new Frontend.Staff.updatestaff();
+        Frontend.Staff.updatestaff upstf = new Frontend.Staff.updatestaff(uname,ut);
         upstf.setVisible(true);
     }//GEN-LAST:event_updatestaffbtnActionPerformed
 
