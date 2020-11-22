@@ -64,6 +64,37 @@ public class Staff {
         else return 0;
     }
     
+    public boolean updateStaff()
+    {
+        if(getUser_id()!=0 && getName()!=null && getEmail()!=null && getMobile()!=null && getAddress()!=null)
+        {
+        try
+        {       
+            String query = "UPDATE staff,login SET staff.name = '?', staff.address = '?', staff.email = '?', staff.mobile = '?' WHERE staff.id = ?";
+
+            //using a prepared statement to preven SQL Injection and other simillar attacks
+            PreparedStatement prest = con.prepareStatement(query);
+            prest.setString (1, getName());
+            prest.setString (2, getAddress());
+            prest.setString (3, getEmail());
+            prest.setString (4, getMobile());
+            prest.setInt (5, getUser_id());
+
+            // prepared statement execution
+            prest.executeUpdate();
+            EventLog.Write("Staff_ID : "+ getUser_id() +" added to staff table.");
+
+            return true;
+        }
+        catch (SQLException e)
+            {
+              EventLog.Write("updateStaff Exception : "+e.getMessage());
+              return false;
+            }
+        }
+        else return false;
+    }
+    
     public int getLastid() 
     {
         int id = 0;
@@ -89,15 +120,72 @@ public class Staff {
         return id;
     }
     
-    public boolean isStaffIdExists(int id) throws SQLException
+    public boolean isStaffIdExists(String id)
     {
         String sql = "SELECT id FROM staff WHERE id="+id;
+          try{
         Statement st = con.createStatement();
         ResultSet rs = st.executeQuery(sql);
-        
         return rs.next();
+        }
+          catch(SQLException e)
+        {
+            EventLog.Write("Exception : "+e.getMessage());
+            return false;
+        }
     }
-
+    
+    public ResultSet searchById(String id) 
+    {
+        String sql = "SELECT login.username, staff.name, address, email, mobile, roles.name AS role FROM staff,login,roles WHERE staff.id="+id+" AND login.staff_id = staff.id AND roles.id = login.role_id";
+          try{
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        return rs;
+        }
+          catch(SQLException e)
+        {
+            EventLog.Write("Exception : "+e.getMessage());
+            return null;
+        } 
+    }
+    
+    
+    public ResultSet searchByUsername(String username) 
+    {
+        String sql = "SELECT staff.id, staff.name, address, email, mobile, roles.name AS role FROM staff,login,roles WHERE login.username='"+username+"' AND login.staff_id = staff.id AND roles.id = login.role_id";
+          try{
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        return rs;
+        }
+          catch(SQLException e)
+        {
+            EventLog.Write("Exception : "+e.getMessage());
+            return null;
+        } 
+    }
+    
+    public int getIdByUsername(String username) 
+    {
+        String sql = "SELECT staff.id FROM staff,login WHERE login.username='"+username+"' AND login.staff_id = staff.id";
+        int id=0;
+          try{
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        while(rs.next())
+        {
+            id = rs.getInt("id");
+        }
+        return id;
+        }
+          catch(SQLException e)
+        {
+            EventLog.Write("Exception : "+e.getMessage());
+            return id;
+        } 
+    }
+    
 
     public int getUser_id() {
         return user_id;
