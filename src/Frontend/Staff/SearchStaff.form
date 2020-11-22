@@ -92,28 +92,28 @@
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                              <Component id="searchidtxt" min="-2" pref="38" max="-2" attributes="0"/>
+                              <Component id="idtxt" min="-2" pref="38" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                              <Component id="searchnametxt" min="-2" pref="157" max="-2" attributes="0"/>
+                              <Component id="nametxt" min="-2" pref="157" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="addresstxt" alignment="0" min="-2" pref="214" max="-2" attributes="0"/>
+                              <Component id="addressscrolpnl" alignment="0" min="-2" pref="214" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="33" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="searchmobiletxt" alignment="0" min="-2" pref="146" max="-2" attributes="0"/>
+                              <Component id="mobiletxt" alignment="0" min="-2" pref="146" max="-2" attributes="0"/>
                               <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="searchusernametxt" min="-2" pref="127" max="-2" attributes="0"/>
+                                  <Component id="usernametxt" min="-2" pref="127" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" pref="33" max="32767" attributes="0"/>
                                   <Component id="searchbtn" min="-2" pref="133" max="-2" attributes="0"/>
                               </Group>
@@ -138,15 +138,15 @@
                   </Group>
                   <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="addresstxt" min="-2" max="-2" attributes="0"/>
+                      <Component id="addressscrolpnl" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="searchidtxt" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="searchnametxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="idtxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="nametxt" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="searchbtn" alignment="0" min="-2" pref="46" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="searchmobiletxt" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="searchusernametxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="mobiletxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="usernametxt" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -212,7 +212,7 @@
             <Property name="text" type="java.lang.String" value="USER NAME :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="searchidtxt">
+        <Component class="javax.swing.JTextField" name="idtxt">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="89" green="7a" red="6c" type="rgb"/>
@@ -222,7 +222,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="searchnametxt">
+        <Component class="javax.swing.JTextField" name="nametxt">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="89" green="7a" red="6c" type="rgb"/>
@@ -232,7 +232,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="searchmobiletxt">
+        <Component class="javax.swing.JTextField" name="mobiletxt">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="89" green="7a" red="6c" type="rgb"/>
@@ -242,7 +242,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="searchusernametxt">
+        <Component class="javax.swing.JTextField" name="usernametxt">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="89" green="7a" red="6c" type="rgb"/>
@@ -252,7 +252,7 @@
             </Property>
           </Properties>
         </Component>
-        <Container class="javax.swing.JScrollPane" name="addresstxt">
+        <Container class="javax.swing.JScrollPane" name="addressscrolpnl">
           <Properties>
             <Property name="autoscrolls" type="boolean" value="true"/>
           </Properties>
@@ -262,7 +262,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextArea" name="searchaddresstxt">
+            <Component class="javax.swing.JTextArea" name="addresstxt">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="89" green="7a" red="6c" type="rgb"/>
@@ -285,7 +285,6 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="SEARCH"/>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchbtnActionPerformed"/>
@@ -304,7 +303,7 @@
                   <Color blue="fa" green="e6" red="e6" type="rgb"/>
                 </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="7" rowCount="6">
+                  <Table columnCount="7" rowCount="0">
                     <Column editable="true" title="ID" type="java.lang.Object"/>
                     <Column editable="true" title="NAME" type="java.lang.Object"/>
                     <Column editable="true" title="ADDRESS" type="java.lang.Object"/>
@@ -353,6 +352,8 @@
                     </Column>
                   </TableColumnModel>
                 </Property>
+                <Property name="name" type="java.lang.String" value="" noResource="true"/>
+                <Property name="surrendersFocusOnKeystroke" type="boolean" value="true"/>
                 <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
