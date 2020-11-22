@@ -4,14 +4,7 @@
  * and open the template in the editor.
  */
 package Frontend.Staff;
-import Backend.Staff;
-import Backend.Role;
-import Backend.Login;
 import Frontend.MessageBox;
-import Frontend.MessageBox;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Hashtable;
 /**
  *
  * @author thisa
