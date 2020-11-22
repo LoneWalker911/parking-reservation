@@ -70,7 +70,7 @@ public class Staff {
         {
         try
         {       
-            String query = "UPDATE staff,login SET staff.name = '?', staff.address = '?', staff.email = '?', staff.mobile = '?' WHERE staff.id = ?";
+            String query = "UPDATE staff SET staff.name = ?, staff.address = ?, staff.email = ?, staff.mobile = ? WHERE staff.id = ?";
 
             //using a prepared statement to preven SQL Injection and other simillar attacks
             PreparedStatement prest = con.prepareStatement(query);
@@ -82,13 +82,40 @@ public class Staff {
 
             // prepared statement execution
             prest.executeUpdate();
-            EventLog.Write("Staff_ID : "+ getUser_id() +" added to staff table.");
+            EventLog.Write("Staff_ID : "+ getUser_id() +" updated.");
 
             return true;
         }
         catch (SQLException e)
             {
               EventLog.Write("updateStaff Exception : "+e.getMessage());
+              return false;
+            }
+        }
+        else return false;
+    }
+    
+    public boolean removeStaff()
+    {
+        if(getUser_id()!=0)
+        {
+        try
+        {       
+            String query = "UPDATE staff SET staff.status = 'removed' WHERE staff.id = ?";
+
+            //using a prepared statement to preven SQL Injection and other simillar attacks
+            PreparedStatement prest = con.prepareStatement(query);
+            prest.setInt (1, getUser_id());
+            
+            // prepared statement execution
+            prest.executeUpdate();
+            EventLog.Write("Staff_ID : "+ getUser_id() +" removed.");
+
+            return true;
+        }
+        catch (SQLException e)
+            {
+              EventLog.Write("removeStaff Exception : "+e.getMessage());
               return false;
             }
         }
@@ -183,6 +210,26 @@ public class Staff {
         {
             EventLog.Write("Exception : "+e.getMessage());
             return id;
+        } 
+    }
+    
+    public String getUsernameById(int id) 
+    {
+        String sql = "SELECT login.username FROM staff,login WHERE staff.id="+id+" AND login.staff_id = staff.id";
+        String username = null;
+          try{
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        while(rs.next())
+        {
+            username = rs.getString("username");
+        }
+        return username;
+        }
+          catch(SQLException e)
+        {
+            EventLog.Write("Exception : "+e.getMessage());
+            return username;
         } 
     }
     

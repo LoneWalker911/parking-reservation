@@ -175,7 +175,9 @@ public class StaffLogin extends javax.swing.JFrame {
 
     private void LoginbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginbtnActionPerformed
         Login login = new Login();
-        if(!String.valueOf(txtPsw.getPassword()).equals("")  && !txtUname.getText().equals("")) {
+        if(txtUname.getText().toLowerCase().equals("removed"))
+            MessageBox.infoBox("Can not use \"removed\" as username.", "Not possible");
+        else if(!String.valueOf(txtPsw.getPassword()).equals("")  && !txtUname.getText().equals("")) {
             login.setUsername(txtUname.getText());
             login.setPassword(String.valueOf(txtPsw.getPassword()));
             try {

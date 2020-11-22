@@ -25,13 +25,6 @@ public class updatestaff extends javax.swing.JFrame {
     
     public updatestaff() {
         initComponents();
-
-        res = rl.getRoles();
-        int i = 0;
-             do{
-              rolecombo.addItem(res[i]);
-              i++;
-            }while(!(res[i]==null));
     }
     
     public updatestaff(String user,String level){
@@ -43,10 +36,10 @@ public class updatestaff extends javax.swing.JFrame {
                 rolecombo.addItem(res[i]);
                 i++;
                 }while(!(res[i]==null));
+             
         if(!level.equals("admin"))
         {
             unametxt.setText(user);
-            //Idtxt.setText(Integer.toString(stf.getIdByUsername(user)));
             unamechkbtnActionPerformed(null);
             Idtxt.setEditable(true);
             unametxt.setEditable(true);
@@ -364,6 +357,7 @@ public class updatestaff extends javax.swing.JFrame {
             stf.setEmail(emailtxt.getText());
             stf.setMobile(mobiletxt.getText());
             stf.setUser_id(Integer.parseInt(Idtxt.getText()));
+            System.out.println(stf.getUser_id());
             
             login.setRole_id((rl.getId(String.valueOf(rolecombo.getSelectedItem()))));
             login.setStaff_id(Integer.parseInt(Idtxt.getText()));
@@ -375,6 +369,10 @@ public class updatestaff extends javax.swing.JFrame {
                 {
                     MessageBox.infoBox("Update Completed.", "Success");
                     ResetbtnActionPerformed(evt);
+                    Idtxt.setText("");
+                    unametxt.setText("");
+                    Idtxt.setEditable(true);
+                    unametxt.setEditable(true);
                 }
                 else
                 {
@@ -405,7 +403,7 @@ public class updatestaff extends javax.swing.JFrame {
             mobiletxt.setText("");
             rolecombo.setSelectedIndex(-1);
         }
-        else if(stf.isStaffIdExists(Idtxt.getText()))
+        else if(stf.isStaffIdExists(Idtxt.getText()) && !(stf.getUsernameById(Integer.parseInt(Idtxt.getText())).toLowerCase().equals("removed")))
         {
             ResultSet rs = stf.searchById(Idtxt.getText());
             Idtxt.setEditable(false);
@@ -455,19 +453,6 @@ public class updatestaff extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_IdtxtActionPerformed
 
-    private void ResetbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetbtnActionPerformed
-
-            idchkbtn.setText("Check");
-            unamechkbtn.setText("Check");
-            submitbtn.setEnabled(false);
-
-            nametxt.setText("");
-            addresstxt.setText("");
-            emailtxt.setText("");
-            mobiletxt.setText("");
-            rolecombo.setSelectedIndex(-1);
-    }//GEN-LAST:event_ResetbtnActionPerformed
-
     private void unamechkbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unamechkbtnActionPerformed
         if(idchkbtn.getText().equals("Reset"))
         {
@@ -485,6 +470,8 @@ public class updatestaff extends javax.swing.JFrame {
             mobiletxt.setText("");
             rolecombo.setSelectedIndex(-1);
         }
+        else if(unametxt.getText().toLowerCase().equals("removed"))
+            MessageBox.infoBox("Can not use \"removed\" as username.", "Not possible");
         else if(login.isUsernameExists(unametxt.getText()))
         {
             ResultSet rs = stf.searchByUsername(unametxt.getText());
@@ -534,6 +521,19 @@ public class updatestaff extends javax.swing.JFrame {
             } 
             
     }//GEN-LAST:event_IdtxtKeyPressed
+
+    private void ResetbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetbtnActionPerformed
+
+        idchkbtn.setText("Check");
+        unamechkbtn.setText("Check");
+        submitbtn.setEnabled(false);
+
+        nametxt.setText("");
+        addresstxt.setText("");
+        emailtxt.setText("");
+        mobiletxt.setText("");
+        rolecombo.setSelectedIndex(-1);
+    }//GEN-LAST:event_ResetbtnActionPerformed
 
     /**
      * @param args the command line arguments

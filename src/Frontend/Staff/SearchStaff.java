@@ -5,6 +5,8 @@
  */
 package Frontend.Staff;
 
+import javax.swing.JScrollPane;
+
 /**
  *
  * @author thisa
@@ -16,6 +18,9 @@ public class SearchStaff extends javax.swing.JFrame {
      */
     public SearchStaff() {
         initComponents();
+        addresstxt.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        addresstxt.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        
     }
 
     /**
@@ -39,7 +44,7 @@ public class SearchStaff extends javax.swing.JFrame {
         searchnametxt = new javax.swing.JTextField();
         searchmobiletxt = new javax.swing.JTextField();
         searchusernametxt = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        addresstxt = new javax.swing.JScrollPane();
         searchaddresstxt = new javax.swing.JTextArea();
         searchbtn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -101,10 +106,12 @@ public class SearchStaff extends javax.swing.JFrame {
         searchusernametxt.setBackground(new java.awt.Color(108, 122, 137));
         searchusernametxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        addresstxt.setAutoscrolls(true);
+
         searchaddresstxt.setBackground(new java.awt.Color(108, 122, 137));
         searchaddresstxt.setColumns(20);
         searchaddresstxt.setRows(5);
-        jScrollPane1.setViewportView(searchaddresstxt);
+        addresstxt.setViewportView(searchaddresstxt);
 
         searchbtn.setBackground(new java.awt.Color(34, 167, 240));
         searchbtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -151,7 +158,7 @@ public class SearchStaff extends javax.swing.JFrame {
                         .addGap(33, 33, 33)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(addresstxt, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(searchmobiletxt, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -178,7 +185,7 @@ public class SearchStaff extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addGap(14, 14, 14)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addresstxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(searchidtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(searchnametxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -210,6 +217,7 @@ public class SearchStaff extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void searchbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchbtnActionPerformed
         
     }//GEN-LAST:event_searchbtnActionPerformed
@@ -245,11 +253,15 @@ public class SearchStaff extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new SearchStaff().setVisible(true);
+                
             }
         });
+        
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane addresstxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -258,7 +270,6 @@ public class SearchStaff extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextArea searchaddresstxt;

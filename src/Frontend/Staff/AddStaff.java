@@ -347,6 +347,8 @@ public class AddStaff extends javax.swing.JFrame {
             unametxt.setEditable(true);
             unametxt.setText("");
         }
+        else if(unametxt.getText().toLowerCase().equals("removed"))
+            MessageBox.infoBox("Can not use \"removed\" as username.", "Not possible");
         else if(!login.isUsernameExists(unametxt.getText()) && chkbtn.getText().equals("Check"))
         {
             submitbtn.setEnabled(true);

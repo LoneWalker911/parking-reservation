@@ -145,6 +145,11 @@ public class StaffIF extends javax.swing.JFrame {
         removestaffbtn.setMaximumSize(null);
         removestaffbtn.setMinimumSize(null);
         removestaffbtn.setName(""); // NOI18N
+        removestaffbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removestaffbtnActionPerformed(evt);
+            }
+        });
 
         updatestaffbtn.setBackground(new java.awt.Color(0, 255, 127));
         updatestaffbtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -598,6 +603,11 @@ public class StaffIF extends javax.swing.JFrame {
         Frontend.Staff.updatestaff upstf = new Frontend.Staff.updatestaff(uname,ut);
         upstf.setVisible(true);
     }//GEN-LAST:event_updatestaffbtnActionPerformed
+
+    private void removestaffbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removestaffbtnActionPerformed
+        Frontend.Staff.Removestaff upstf = new Frontend.Staff.Removestaff(uname,ut);
+        upstf.setVisible(true);
+    }//GEN-LAST:event_removestaffbtnActionPerformed
 
     /**
      * @param args the command line arguments
