@@ -4,13 +4,7 @@
  * and open the template in the editor.
  */
 package Frontend.Staff;
-import Backend.Staff;
-import Backend.Login;
 import Frontend.MessageBox;
-import Frontend.MessageBox;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Hashtable;
 /**
  *
  * @author thisa
@@ -228,6 +222,8 @@ public class ChangeStaffPassword extends javax.swing.JFrame {
     private void chkbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkbtnActionPerformed
         if(unametxt.getText().length() < 4)
             MessageBox.infoBox("Username is too short. Please make sure at least it has 5 characters.", "Too short");
+        else if(unametxt.getText().toLowerCase().equals("removed"))
+            MessageBox.infoBox("Can not use \"removed\" as username.", "Not possible");
         else if(chkbtn.getText().toUpperCase().equals("RESET"))
         {
             chkbtn.setText("Check");

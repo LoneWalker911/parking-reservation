@@ -200,7 +200,7 @@ public class Login {
         try{
             PreparedStatement preparedStmt = con.prepareStatement(sql);
             preparedStmt.setInt(1, getRole_id());
-            preparedStmt.setInt(1, getStaff_id());
+            preparedStmt.setInt(2, getStaff_id());
 
             // prepared-statement execution
             preparedStmt.executeUpdate();
@@ -209,6 +209,23 @@ public class Login {
         catch(SQLException e)
         {
             EventLog.Write("Exception in Login.changeRole : "+e.getMessage());
+            return false;
+        }
+    }
+    
+    public boolean RemoveLogin(){
+        String sql = "UPDATE login SET username = 'removed' WHERE staff_id= ?";
+        try{
+            PreparedStatement preparedStmt = con.prepareStatement(sql);
+            preparedStmt.setInt(1, getStaff_id());
+
+            // prepared-statement execution
+            preparedStmt.executeUpdate();
+            return true;
+        }
+        catch(SQLException e)
+        {
+            EventLog.Write("Exception in Login.RemoveLogin : "+e.getMessage());
             return false;
         }
     }
@@ -222,7 +239,6 @@ public class Login {
         ResultSet rs = st.executeQuery(sql);
         ret = rs.next();
         rs.close();
-            System.out.println(ret);
         return ret;
         }
         catch(SQLException e){

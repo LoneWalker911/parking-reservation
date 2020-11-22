@@ -70,7 +70,7 @@ public class Staff {
         {
         try
         {       
-            String query = "UPDATE staff,login SET staff.name = '?', staff.address = '?', staff.email = '?', staff.mobile = '?' WHERE staff.id = ?";
+            String query = "UPDATE staff SET staff.name = ?, staff.address = ?, staff.email = ?, staff.mobile = ? WHERE staff.id = ?";
 
             //using a prepared statement to preven SQL Injection and other simillar attacks
             PreparedStatement prest = con.prepareStatement(query);
@@ -82,7 +82,7 @@ public class Staff {
 
             // prepared statement execution
             prest.executeUpdate();
-            EventLog.Write("Staff_ID : "+ getUser_id() +" added to staff table.");
+            EventLog.Write("Staff_ID : "+ getUser_id() +" updated.");
 
             return true;
         }
@@ -95,6 +95,58 @@ public class Staff {
         else return false;
     }
     
+    public boolean removeStaff()
+    {
+        if(getUser_id()!=0)
+        {
+        try
+        {       
+            String query = "UPDATE staff SET staff.status = 'removed' WHERE staff.id = ?";
+
+            //using a prepared statement to preven SQL Injection and other simillar attacks
+            PreparedStatement prest = con.prepareStatement(query);
+            prest.setInt (1, getUser_id());
+            
+            // prepared statement execution
+            prest.executeUpdate();
+            EventLog.Write("Staff_ID : "+ getUser_id() +" removed.");
+
+            return true;
+        }
+        catch (SQLException e)
+            {
+              EventLog.Write("removeStaff Exception : "+e.getMessage());
+              return false;
+            }
+        }
+        else return false;
+    }
+    
+    public ResultSet searchStaff(String id,String name, String address, String mobile, String username) 
+    {
+        String sql = "SELECT staff.id, staff.name, staff.address, staff.email, staff.mobile, login.username, roles.name AS role FROM staff,login,roles WHERE login.staff_id = staff.id AND "
+                + "roles.id = login.role_id AND staff.id LIKE ? AND staff.name LIKE ? AND staff.address LIKE ? AND staff.mobile LIKE ? AND login.username LIKE ? "
+                + "AND NOT (login.username = 'removed')";
+        try{
+                //using a prepared statement to preven SQL Injection and other simillar attacks
+                PreparedStatement prest = con.prepareStatement(sql);
+                prest.setString (1, "%"+id+"%");
+                prest.setString (2, "%"+name+"%");
+                prest.setString (3, "%"+address+"%");
+                prest.setString (4, "%"+mobile+"%");
+                prest.setString (5, "%"+username+"%");
+
+
+                ResultSet rs = prest.executeQuery();
+                return rs;
+            }
+          catch(SQLException e)
+        {
+            EventLog.Write("searchStaff Exception : "+e.getMessage());
+            return null;
+        } 
+    }
+        
     public int getLastid() 
     {
         int id = 0;
@@ -183,6 +235,26 @@ public class Staff {
         {
             EventLog.Write("Exception : "+e.getMessage());
             return id;
+        } 
+    }
+    
+    public String getUsernameById(int id) 
+    {
+        String sql = "SELECT login.username FROM staff,login WHERE staff.id="+id+" AND login.staff_id = staff.id";
+        String username = null;
+          try{
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        while(rs.next())
+        {
+            username = rs.getString("username");
+        }
+        return username;
+        }
+          catch(SQLException e)
+        {
+            EventLog.Write("Exception : "+e.getMessage());
+            return username;
         } 
     }
     
