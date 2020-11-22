@@ -4,14 +4,8 @@
  * and open the template in the editor.
  */
 package Frontend.Staff;
-import Backend.Staff;
 import Backend.Role;
-import Backend.Login;
 import Frontend.MessageBox;
-import Frontend.MessageBox;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Hashtable;
 /**
  *
  * @author thisa
@@ -60,7 +54,7 @@ public class Removestaff extends javax.swing.JFrame {
         mobiletxt = new javax.swing.JTextField();
         IDlbl = new javax.swing.JLabel();
         Idtxt = new javax.swing.JTextField();
-        submitbtn = new javax.swing.JButton();
+        removebtn = new javax.swing.JButton();
         nameLbl = new javax.swing.JLabel();
         rolecombo = new javax.swing.JComboBox<>();
         nametxt = new javax.swing.JTextField();
@@ -128,14 +122,14 @@ public class Removestaff extends javax.swing.JFrame {
             }
         });
 
-        submitbtn.setBackground(new java.awt.Color(34, 167, 240));
-        submitbtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        submitbtn.setForeground(new java.awt.Color(255, 255, 255));
-        submitbtn.setText("Submit");
-        submitbtn.setEnabled(false);
-        submitbtn.addActionListener(new java.awt.event.ActionListener() {
+        removebtn.setBackground(new java.awt.Color(34, 167, 240));
+        removebtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        removebtn.setForeground(new java.awt.Color(255, 255, 255));
+        removebtn.setText("Submit");
+        removebtn.setEnabled(false);
+        removebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitbtnActionPerformed(evt);
+                removebtnActionPerformed(evt);
             }
         });
 
@@ -186,7 +180,7 @@ public class Removestaff extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(Resetbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(submitbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(removebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(addresslbl)
@@ -246,7 +240,7 @@ public class Removestaff extends javax.swing.JFrame {
                 .addGap(92, 92, 92)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Resetbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(submitbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(removebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(57, Short.MAX_VALUE))
         );
 
@@ -289,7 +283,7 @@ public class Removestaff extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addGap(0, 0, 0))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -322,7 +316,7 @@ public class Removestaff extends javax.swing.JFrame {
             evt.consume();     
     }//GEN-LAST:event_mobiletxtKeyTyped
 
-    private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitbtnActionPerformed
+    private void removebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removebtnActionPerformed
         stf.setName(nametxt.getText());
         stf.setAddress(addresstxt.getText());
         stf.setEmail(emailtxt.getText());
@@ -343,7 +337,7 @@ public class Removestaff extends javax.swing.JFrame {
                 MessageBox.infoBox("If this issue presists please contact admin.", "Something Went Wrong!!!");  
         }
         else MessageBox.infoBox("Please fill all the required information.", "Fill required fields");  
-    }//GEN-LAST:event_submitbtnActionPerformed
+    }//GEN-LAST:event_removebtnActionPerformed
 
     private void chkbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkbtnActionPerformed
         if(unametxt.getText().length() < 4)
@@ -351,13 +345,13 @@ public class Removestaff extends javax.swing.JFrame {
         else if(chkbtn.getText().equals("Reset"))
         {
             chkbtn.setText("Check");
-            submitbtn.setEnabled(false);
+            removebtn.setEnabled(false);
             unametxt.setEditable(true);
             unametxt.setText("");
         }
         else if(!login.isUsernameExists(unametxt.getText()) && chkbtn.getText().equals("Check"))
         {
-            submitbtn.setEnabled(true);
+            removebtn.setEnabled(true);
             unametxt.setEditable(false);
             chkbtn.setText("Reset");
         }
@@ -440,9 +434,9 @@ public class Removestaff extends javax.swing.JFrame {
     private javax.swing.JLabel nameLbl;
     private javax.swing.JTextField nametxt;
     private javax.swing.JLabel phonelbl;
+    private javax.swing.JButton removebtn;
     private javax.swing.JComboBox<String> rolecombo;
     private javax.swing.JLabel rolelbl;
-    private javax.swing.JButton submitbtn;
     private javax.swing.JLabel unamelbl;
     private javax.swing.JTextField unametxt;
     // End of variables declaration//GEN-END:variables
