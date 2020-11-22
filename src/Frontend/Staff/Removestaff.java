@@ -68,7 +68,7 @@ public class Removestaff extends javax.swing.JFrame {
         mobiletxt = new javax.swing.JTextField();
         IDlbl = new javax.swing.JLabel();
         Idtxt = new javax.swing.JTextField();
-        removebtn = new javax.swing.JButton();
+        submitbtn = new javax.swing.JButton();
         nameLbl = new javax.swing.JLabel();
         rolecombo = new javax.swing.JComboBox<>();
         nametxt = new javax.swing.JTextField();
@@ -136,14 +136,14 @@ public class Removestaff extends javax.swing.JFrame {
             }
         });
 
-        removebtn.setBackground(new java.awt.Color(34, 167, 240));
-        removebtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        removebtn.setForeground(new java.awt.Color(255, 255, 255));
-        removebtn.setText("Submit");
-        removebtn.setEnabled(false);
-        removebtn.addActionListener(new java.awt.event.ActionListener() {
+        submitbtn.setBackground(new java.awt.Color(34, 167, 240));
+        submitbtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        submitbtn.setForeground(new java.awt.Color(255, 255, 255));
+        submitbtn.setText("Submit");
+        submitbtn.setEnabled(false);
+        submitbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removebtnActionPerformed(evt);
+                submitbtnActionPerformed(evt);
             }
         });
 
@@ -273,7 +273,7 @@ public class Removestaff extends javax.swing.JFrame {
                 .addGap(92, 92, 92)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Resetbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(removebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(submitbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(57, Short.MAX_VALUE))
         );
 
@@ -378,7 +378,7 @@ public class Removestaff extends javax.swing.JFrame {
                 MessageBox.infoBox("Please try again. If this issue presists please contact admin.", "Something Went Wrong!!!");  
         }
         else MessageBox.infoBox("Please fill all the required information.", "Fill required fields");  
-    }//GEN-LAST:event_removebtnActionPerformed
+    }//GEN-LAST:event_submitbtnActionPerformed
 
     private void unamechkbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unamechkbtnActionPerformed
         if(idchkbtn.getText().equals("Reset"))
@@ -572,7 +572,6 @@ public class Removestaff extends javax.swing.JFrame {
     private javax.swing.JLabel nameLbl;
     private javax.swing.JTextField nametxt;
     private javax.swing.JLabel phonelbl;
-    private javax.swing.JButton removebtn;
     private javax.swing.JComboBox<String> rolecombo;
     private javax.swing.JLabel rolelbl;
     private javax.swing.JButton submitbtn;

@@ -181,7 +181,7 @@
                       <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="Resetbtn" alignment="3" min="-2" pref="46" max="-2" attributes="0"/>
-                          <Component id="removebtn" alignment="3" min="-2" pref="46" max="-2" attributes="0"/>
+                          <Component id="submitbtn" alignment="3" min="-2" pref="46" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="57" max="32767" attributes="0"/>
                   </Group>
@@ -283,7 +283,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="IdtxtActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="removebtn">
+            <Component class="javax.swing.JButton" name="submitbtn">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="f0" green="a7" red="22" type="rgb"/>
@@ -298,7 +298,7 @@
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removebtnActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="submitbtnActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="nameLbl">
