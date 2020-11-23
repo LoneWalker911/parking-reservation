@@ -26,37 +26,37 @@ public class customer {
     EventLog log = new EventLog();
     private final Connection con = dbConnection.CreateConn();
 
-    public String addCustomer()
+    public boolean addCustomer()
     {
         if(getCus_mobile()!=null && getCus_name() != null && getPassword() != null)
         {
         try
         {
-            String query = "INSERT INTO customer (name, password, mobile, address, email) "
-                         + " values (?, ?, ?, ?, ?)";
+            int id = getLastid()+1;
+            String query = "INSERT INTO customer (id, name, password, mobile, address, email) "
+                         + " values (?, ?, ?, ?, ?, ?)";
 
             //using a prepared statement to preven SQL Injection and other simillar attacks
             PreparedStatement prest = con.prepareStatement(query);
-            prest.setString (1, getCus_name());
-            prest.setString (2, getPassword());
-            prest.setString (3, getCus_mobile());
-            prest.setString (4, getCus_address());
-            prest.setString (5, getCus_email());
+            prest.setInt (1, id);
+            prest.setString (2, getCus_name());
+            prest.setString (3, getPassword());
+            prest.setString (4, getCus_mobile());
+            prest.setString (5, getCus_address());
+            prest.setString (6, getCus_email());
 
-            // execute the preparedstatement
+            // prepared statement execution
             prest.execute();
-            log.Write("Customer_ID : " + getLastid() + " added to customer table.");
-            String ret = "Customer ID : " + getLastid() + "\nPassword : " + getPassword();
-            return ret;
+            EventLog.Write("Customer_ID : " + getLastid() + " added to customer table.");
+            return true;
         }
         catch (SQLException e)
             {
-              System.err.println("Got an exception!");
-              System.err.println(e.getMessage());
-              return "Process Failed, Contact admin";
+              EventLog.Write("backend.customer Exception: " + e.getMessage());
+              return false;
             }
         }
-        else return "Enter requied information";
+        else return false;
     }
     
     public ResultSet getCustomers()
@@ -79,21 +79,53 @@ public class customer {
             }
     }
     
-    public int getLastid() throws SQLException
+    public int getLastid()
     {
-        int id = -1;
+        int id = 0;
         
         String sql = "SELECT id FROM customer WHERE id = (SELECT MAX(id) FROM customer)";
         
-        try (Statement st = con.createStatement()) {
+        try {
+            Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
             
             while (rs.next())
             {
                 id = rs.getInt("id");
             } }
+        catch(SQLException e)
+        {
+            EventLog.Write("Exception : "+e.getMessage());
+        }
       
       return id;
+    }
+    
+    public boolean removeCustomer()
+    {
+        if(getCus_id()!=0)
+        {
+        try
+        {       
+            String query = "DELETE FROM customer WHERE id = ?";
+
+            //using a prepared statement to preven SQL Injection and other simillar attacks
+            PreparedStatement prest = con.prepareStatement(query);
+            prest.setInt (1, getCus_id());
+            
+            // prepared statement execution
+            prest.executeUpdate();
+            EventLog.Write("Customer_ID : "+ getCus_id()+" removed.");
+
+            return true;
+        }
+        catch (SQLException e)
+            {
+              EventLog.Write("removeCustomer Exception : "+e.getMessage());
+              return false;
+            }
+        }
+        else return false;
     }
     
     /**

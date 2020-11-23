@@ -18,8 +18,11 @@ public class CustomerRegister extends javax.swing.JFrame {
     /**
      * Creates new form CustomerRegister
      */
+    customer cus = new customer();
+    
     public CustomerRegister() {
         initComponents();
+        Idtxt.setText(String.valueOf(Integer.toString(cus.getLastid() + 1)));
     }
 
     /**
@@ -36,23 +39,19 @@ public class CustomerRegister extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         IDlbl = new javax.swing.JLabel();
         Emaillbl = new javax.swing.JLabel();
-        Lnamelbl = new javax.swing.JLabel();
         Pwdlbl = new javax.swing.JLabel();
         Fnamelb = new javax.swing.JLabel();
         Addresslbl = new javax.swing.JLabel();
         Mobilelbl = new javax.swing.JLabel();
-        Fnametxt = new javax.swing.JTextField();
+        Nametxt = new javax.swing.JTextField();
         Idtxt = new javax.swing.JTextField();
-        Lnametxt = new javax.swing.JTextField();
         Emailtxt = new javax.swing.JTextField();
         Mobiletxt = new javax.swing.JTextField();
-        Pwdfield = new javax.swing.JPasswordField();
+        Pswfield = new javax.swing.JPasswordField();
         jScrollPane1 = new javax.swing.JScrollPane();
         Addresstxt = new javax.swing.JTextArea();
         Resetbtn = new javax.swing.JButton();
         Registerbtn = new javax.swing.JButton();
-        Unamelbl = new javax.swing.JLabel();
-        Unametxt = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -73,17 +72,13 @@ public class CustomerRegister extends javax.swing.JFrame {
         Emaillbl.setForeground(new java.awt.Color(236, 240, 241));
         Emaillbl.setText("Email");
 
-        Lnamelbl.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        Lnamelbl.setForeground(new java.awt.Color(236, 240, 241));
-        Lnamelbl.setText("Last Name ");
-
         Pwdlbl.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Pwdlbl.setForeground(new java.awt.Color(236, 240, 241));
         Pwdlbl.setText("Password");
 
         Fnamelb.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Fnamelb.setForeground(new java.awt.Color(236, 240, 241));
-        Fnamelb.setText("First Name ");
+        Fnamelb.setText("Name ");
 
         Addresslbl.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Addresslbl.setForeground(new java.awt.Color(236, 240, 241));
@@ -93,29 +88,20 @@ public class CustomerRegister extends javax.swing.JFrame {
         Mobilelbl.setForeground(new java.awt.Color(236, 240, 241));
         Mobilelbl.setText("Mobile No ");
 
-        Fnametxt.setBackground(new java.awt.Color(108, 122, 137));
-        Fnametxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        Nametxt.setBackground(new java.awt.Color(108, 122, 137));
+        Nametxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         Idtxt.setBackground(new java.awt.Color(108, 122, 137));
         Idtxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        Lnametxt.setBackground(new java.awt.Color(108, 122, 137));
-        Lnametxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-
         Emailtxt.setBackground(new java.awt.Color(108, 122, 137));
         Emailtxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        Emailtxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EmailtxtActionPerformed(evt);
-            }
-        });
 
         Mobiletxt.setBackground(new java.awt.Color(108, 122, 137));
         Mobiletxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        Pwdfield.setBackground(new java.awt.Color(108, 122, 137));
-        Pwdfield.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        Pwdfield.setText("jPasswordField1");
+        Pswfield.setBackground(new java.awt.Color(108, 122, 137));
+        Pswfield.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         Addresstxt.setBackground(new java.awt.Color(108, 122, 137));
         Addresstxt.setColumns(20);
@@ -136,13 +122,11 @@ public class CustomerRegister extends javax.swing.JFrame {
         Registerbtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Registerbtn.setForeground(new java.awt.Color(255, 255, 255));
         Registerbtn.setText("REGISTER");
-
-        Unamelbl.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        Unamelbl.setForeground(new java.awt.Color(236, 240, 241));
-        Unamelbl.setText("User Name");
-
-        Unametxt.setBackground(new java.awt.Color(108, 122, 137));
-        Unametxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        Registerbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegisterbtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -154,23 +138,19 @@ public class CustomerRegister extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(Fnamelb, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
-                            .addComponent(Lnamelbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Pwdlbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Mobilelbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Addresslbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Emaillbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(IDlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Unamelbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(IDlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(Mobiletxt)
                             .addComponent(Emailtxt)
                             .addComponent(Idtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Fnametxt)
-                            .addComponent(Lnametxt)
-                            .addComponent(Pwdfield, javax.swing.GroupLayout.DEFAULT_SIZE, 526, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1)
-                            .addComponent(Unametxt)))
+                            .addComponent(Nametxt)
+                            .addComponent(Pswfield, javax.swing.GroupLayout.DEFAULT_SIZE, 526, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addComponent(Resetbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
@@ -187,16 +167,8 @@ public class CustomerRegister extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Fnamelb)
-                    .addComponent(Fnametxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Lnamelbl)
-                    .addComponent(Lnametxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Unamelbl)
-                    .addComponent(Unametxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(Nametxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(122, 122, 122)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(Mobiletxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Mobilelbl))
@@ -210,7 +182,7 @@ public class CustomerRegister extends javax.swing.JFrame {
                     .addComponent(Emaillbl))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Pwdfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Pswfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Pwdlbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -255,13 +227,36 @@ public class CustomerRegister extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void EmailtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmailtxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EmailtxtActionPerformed
-
     private void ResetbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetbtnActionPerformed
-        // TODO add your handling code here:
+        Idtxt.setText(String.valueOf(Integer.toString(cus.getLastid() + 1)));
+        Nametxt.setText("");
+        Mobiletxt.setText("");
+        Addresstxt.setText("");
+        Emailtxt.setText("");
+        Pswfield.setText("");
     }//GEN-LAST:event_ResetbtnActionPerformed
+
+    private void RegisterbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterbtnActionPerformed
+        cus.setCus_name(Nametxt.getText());
+        cus.setCus_address(Addresstxt.getText());
+        cus.setCus_email(Emailtxt.getText());
+        cus.setCus_mobile(Mobiletxt.getText());
+        cus.setPassword(String.copyValueOf(Pswfield.getPassword()));
+        
+        if(!(Nametxt.getText().equals("") || Addresstxt.getText().equals("") 
+             || Emailtxt.getText().equals("") || Mobiletxt.getText().equals("") 
+             || String.copyValueOf(Pswfield.getPassword()).equals("")) 
+             && Mobiletxt.getText().length() >= 10)
+        {
+            if(cus.addCustomer())
+            { MessageBox.infoBox("Mobile : " + cus.getCus_mobile() + "\nPassword : " + cus.getPassword() + "\nPlease make sure to remember these before click OK.", "YOUR CREDENTIALS");
+                this.dispose();
+            }
+            else 
+                MessageBox.infoBox("If this issue presists please contact admin.", "Something Went Wrong!!!");  
+        }
+        else MessageBox.infoBox("Please fill all the required information.", "Fill required fields");  
+    }//GEN-LAST:event_RegisterbtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -304,19 +299,15 @@ public class CustomerRegister extends javax.swing.JFrame {
     private javax.swing.JLabel Emaillbl;
     private javax.swing.JTextField Emailtxt;
     private javax.swing.JLabel Fnamelb;
-    private javax.swing.JTextField Fnametxt;
     private javax.swing.JLabel IDlbl;
     private javax.swing.JTextField Idtxt;
-    private javax.swing.JLabel Lnamelbl;
-    private javax.swing.JTextField Lnametxt;
     private javax.swing.JLabel Mobilelbl;
     private javax.swing.JTextField Mobiletxt;
-    private javax.swing.JPasswordField Pwdfield;
+    private javax.swing.JTextField Nametxt;
+    private javax.swing.JPasswordField Pswfield;
     private javax.swing.JLabel Pwdlbl;
     private javax.swing.JButton Registerbtn;
     private javax.swing.JButton Resetbtn;
-    private javax.swing.JLabel Unamelbl;
-    private javax.swing.JTextField Unametxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
