@@ -105,14 +105,22 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="Mobiletxt" max="32767" attributes="0"/>
                                   <Component id="Emailtxt" max="32767" attributes="0"/>
-                                  <Component id="Idtxt" min="-2" pref="78" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="Idtxt" min="-2" pref="78" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="deleteidchkbtn" min="-2" pref="95" max="-2" attributes="0"/>
+                                  </Group>
                                   <Component id="Fnametxt" max="32767" attributes="0"/>
                                   <Component id="Lnametxt" max="32767" attributes="0"/>
                                   <Component id="Pwdfield" pref="526" max="32767" attributes="0"/>
                                   <Component id="jScrollPane1" max="32767" attributes="0"/>
                                   <Component id="Unametxt" alignment="0" max="32767" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="Mobiletxt" min="-2" pref="260" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="mobnumchkbtn" min="-2" pref="95" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -132,6 +140,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="IDlbl" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="Idtxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="deleteidchkbtn" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -150,10 +159,13 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="Mobiletxt" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="Mobiletxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="mobnumchkbtn" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                          </Group>
                           <Component id="Mobilelbl" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jScrollPane1" min="-2" pref="125" max="-2" attributes="0"/>
                           <Component id="Addresslbl" min="-2" max="-2" attributes="0"/>
@@ -349,7 +361,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="RESET"/>
+                <Property name="text" type="java.lang.String" value="CANCEL"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ResetbtnActionPerformed"/>
@@ -366,7 +378,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="REGISTER"/>
+                <Property name="text" type="java.lang.String" value="DELETE"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="Unamelbl">
@@ -389,6 +401,40 @@
                   <Font name="Tahoma" size="18" style="0"/>
                 </Property>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="deleteidchkbtn">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="f0" green="a7" red="22" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="14" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Check"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteidchkbtnActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="mobnumchkbtn">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="f0" green="a7" red="22" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="14" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Check"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mobnumchkbtnActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

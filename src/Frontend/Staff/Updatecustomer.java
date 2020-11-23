@@ -54,6 +54,8 @@ public class Updatecustomer extends javax.swing.JFrame {
         Registerbtn = new javax.swing.JButton();
         Unamelbl = new javax.swing.JLabel();
         Unametxt = new javax.swing.JTextField();
+        updateidchkbtn = new javax.swing.JButton();
+        updatemobchkbtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -126,7 +128,7 @@ public class Updatecustomer extends javax.swing.JFrame {
         Resetbtn.setBackground(new java.awt.Color(242, 38, 19));
         Resetbtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Resetbtn.setForeground(new java.awt.Color(255, 255, 255));
-        Resetbtn.setText("RESET");
+        Resetbtn.setText("CANCEL");
         Resetbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ResetbtnActionPerformed(evt);
@@ -136,7 +138,7 @@ public class Updatecustomer extends javax.swing.JFrame {
         Registerbtn.setBackground(new java.awt.Color(34, 167, 240));
         Registerbtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Registerbtn.setForeground(new java.awt.Color(255, 255, 255));
-        Registerbtn.setText("REGISTER");
+        Registerbtn.setText("UPDATE");
 
         Unamelbl.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Unamelbl.setForeground(new java.awt.Color(236, 240, 241));
@@ -144,6 +146,26 @@ public class Updatecustomer extends javax.swing.JFrame {
 
         Unametxt.setBackground(new java.awt.Color(108, 122, 137));
         Unametxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
+        updateidchkbtn.setBackground(new java.awt.Color(34, 167, 240));
+        updateidchkbtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        updateidchkbtn.setForeground(new java.awt.Color(255, 255, 255));
+        updateidchkbtn.setText("Check");
+        updateidchkbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateidchkbtnActionPerformed(evt);
+            }
+        });
+
+        updatemobchkbtn.setBackground(new java.awt.Color(34, 167, 240));
+        updatemobchkbtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        updatemobchkbtn.setForeground(new java.awt.Color(255, 255, 255));
+        updatemobchkbtn.setText("Check");
+        updatemobchkbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updatemobchkbtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -164,19 +186,26 @@ public class Updatecustomer extends javax.swing.JFrame {
                             .addComponent(Unamelbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Mobiletxt)
                             .addComponent(Emailtxt)
-                            .addComponent(Idtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Fnametxt)
                             .addComponent(Lnametxt)
                             .addComponent(Pwdfield, javax.swing.GroupLayout.DEFAULT_SIZE, 526, Short.MAX_VALUE)
+                            .addComponent(Unametxt)
+                            .addComponent(Fnametxt)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(Idtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(updateidchkbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1)
-                            .addComponent(Unametxt)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(Mobiletxt, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(updatemobchkbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addComponent(Resetbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 211, Short.MAX_VALUE)
                         .addComponent(Registerbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,7 +213,8 @@ public class Updatecustomer extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(IDlbl)
-                    .addComponent(Idtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Idtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(updateidchkbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Fnamelb)
@@ -199,7 +229,9 @@ public class Updatecustomer extends javax.swing.JFrame {
                     .addComponent(Unametxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Mobiletxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(Mobiletxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(updatemobchkbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(Mobilelbl))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -264,6 +296,14 @@ public class Updatecustomer extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ResetbtnActionPerformed
 
+    private void updateidchkbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateidchkbtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_updateidchkbtnActionPerformed
+
+    private void updatemobchkbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatemobchkbtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_updatemobchkbtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -323,5 +363,7 @@ public class Updatecustomer extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton updateidchkbtn;
+    private javax.swing.JButton updatemobchkbtn;
     // End of variables declaration//GEN-END:variables
 }

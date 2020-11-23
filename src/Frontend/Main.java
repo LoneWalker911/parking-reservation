@@ -14,7 +14,7 @@ import java.sql.SQLException;
 public class Main {
     public static void main(String[] args) {
        
-        Frontend.Staff.SearchStaff stf = new Frontend.Staff.SearchStaff();
+        Frontend.CustomerSign stf = new Frontend.CustomerSign();
         stf.setVisible(true);
         
         
