@@ -17,51 +17,78 @@ import java.sql.Statement;
  * @author Prashan
  */
 public class Vehicle {
-    private int vehicle_id;
+    private int vehicle_id=0;
     private int vehicle_ownerid=0;
     private String vehicle_num="";
     private String type="";
+    private String desc="";
     
     private final Connection con = dbConnection.CreateConn();
     
-    public Vehicle(int cus_id){
-    
-} 
 
-//    public int addVehicle()
-//    {
-//        if(getVehicle_ownerid()!=0 && !getVehicle_num().equals("") && !getType().equals(""))
-//        {
-//            int id = getLastid()+1;
-//        try
-//        {       
-//            String query = "INSERT INTO vehicles "
-//                         + " values (?,?, ?, ?, ?)";
-//
-//            //using a prepared statement to preven SQL Injection and other simillar attacks
-//            PreparedStatement prest = con.prepareStatement(query);
-//            prest.setInt (1, id);
-//            prest.setString (1, name);
-//            prest.setString (2, address);
-//            prest.setString (3, email);
-//            prest.setString (4, mobile);
-//
-//            // execute the preparedstatement
-//            prest.execute();
-//            id=getLastid();
-//            EventLog.Write("Staff_ID : "+ id + " added to staff table.");
-//
-//            return id;
-//        }
-//        catch (SQLException e)
-//            {
-//              System.err.println("addStaff Got an exception!");
-//              System.err.println(e.toString());
-//              return 0;
-//            }
-//        }
-//        else return 0;
-//    }
+    public boolean addVehicle()
+    {
+        if(!(getVehicle_ownerid()==0 || getVehicle_num().equals("") || getType().equals("")))
+        {
+            int id = getLastid()+1;
+        try
+        {       
+            String query = "INSERT INTO vehicles "
+                         + " values (?,?, ?, ?, ?)";
+
+            //using a prepared statement to preven SQL Injection and other simillar attacks
+            PreparedStatement prest = con.prepareStatement(query);
+            prest.setInt (1, id);
+            prest.setInt (2, this.getVehicle_ownerid());
+            prest.setString (3, this.getDesc());
+            prest.setString (4, this.getType());
+            prest.setString (5, this.getVehicle_num());
+
+            // execute the preparedstatement
+            prest.execute();
+            id=getLastid();
+            EventLog.Write("Staff_ID : "+ id + " added to staff table.");
+
+            return true;
+        }
+        catch (SQLException e)
+            {
+              System.err.println("addStaff Got an exception!");
+              System.err.println(e.toString());
+              return false;
+            }
+        }
+        else return false;
+    }
+    
+    
+    
+    
+    public String[] get()
+    {
+        try
+        {
+            String query = "SELECT name FROM roles";
+            String res[] = new String[10];
+
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            
+            int i = 0;
+
+            while(rs.next()) {
+                res[i] = rs.getString("name");
+                i++;
+            }
+            return res;
+        }
+        catch (SQLException e)
+            {
+              System.err.println("Got an exception!");
+              System.err.println(e.getMessage());
+              return null;
+            }
+    }
     
     
     public int getLastid() 
@@ -145,6 +172,20 @@ public class Vehicle {
      */
     public void setType(String type) {
         this.type = type;
+    }
+
+    /**
+     * @return the desc
+     */
+    public String getDesc() {
+        return desc;
+    }
+
+    /**
+     * @param desc the desc to set
+     */
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
     
 }

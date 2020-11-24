@@ -32,13 +32,13 @@ public class customer {
         {
         try
         {
-            int id = getLastid()+1;
+            setCus_id(getLastid()+1);
             String query = "INSERT INTO customer (id, name, password, mobile, address, email) "
                          + " values (?, ?, ?, ?, ?, ?)";
 
             //using a prepared statement to preven SQL Injection and other simillar attacks
             PreparedStatement prest = con.prepareStatement(query);
-            prest.setInt (1, id);
+            prest.setInt (1, getCus_id());
             prest.setString (2, getCus_name());
             prest.setString (3, getPassword());
             prest.setString (4, getCus_mobile());
@@ -47,7 +47,7 @@ public class customer {
 
             // prepared statement execution
             prest.execute();
-            EventLog.Write("Customer_ID : " + getLastid() + " added to customer table.");
+            EventLog.Write("Customer_ID : " + getCus_id() + " added to customer table.");
             return true;
         }
         catch (SQLException e)

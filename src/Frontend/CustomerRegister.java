@@ -22,7 +22,8 @@ public class CustomerRegister extends javax.swing.JFrame {
     
     public CustomerRegister() {
         initComponents();
-        Idtxt.setText(String.valueOf(Integer.toString(cus.getLastid() + 1)));
+        Idtxt.setText(Integer.toString(cus.getLastid() + 1));
+        Idtxt.setEditable(false);
     }
 
     /**
@@ -246,16 +247,19 @@ public class CustomerRegister extends javax.swing.JFrame {
         if(!(Nametxt.getText().equals("") || Addresstxt.getText().equals("") 
              || Emailtxt.getText().equals("") || Mobiletxt.getText().equals("") 
              || String.copyValueOf(Pswfield.getPassword()).equals("")) 
-             && Mobiletxt.getText().length() >= 10)
+             && Mobiletxt.getText().length() == 10 && Pswfield.getPassword().toString().length() >= 8)
         {
             if(cus.addCustomer())
-            { MessageBox.infoBox("Mobile : " + cus.getCus_mobile() + "\nPassword : " + cus.getPassword() + "\nPlease make sure to remember these before click OK.", "YOUR CREDENTIALS");
+            {   
+                Frontend.Staff.AddVehicle veh = new Frontend.Staff.AddVehicle(cus.getCus_id());
+                MessageBox.infoBox("Mobile : " + cus.getCus_mobile() + "\nPassword : " + cus.getPassword() + "\nPlease make sure to remember these before click OK.", "YOUR CREDENTIALS");
+                veh.setVisible(true);
                 this.dispose();
             }
             else 
                 MessageBox.infoBox("If this issue presists please contact admin.", "Something Went Wrong!!!");  
         }
-        else MessageBox.infoBox("Please fill all the required information.", "Fill required fields");  
+        else MessageBox.infoBox("Please fill all the required information correctly.", "Fill required fields");  
     }//GEN-LAST:event_RegisterbtnActionPerformed
 
     /**
