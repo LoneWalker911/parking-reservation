@@ -23,7 +23,6 @@ public class customer {
     private String cus_mobile = null;
     private String cus_email = "";
     private String cus_address = "";
-    private String username = null;
     private String password = null;
     EventLog log = new EventLog();
     private final Connection con = dbConnection.CreateConn();
@@ -101,6 +100,98 @@ public class customer {
         }
       
       return id;
+    }
+    
+    public boolean isCustomerIdExists(String id)
+    {
+        String sql = "SELECT id FROM customer WHERE id="+id;
+          try{
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        return rs.next();
+        }
+          catch(SQLException e)
+        {
+            EventLog.Write("Exception : "+e.getMessage());
+            return false;
+        }
+    }
+    
+    public boolean isMobileExists(String mobile)
+    {
+        String sql = "SELECT mobile FROM customer WHERE mobile='" + mobile + "'";
+        boolean ret = false;
+        try{
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        ret = rs.next();
+        rs.close();
+        return ret;
+        }
+        catch(SQLException e){
+            EventLog.Write("Exception : "+e.getMessage());
+        }
+        return ret;
+    }
+    
+    public ResultSet searchById(String id) 
+    {
+        String sql = "SELECT name, mobile, address, email FROM customer WHERE id="+id;
+          try{
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        return rs;
+        }
+          catch(SQLException e)
+        {
+            EventLog.Write("Exception : "+e.getMessage());
+            return null;
+        } 
+    }
+    
+    public ResultSet searchByMobile(String mobile) 
+    {
+        String sql = "SELECT id, name, address, email FROM customer WHERE mobile='" + mobile + "'";
+          try{
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        return rs;
+        }
+          catch(SQLException e)
+        {
+            EventLog.Write("Exception : "+e.getMessage());
+            return null;
+        } 
+    }
+    
+    public boolean updateCustomer()
+    {
+        if(getCus_id()!=0 && getCus_name()!=null && getCus_address()!=null)
+        {
+        try
+        {       
+            String query = "UPDATE customer SET name = ?, address = ?, email = ? WHERE id = ?";
+
+            //using a prepared statement to preven SQL Injection and other simillar attacks
+            PreparedStatement prest = con.prepareStatement(query);
+            prest.setString (1, getCus_name());
+            prest.setString (2, getCus_address());
+            prest.setString (3, getCus_email());
+            prest.setInt (4, getCus_id());
+
+            // prepared statement execution
+            prest.executeUpdate();
+            EventLog.Write("Customer_ID : "+ getCus_id() +" updated.");
+
+            return true;
+        }
+        catch (SQLException e)
+            {
+              EventLog.Write("updateCustomer Exception : "+e.getMessage());
+              return false;
+            }
+        }
+        else return false;
     }
     
     public boolean removeCustomer()

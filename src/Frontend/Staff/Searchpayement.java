@@ -5,6 +5,11 @@
  */
 package Frontend.Staff;
 
+import Backend.EventLog;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Prashan
@@ -16,6 +21,7 @@ public class Searchpayement extends javax.swing.JFrame {
      */
     public Searchpayement() {
         initComponents();
+        searchbtnActionPerformed(null);
     }
 
     /**
@@ -34,8 +40,8 @@ public class Searchpayement extends javax.swing.JFrame {
         orderidtxt = new javax.swing.JLabel();
         pgpayidtxt = new javax.swing.JLabel();
         idtxt = new javax.swing.JTextField();
-        searchnametxt1 = new javax.swing.JTextField();
-        searchnametxt2 = new javax.swing.JTextField();
+        orderIdtxt = new javax.swing.JTextField();
+        pgidtxt = new javax.swing.JTextField();
         searchbtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -70,7 +76,7 @@ public class Searchpayement extends javax.swing.JFrame {
 
         orderidtxt.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         orderidtxt.setForeground(new java.awt.Color(236, 240, 241));
-        orderidtxt.setText("ORDER ID :");
+        orderidtxt.setText("RESERVATION ID :");
 
         pgpayidtxt.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         pgpayidtxt.setForeground(new java.awt.Color(236, 240, 241));
@@ -79,17 +85,16 @@ public class Searchpayement extends javax.swing.JFrame {
         idtxt.setBackground(new java.awt.Color(108, 122, 137));
         idtxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        searchnametxt1.setBackground(new java.awt.Color(108, 122, 137));
-        searchnametxt1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        orderIdtxt.setBackground(new java.awt.Color(108, 122, 137));
+        orderIdtxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        searchnametxt2.setBackground(new java.awt.Color(108, 122, 137));
-        searchnametxt2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        pgidtxt.setBackground(new java.awt.Color(108, 122, 137));
+        pgidtxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         searchbtn.setBackground(new java.awt.Color(34, 167, 240));
         searchbtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         searchbtn.setForeground(new java.awt.Color(255, 255, 255));
         searchbtn.setText("SEARCH");
-        searchbtn.setEnabled(false);
         searchbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchbtnActionPerformed(evt);
@@ -100,15 +105,7 @@ public class Searchpayement extends javax.swing.JFrame {
         jTable1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "ID", "ORDER ID", "PG PAY ID", "AMOUNT", "STATUS CODE", "METHOD", "PG STATUS MESSAGE", "CARD HOLDER NAME", "CARD NO", "CARD EXPIRY"
@@ -128,19 +125,19 @@ public class Searchpayement extends javax.swing.JFrame {
                 .addGap(51, 51, 51)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(orderidtxt)
-                    .addComponent(searchnametxt1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(orderIdtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(51, 51, 51)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pgpayidtxt)
-                    .addComponent(searchnametxt2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 207, Short.MAX_VALUE)
+                    .addComponent(pgidtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 196, Short.MAX_VALUE)
                 .addComponent(searchbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(120, 120, 120))
             .addComponent(jScrollPane1)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
@@ -151,14 +148,14 @@ public class Searchpayement extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(idtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(searchnametxt1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(searchnametxt2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(orderIdtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pgidtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addComponent(searchbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -179,8 +176,37 @@ public class Searchpayement extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void SetData(Object obj, int row_index, int col_index){
+        jTable1.getModel().setValueAt(obj,row_index,col_index);
+    }
+    
+    Backend.Payment pytm = new Backend.Payment();
+    
     private void searchbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchbtnActionPerformed
-
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        
+        ResultSet rs = pytm.searchPayment(idtxt.getText(), orderIdtxt.getText(), pgidtxt.getText());
+        int row=0;
+        try {
+                while(rs.next())
+                {
+                    model.setRowCount(row+1);
+                    SetData(rs.getString("id"),row,0);
+                    SetData(rs.getString("reservation_id"),row,1);
+                    SetData(rs.getString("pg_payment_id"),row,2);
+                    SetData(rs.getString("amount"),row,3);
+                    SetData(rs.getString("status_code"),row,4);
+                    SetData(rs.getString("method"),row,5);
+                    SetData(rs.getString("pg_status_message"),row,6);
+                    SetData(rs.getString("card_holder_name"),row,7);
+                    SetData(rs.getString("card_no"),row,8);
+                    SetData(rs.getString("card_expiry"),row,9);
+                    row++;
+                }
+        } catch (SQLException e) {
+            EventLog.Write("SearchStaff IF Exception : "+e.getMessage());
+        }
     }//GEN-LAST:event_searchbtnActionPerformed
 
     /**
@@ -226,10 +252,10 @@ public class Searchpayement extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField orderIdtxt;
     private javax.swing.JLabel orderidtxt;
+    private javax.swing.JTextField pgidtxt;
     private javax.swing.JLabel pgpayidtxt;
     private javax.swing.JButton searchbtn;
-    private javax.swing.JTextField searchnametxt1;
-    private javax.swing.JTextField searchnametxt2;
     // End of variables declaration//GEN-END:variables
 }
