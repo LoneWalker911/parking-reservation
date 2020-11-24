@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Frontend.Staff;
-import Backend.Role;
+import Backend.Slot;
 import Frontend.MessageBox;
 /**
  *
@@ -17,7 +17,7 @@ public class AddStaff extends javax.swing.JFrame {
      */
     Backend.Staff stf = new Backend.Staff();
     Backend.Login login = new Backend.Login();
-    Role rl = new Role();
+    Slot rl = new Slot();
     String[] res = new String[10];
     
     public AddStaff() {
@@ -325,7 +325,7 @@ public class AddStaff extends javax.swing.JFrame {
         if(!(nametxt.getText().equals("") || addresstxt.getText().equals("") || emailtxt.getText().equals("") || mobiletxt.getText().equals("")))
         {
             login.setUsername(unametxt.getText());
-            login.setRole_id((rl.getId(String.valueOf(rolecombo.getSelectedItem()))));
+            login.setRole_id((rl.getIdBySlotName(String.valueOf(rolecombo.getSelectedItem()))));
             login.setStaff_id(stf.addStaff());
             
             

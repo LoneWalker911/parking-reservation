@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Frontend.Staff;
-import Backend.Role;
+import Backend.Slot;
 import Frontend.MessageBox;
 /**
  *
@@ -17,7 +17,7 @@ public class RemoveVehicle extends javax.swing.JFrame {
      */
     Backend.Staff stf = new Backend.Staff();
     Backend.Login login = new Backend.Login();
-    Role rl = new Role();
+    Slot rl = new Slot();
     String[] res = new String[10];
     
     public RemoveVehicle() {

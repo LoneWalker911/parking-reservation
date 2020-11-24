@@ -5,6 +5,8 @@
  */
 package Frontend;
 
+import java.util.Arrays;
+
 /**
  *
  * @author Prashan
@@ -14,6 +16,8 @@ public class CustomerSign extends javax.swing.JFrame {
     /**
      * Creates new form CustomerSign
      */
+    
+    Backend.customer cus = new Backend.customer();
     public CustomerSign() {
         initComponents();
     }
@@ -32,9 +36,9 @@ public class CustomerSign extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         mobiletxt = new javax.swing.JTextField();
-        pwdtxt = new javax.swing.JTextField();
         LOGINBTN = new javax.swing.JButton();
         cancelbtn = new javax.swing.JButton();
+        pwdtxt = new javax.swing.JPasswordField();
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -53,13 +57,10 @@ public class CustomerSign extends javax.swing.JFrame {
 
         mobiletxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        pwdtxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-
         LOGINBTN.setBackground(new java.awt.Color(34, 167, 240));
         LOGINBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         LOGINBTN.setForeground(new java.awt.Color(255, 255, 255));
         LOGINBTN.setText("LOG IN");
-        LOGINBTN.setEnabled(false);
         LOGINBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LOGINBTNActionPerformed(evt);
@@ -94,8 +95,8 @@ public class CustomerSign extends javax.swing.JFrame {
                             .addComponent(jLabel2))
                         .addGap(93, 93, 93)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(pwdtxt, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
-                            .addComponent(mobiletxt))
+                            .addComponent(mobiletxt, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
+                            .addComponent(pwdtxt))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -105,11 +106,11 @@ public class CustomerSign extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(mobiletxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                .addGap(36, 36, 36)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
                     .addComponent(pwdtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LOGINBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -164,7 +165,17 @@ public class CustomerSign extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void LOGINBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LOGINBTNActionPerformed
-      
+      cus.setCus_mobile(mobiletxt.getText());
+      cus.setPassword(String.valueOf(pwdtxt.getPassword()));
+      if(cus.Login()!=0)
+      {
+          
+      }
+      else
+      {
+          MessageBox.infoBox("Invalid Credentials. Try again", "Failed");
+          pwdtxt.setText("");
+      }
     }//GEN-LAST:event_LOGINBTNActionPerformed
 
     private void cancelbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelbtnActionPerformed
@@ -217,6 +228,6 @@ public class CustomerSign extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField mobiletxt;
-    private javax.swing.JTextField pwdtxt;
+    private javax.swing.JPasswordField pwdtxt;
     // End of variables declaration//GEN-END:variables
 }

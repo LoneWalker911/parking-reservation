@@ -107,8 +107,8 @@
                           </Group>
                           <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="addslotsidtxt" min="-2" pref="72" max="-2" attributes="0"/>
-                              <Component id="addslotdesc" min="-2" pref="275" max="-2" attributes="0"/>
+                              <Component id="idtxt" min="-2" pref="72" max="-2" attributes="0"/>
+                              <Component id="nametxt" min="-2" pref="275" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="114" max="32767" attributes="0"/>
                       </Group>
@@ -122,12 +122,12 @@
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="IDlbl1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="addslotsidtxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="idtxt" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="IDlbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="addslotdesc" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="nametxt" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="63" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -148,7 +148,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f1" green="f0" red="ec" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="DESCRIPTION :"/>
+            <Property name="text" type="java.lang.String" value="NAME :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="IDlbl1">
@@ -162,7 +162,7 @@
             <Property name="text" type="java.lang.String" value="ID :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="addslotsidtxt">
+        <Component class="javax.swing.JTextField" name="idtxt">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="89" green="7a" red="6c" type="rgb"/>
@@ -173,7 +173,7 @@
             <Property name="toolTipText" type="java.lang.String" value="Ex: 0788323221"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="addslotdesc">
+        <Component class="javax.swing.JTextField" name="nametxt">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="89" green="7a" red="6c" type="rgb"/>
@@ -196,7 +196,6 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="ADD"/>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addbtnActionPerformed"/>
