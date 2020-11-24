@@ -251,7 +251,7 @@ public class CustomerRegister extends javax.swing.JFrame {
         {
             if(cus.addCustomer())
             {   
-                Frontend.Staff.AddVehicle veh = new Frontend.Staff.AddVehicle(cus.getCus_id());
+                Frontend.Staff.Vehicle.AddVehicle veh = new Frontend.Staff.Vehicle.AddVehicle(cus.getCus_id());
                 MessageBox.infoBox("Mobile : " + cus.getCus_mobile() + "\nPassword : " + cus.getPassword() + "\nPlease make sure to remember these before click OK.", "YOUR CREDENTIALS");
                 veh.setVisible(true);
                 this.dispose();
