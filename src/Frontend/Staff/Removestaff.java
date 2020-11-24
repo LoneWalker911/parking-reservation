@@ -5,7 +5,7 @@
  */
 package Frontend.Staff;
 import Backend.EventLog;
-import Backend.Role;
+import Backend.Slot;
 import Frontend.MessageBox;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,7 +20,7 @@ public class Removestaff extends javax.swing.JFrame {
      */
     Backend.Staff stf = new Backend.Staff();
     Backend.Login login = new Backend.Login();
-    Role rl = new Role();
+    Slot rl = new Slot();
     String[] res = new String[10];
     
     public Removestaff() {

@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package Frontend.Staff;
+import Backend.Slot;
+import Frontend.MessageBox;
 
 /**
  *
@@ -14,8 +16,11 @@ public class AddParkingSlot extends javax.swing.JFrame {
     /**
      * Creates new form ParkingSlot
      */
+    Slot st = new Slot();
     public AddParkingSlot() {
         initComponents();
+        idtxt.setText(Integer.toString( st.getLastid()+1));
+        idtxt.setEditable(false);
     }
 
     /**
@@ -32,8 +37,8 @@ public class AddParkingSlot extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         IDlbl = new javax.swing.JLabel();
         IDlbl1 = new javax.swing.JLabel();
-        addslotsidtxt = new javax.swing.JTextField();
-        addslotdesc = new javax.swing.JTextField();
+        idtxt = new javax.swing.JTextField();
+        nametxt = new javax.swing.JTextField();
         addbtn = new javax.swing.JButton();
         cancelbtn = new javax.swing.JButton();
 
@@ -63,25 +68,24 @@ public class AddParkingSlot extends javax.swing.JFrame {
 
         IDlbl.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         IDlbl.setForeground(new java.awt.Color(236, 240, 241));
-        IDlbl.setText("DESCRIPTION :");
+        IDlbl.setText("NAME :");
 
         IDlbl1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         IDlbl1.setForeground(new java.awt.Color(236, 240, 241));
         IDlbl1.setText("ID :");
 
-        addslotsidtxt.setBackground(new java.awt.Color(108, 122, 137));
-        addslotsidtxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        addslotsidtxt.setToolTipText("Ex: 0788323221");
+        idtxt.setBackground(new java.awt.Color(108, 122, 137));
+        idtxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        idtxt.setToolTipText("Ex: 0788323221");
 
-        addslotdesc.setBackground(new java.awt.Color(108, 122, 137));
-        addslotdesc.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        addslotdesc.setToolTipText("Ex: 0788323221");
+        nametxt.setBackground(new java.awt.Color(108, 122, 137));
+        nametxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        nametxt.setToolTipText("Ex: 0788323221");
 
         addbtn.setBackground(new java.awt.Color(34, 167, 240));
         addbtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         addbtn.setForeground(new java.awt.Color(255, 255, 255));
         addbtn.setText("ADD");
-        addbtn.setEnabled(false);
         addbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addbtnActionPerformed(evt);
@@ -116,8 +120,8 @@ public class AddParkingSlot extends javax.swing.JFrame {
                             .addComponent(IDlbl))
                         .addGap(33, 33, 33)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(addslotsidtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(addslotdesc, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(idtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nametxt, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(114, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -126,11 +130,11 @@ public class AddParkingSlot extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(IDlbl1)
-                    .addComponent(addslotsidtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(idtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(IDlbl)
-                    .addComponent(addslotdesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nametxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -161,13 +165,21 @@ public class AddParkingSlot extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addbtnActionPerformed
-      
-      
+
+        st.setSlot_name(nametxt.getText());
+        if(st.addSlot())
+        {
+            MessageBox.infoBox("Slot added", "Success");
+            idtxt.setText(Integer.toString( st.getLastid()+1));
+            nametxt.setText("");
+        }
+        else
+            MessageBox.infoBox("Name already exists or process has failed.", "Failed");
+        
     }//GEN-LAST:event_addbtnActionPerformed
 
     private void cancelbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelbtnActionPerformed
-
-        
+        this.dispose();
     }//GEN-LAST:event_cancelbtnActionPerformed
 
     /**
@@ -216,11 +228,11 @@ public class AddParkingSlot extends javax.swing.JFrame {
     private javax.swing.JLabel IDlbl;
     private javax.swing.JLabel IDlbl1;
     private javax.swing.JButton addbtn;
-    private javax.swing.JTextField addslotdesc;
-    private javax.swing.JTextField addslotsidtxt;
     private javax.swing.JButton cancelbtn;
+    private javax.swing.JTextField idtxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JTextField nametxt;
     // End of variables declaration//GEN-END:variables
 }

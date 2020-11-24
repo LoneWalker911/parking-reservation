@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -126,6 +128,29 @@ public class customer {
             }
         }
         else return false;
+    }
+    
+    public int Login()
+    {
+        try {
+            String sql = "SELECT id FROM customer WHERE mobile='" + getCus_mobile() + "' AND password='" + getPassword() + "'";
+            
+            Statement st = con.createStatement();
+            
+            ResultSet rs = st.executeQuery(sql);
+            
+            while (rs.next())
+            {
+                return rs.getInt("id");
+            }
+            
+  
+        } catch (SQLException e) {
+            EventLog.Write("cus_login exception : "+e.getMessage());
+            return 0;
+        }
+    
+        return 0;
     }
     
     /**

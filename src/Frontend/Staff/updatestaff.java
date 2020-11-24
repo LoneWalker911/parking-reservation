@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Frontend.Staff;
-import Backend.Role;
+import Backend.Slot;
 import Backend.EventLog;
 import Frontend.MessageBox;
 import java.sql.ResultSet;
@@ -20,7 +20,7 @@ public class updatestaff extends javax.swing.JFrame {
      */
     Backend.Staff stf = new Backend.Staff();
     Backend.Login login = new Backend.Login();
-    Role rl = new Role();
+    Slot rl = new Slot();
     String[] res = new String[10];
     
     public updatestaff() {
@@ -359,7 +359,7 @@ public class updatestaff extends javax.swing.JFrame {
             stf.setUser_id(Integer.parseInt(Idtxt.getText()));
             System.out.println(stf.getUser_id());
             
-            login.setRole_id((rl.getId(String.valueOf(rolecombo.getSelectedItem()))));
+            login.setRole_id((rl.getIdBySlotName(String.valueOf(rolecombo.getSelectedItem()))));
             login.setStaff_id(Integer.parseInt(Idtxt.getText()));
             
             
