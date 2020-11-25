@@ -17,7 +17,6 @@ public class RemoveVehicle extends javax.swing.JFrame {
      */
     Backend.Staff stf = new Backend.Staff();
     Backend.Login login = new Backend.Login();
-    Slot rl = new Slot();
     String[] res = new String[10];
     
     public RemoveVehicle() {
@@ -25,12 +24,6 @@ public class RemoveVehicle extends javax.swing.JFrame {
         ownerIdtxt.setText(Integer.toString(stf.getLastid()+1));
         ownerIdtxt.setEditable(false);
 
-        res = rl.getRoles();
-        int i = 0;
-             do{
-              //rolecombo.addItem(res[i]);
-              i++;
-            }while(!(res[i]==null));
  
     }
 

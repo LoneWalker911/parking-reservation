@@ -12,32 +12,41 @@ import java.util.Hashtable;
  *
  * @author thisa/Prashan
  */
-public class Slot {
+public class Role {
     
-    private int slot_id = 0;
-    private String slot_name = null;
-    private String slot_status = "";
+    private int role_id = 0;
+    private String role_name = null;
+    private String role_des = null;
     private final Connection con = dbConnection.CreateConn();;
     EventLog log = new EventLog();
     
-    public boolean addSlot()
+    public Role(){};
+    
+    public Role(String name,String des)
     {
-        if(!(getSlot_name().equals("")) && getIdBySlotName(getSlot_name()) == 0)
+        role_name = name;
+        role_des = des;
+    }
+    
+    public boolean addRole()
+    {
+        if(!(getRole_name().equals("") || getRole_des().equals("")) && getId(getRole_name()) == 0)
         {
         try
         {
-            setSlot_id(getLastid());
-            String query = "INSERT INTO parking_slot VALUES (?, ?, ?)";
+            int id = getLastid();
+            String query = "INSERT INTO roles "
+                         + " values (?, ?, ?)";
 
             //using a prepared statement to preven SQL Injection and other simillar attacks
             PreparedStatement prest = con.prepareStatement(query);
-            prest.setInt (1, getSlot_id()+1);
-            prest.setString (2, getSlot_name());
-            prest.setString (3, getSlot_status());
+            prest.setInt (1, id+1);
+            prest.setString (2, role_name);
+            prest.setString (3, role_des);
 
             // execute the preparedstatement
             prest.execute();
-            log.Write("Slot_ID : "+ Integer.toString(getSlot_id()) + " added to slots table.");
+            log.Write("Roles_ID : "+ Integer.toString(id+1) + " added to roles table.");
 
             return true;
         }
@@ -77,27 +86,27 @@ public class Slot {
             }
     }
     
-    public boolean updateSlot()
+    public boolean updateRole()
     {
-        if((slot_name!=null || slot_status != null) && slot_id != 0)
+        if((role_name!=null || role_des != null) && role_id != 0)
         {
         try
         {
             String update = "";
-            if(slot_name != null && slot_status == null)
-            {update = "name='"+slot_name+"'";}
-            if(slot_name == null && slot_status != null)
-            {update = "description='"+slot_status+"'";}
-            if(slot_name != null && slot_status != null)
-            {update = "name='"+slot_name+ "', "+ "description='"+slot_status+"'";}
+            if(role_name != null && role_des == null)
+            {update = "name='"+role_name+"'";}
+            if(role_name == null && role_des != null)
+            {update = "description='"+role_des+"'";}
+            if(role_name != null && role_des != null)
+            {update = "name='"+role_name+ "', "+ "description='"+role_des+"'";}
             
-            String query = "UPDATE roles SET "+ update + " WHERE id=" + Integer.toString(slot_id);
+            String query = "UPDATE roles SET "+ update + " WHERE id=" + Integer.toString(role_id);
 
             Statement st = con.createStatement();
             st.executeUpdate(query);
  
             
-            log.Write("Roles_ID : "+ Integer.toString(slot_id) + " updated "+ update +" on roles table.");
+            log.Write("Roles_ID : "+ Integer.toString(role_id) + " updated "+ update +" on roles table.");
 
             return true;
         }
@@ -115,7 +124,7 @@ public class Slot {
     {
         int id = 0;
         
-        String sql = "SELECT id FROM parking_slot WHERE id = (SELECT MAX(id) FROM parking_slot)";
+        String sql = "SELECT id FROM roles WHERE id = (SELECT MAX(id) FROM roles)";
         try{
         Statement st = con.createStatement();
         
@@ -135,11 +144,11 @@ public class Slot {
       return id;
     }
     
-    public int getIdBySlotName(String name)
+    public int getId(String name)
     {
         int id = 0;
         String sql;
-        sql = "SELECT id FROM parking_slots WHERE name='"+name+"'";
+        sql = "SELECT id FROM roles WHERE name="+"'"+name+"'";
 
         try{
 
@@ -164,45 +173,45 @@ public class Slot {
     }
 
     /**
-     * @return the slot_id
+     * @return the role_id
      */
-    public int getSlot_id() {
-        return slot_id;
+    public int getRole_id() {
+        return role_id;
     }
 
     /**
-     * @param slot_id the slot_id to set
+     * @param role_id the role_id to set
      */
-    public void setSlot_id(int slot_id) {
-        this.slot_id = slot_id;
+    public void setRole_id(int role_id) {
+        this.role_id = role_id;
     }
 
     /**
      * @return the role_title
      */
-    public String getSlot_name() {
-        return slot_name;
+    public String getRole_name() {
+        return role_name;
     }
 
     /**
      * @param role_title the role_title to set
      */
-    public void setSlot_name(String slot_name) {
-        this.slot_name = slot_name;
+    public void setRole_name(String role_title) {
+        this.role_name = role_title;
     }
 
     /**
-     * @return the slot_status
+     * @return the role_des
      */
-    public String getSlot_status() {
-        return slot_status;
+    public String getRole_des() {
+        return role_des;
     }
 
     /**
-     * @param slot_status the slot_status to set
+     * @param role_des the role_des to set
      */
-    public void setSlot_status(String slot_status) {
-        this.slot_status = slot_status;
+    public void setRole_des(String role_des) {
+        this.role_des = role_des;
     }
     
     

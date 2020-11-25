@@ -33,11 +33,10 @@ public class UpdateParkingSlot extends javax.swing.JFrame {
         IDlbl = new javax.swing.JLabel();
         IDlbl1 = new javax.swing.JLabel();
         addslotsidtxt = new javax.swing.JTextField();
-        addslotdesc = new javax.swing.JTextField();
         addbtn = new javax.swing.JButton();
         cancelbtn = new javax.swing.JButton();
         idchkbtn = new javax.swing.JButton();
-        descchkbtn = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,7 +64,7 @@ public class UpdateParkingSlot extends javax.swing.JFrame {
 
         IDlbl.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         IDlbl.setForeground(new java.awt.Color(236, 240, 241));
-        IDlbl.setText("DESCRIPTION :");
+        IDlbl.setText("STATUS :");
 
         IDlbl1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         IDlbl1.setForeground(new java.awt.Color(236, 240, 241));
@@ -74,10 +73,6 @@ public class UpdateParkingSlot extends javax.swing.JFrame {
         addslotsidtxt.setBackground(new java.awt.Color(108, 122, 137));
         addslotsidtxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         addslotsidtxt.setToolTipText("Ex: 0788323221");
-
-        addslotdesc.setBackground(new java.awt.Color(108, 122, 137));
-        addslotdesc.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        addslotdesc.setToolTipText("Ex: 0788323221");
 
         addbtn.setBackground(new java.awt.Color(34, 167, 240));
         addbtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -110,15 +105,7 @@ public class UpdateParkingSlot extends javax.swing.JFrame {
             }
         });
 
-        descchkbtn.setBackground(new java.awt.Color(34, 167, 240));
-        descchkbtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        descchkbtn.setForeground(new java.awt.Color(255, 255, 255));
-        descchkbtn.setText("Check");
-        descchkbtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                descchkbtnActionPerformed(evt);
-            }
-        });
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Available", "Unavailable" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -129,7 +116,7 @@ public class UpdateParkingSlot extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(cancelbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
                         .addComponent(addbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(72, 72, 72))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -143,9 +130,8 @@ public class UpdateParkingSlot extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(idchkbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(addslotdesc, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(descchkbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
@@ -156,12 +142,11 @@ public class UpdateParkingSlot extends javax.swing.JFrame {
                     .addComponent(IDlbl1)
                     .addComponent(addslotsidtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(idchkbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+                .addGap(39, 39, 39)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(IDlbl)
-                    .addComponent(addslotdesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(descchkbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -176,7 +161,7 @@ public class UpdateParkingSlot extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 58, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -204,10 +189,6 @@ public class UpdateParkingSlot extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_idchkbtnActionPerformed
-
-    private void descchkbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descchkbtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_descchkbtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -263,11 +244,10 @@ public class UpdateParkingSlot extends javax.swing.JFrame {
     private javax.swing.JLabel IDlbl;
     private javax.swing.JLabel IDlbl1;
     private javax.swing.JButton addbtn;
-    private javax.swing.JTextField addslotdesc;
     private javax.swing.JTextField addslotsidtxt;
     private javax.swing.JButton cancelbtn;
-    private javax.swing.JButton descchkbtn;
     private javax.swing.JButton idchkbtn;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

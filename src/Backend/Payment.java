@@ -18,7 +18,6 @@ import java.sql.Statement;
 
 
 public class Payment {
-    public Payment(){}
     
     private int user_id=0;
     private String name=null;
@@ -147,7 +146,8 @@ public class Payment {
         int id = 0;
         
         String sql = "SELECT id FROM staff WHERE id = (SELECT MAX(id) FROM staff)";
-        try{
+        try
+        {
             Statement st = con.createStatement();
 
             ResultSet rs = st.executeQuery(sql);
