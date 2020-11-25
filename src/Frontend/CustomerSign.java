@@ -32,6 +32,7 @@ public class CustomerSign extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -39,6 +40,8 @@ public class CustomerSign extends javax.swing.JFrame {
         LOGINBTN = new javax.swing.JButton();
         cancelbtn = new javax.swing.JButton();
         pwdtxt = new javax.swing.JPasswordField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -46,6 +49,12 @@ public class CustomerSign extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(null);
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/cancel.png"))); // NOI18N
+        jLabel5.setText("jLabel5");
+        jLabel5.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jPanel1.add(jLabel5);
+        jLabel5.setBounds(660, 120, 250, 100);
 
         jPanel2.setBackground(new java.awt.Color(224, 224, 224, 180));
 
@@ -77,6 +86,8 @@ public class CustomerSign extends javax.swing.JFrame {
             }
         });
 
+        pwdtxt.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -95,11 +106,10 @@ public class CustomerSign extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(pwdtxt, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
-                            .addComponent(mobiletxt))
+                            .addComponent(mobiletxt, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
+                            .addComponent(pwdtxt))
                         .addContainerGap(40, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(LOGINBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20))))
         );
@@ -114,7 +124,7 @@ public class CustomerSign extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
                     .addComponent(pwdtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LOGINBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -123,6 +133,15 @@ public class CustomerSign extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(200, 120, 510, 260);
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/Untitled-3.png"))); // NOI18N
+        jLabel6.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jPanel1.add(jLabel6);
+        jLabel6.setBounds(700, 280, 220, 130);
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/payhere_long_banner.png"))); // NOI18N
+        jPanel1.add(jLabel7);
+        jLabel7.setBounds(50, 450, 860, 80);
 
         jPanel3.setBackground(new java.awt.Color(224, 224, 224, 224));
 
@@ -228,6 +247,9 @@ public class CustomerSign extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
