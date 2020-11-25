@@ -121,7 +121,35 @@ public class Slot {
       
       
     }
+    
+    public String[] getStatus()
+    {
+        String sql = "SELECT status FROM parking_slot ORDER BY id ASC";
+        String res[] = new String[15];
 
+        try{
+
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+
+            int i = 0;
+
+            while(rs.next()) {
+                res[i] = rs.getString("status");
+                i++;
+            }
+            return res;
+        }
+        catch (SQLException e)
+            {
+              EventLog.Write("Slot.getStatus Exception: "+e.getMessage());
+              return null;
+            }
+      
+      
+    }
+    
+    
     /**
      * @return the slot_id
      */

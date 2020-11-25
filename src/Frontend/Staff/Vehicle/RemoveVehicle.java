@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 package Frontend.Staff.Vehicle;
-import Backend.Slot;
 import Frontend.MessageBox;
+import java.sql.ResultSet;
 /**
  *
  * @author thisa
@@ -15,16 +15,21 @@ public class RemoveVehicle extends javax.swing.JFrame {
     /**
      * Creates new form AddStaff
      */
-    Backend.Staff stf = new Backend.Staff();
-    Backend.Login login = new Backend.Login();
-    String[] res = new String[10];
+    Backend.customer cus = new Backend.customer();
+    Backend.Vehicle veh = new Backend.Vehicle();
+    String[] res = null;
+    boolean isCus=false;
+    
+    public RemoveVehicle(int cus_id) {
+        initComponents(); 
+        this.isCus=true;
+        Idtxt.setText(String.valueOf(cus_id));
+        idchkbtn.setVisible(false);
+        idchkbtnActionPerformed(null);
+    }
     
     public RemoveVehicle() {
-        initComponents();
-        ownerIdtxt.setText(Integer.toString(stf.getLastid()+1));
-        ownerIdtxt.setEditable(false);
-
- 
+        initComponents(); 
     }
 
     /**
@@ -39,18 +44,13 @@ public class RemoveVehicle extends javax.swing.JFrame {
         label1 = new java.awt.Label();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        vehtypetxt = new javax.swing.JTextField();
         vehnumlbl = new javax.swing.JLabel();
-        vehdesctxt = new javax.swing.JTextField();
-        IDlbl = new javax.swing.JLabel();
-        ownerIdtxt = new javax.swing.JTextField();
+        Idtxt = new javax.swing.JTextField();
         submitbtn = new javax.swing.JButton();
         OWNERIDLbl = new javax.swing.JLabel();
-        vehdesclbl = new javax.swing.JLabel();
-        vehtypelbl = new javax.swing.JLabel();
         Resetbtn = new javax.swing.JButton();
-        Idtxt = new javax.swing.JTextField();
-        vehnumtxt = new javax.swing.JTextField();
+        idchkbtn = new javax.swing.JButton();
+        vehcombo = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -65,39 +65,17 @@ public class RemoveVehicle extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(44, 62, 80));
 
-        vehtypetxt.setBackground(new java.awt.Color(108, 122, 137));
-        vehtypetxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-
         vehnumlbl.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         vehnumlbl.setForeground(new java.awt.Color(236, 240, 241));
         vehnumlbl.setText("NUMBER");
 
-        vehdesctxt.setBackground(new java.awt.Color(108, 122, 137));
-        vehdesctxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        vehdesctxt.setToolTipText("Ex: 0788323221");
-        vehdesctxt.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                vehdesctxtKeyTyped(evt);
-            }
-        });
-
-        IDlbl.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        IDlbl.setForeground(new java.awt.Color(236, 240, 241));
-        IDlbl.setText("ID :");
-
-        ownerIdtxt.setBackground(new java.awt.Color(108, 122, 137));
-        ownerIdtxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        ownerIdtxt.setText("Error");
-        ownerIdtxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ownerIdtxtActionPerformed(evt);
-            }
-        });
+        Idtxt.setBackground(new java.awt.Color(108, 122, 137));
+        Idtxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         submitbtn.setBackground(new java.awt.Color(34, 167, 240));
         submitbtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         submitbtn.setForeground(new java.awt.Color(255, 255, 255));
-        submitbtn.setText("Submit");
+        submitbtn.setText("Remove");
         submitbtn.setEnabled(false);
         submitbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,46 +85,25 @@ public class RemoveVehicle extends javax.swing.JFrame {
 
         OWNERIDLbl.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         OWNERIDLbl.setForeground(new java.awt.Color(236, 240, 241));
-        OWNERIDLbl.setText("OWNER ID");
-
-        vehdesclbl.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        vehdesclbl.setForeground(new java.awt.Color(236, 240, 241));
-        vehdesclbl.setText("DESCRIPTION");
-
-        vehtypelbl.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        vehtypelbl.setForeground(new java.awt.Color(236, 240, 241));
-        vehtypelbl.setText("TYPE");
+        OWNERIDLbl.setText("CUSTOMER ID");
 
         Resetbtn.setBackground(new java.awt.Color(242, 38, 19));
         Resetbtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Resetbtn.setForeground(new java.awt.Color(255, 255, 255));
-        Resetbtn.setText("RESET");
+        Resetbtn.setText("CLOSE");
         Resetbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ResetbtnActionPerformed(evt);
             }
         });
 
-        Idtxt.setBackground(new java.awt.Color(108, 122, 137));
-        Idtxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        Idtxt.setText("Error");
-        Idtxt.addActionListener(new java.awt.event.ActionListener() {
+        idchkbtn.setBackground(new java.awt.Color(34, 167, 240));
+        idchkbtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        idchkbtn.setForeground(new java.awt.Color(255, 255, 255));
+        idchkbtn.setText("Check");
+        idchkbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                IdtxtActionPerformed(evt);
-            }
-        });
-
-        vehnumtxt.setBackground(new java.awt.Color(108, 122, 137));
-        vehnumtxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        vehnumtxt.setToolTipText("Ex: 0788323221");
-        vehnumtxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                vehnumtxtActionPerformed(evt);
-            }
-        });
-        vehnumtxt.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                vehnumtxtKeyTyped(evt);
+                idchkbtnActionPerformed(evt);
             }
         });
 
@@ -159,19 +116,15 @@ public class RemoveVehicle extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(vehdesclbl)
-                            .addComponent(IDlbl)
                             .addComponent(OWNERIDLbl)
-                            .addComponent(vehtypelbl)
                             .addComponent(vehnumlbl))
-                        .addGap(37, 37, 37)
+                        .addGap(68, 68, 68)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(ownerIdtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(vehtypetxt, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
-                                .addComponent(vehdesctxt)
-                                .addComponent(vehnumtxt))
-                            .addComponent(Idtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(Idtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(idchkbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(vehcombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(Resetbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -182,27 +135,16 @@ public class RemoveVehicle extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(IDlbl)
-                    .addComponent(Idtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(46, 46, 46)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(OWNERIDLbl)
-                    .addComponent(ownerIdtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(vehdesclbl)
-                    .addComponent(vehdesctxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(vehtypelbl)
-                    .addComponent(vehtypetxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(Idtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(idchkbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(vehnumlbl)
-                    .addComponent(vehnumtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43)
+                    .addComponent(vehcombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(112, 112, 112)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Resetbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(submitbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -265,39 +207,81 @@ public class RemoveVehicle extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void vehdesctxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_vehdesctxtKeyTyped
-        boolean max = vehdesctxt.getText().length() > 9;
-        if ( max )
-            evt.consume();     
-    }//GEN-LAST:event_vehdesctxtKeyTyped
-
+    private boolean vehNumUpdate()
+    {
+        res = veh.getVehNumsFromCusId();
+        if(res!=null)
+        {
+            vehcombo.removeAllItems();
+            int i = 0;
+            do{
+              vehcombo.addItem(res[i]);
+              i++;
+            }while(!(res[i]==null));
+            res = null;
+            return true;
+        }
+        else
+            return false;
+    }
+    
     private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitbtnActionPerformed
-   
+        if(!vehcombo.getSelectedItem().toString().isEmpty())
+        {   veh.setVehicle_num(vehcombo.getSelectedItem().toString());
+            if(veh.removeVehicle())
+            {
+                MessageBox.infoBox("Vehicle Removed", "Success");
+                if(isCus)
+                   vehNumUpdate();
+                else
+                   idchkbtnActionPerformed(null);            
+            }
+            else
+                MessageBox.infoBox("Something went wrong.", "Failed");
+        }
+        else
+            MessageBox.infoBox("A vehicle number must be selected", "Invaid information");
     }//GEN-LAST:event_submitbtnActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
 
     }//GEN-LAST:event_formWindowClosing
 
-    private void ownerIdtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ownerIdtxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ownerIdtxtActionPerformed
-
     private void ResetbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetbtnActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_ResetbtnActionPerformed
 
-    private void IdtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IdtxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_IdtxtActionPerformed
+    private void idchkbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idchkbtnActionPerformed
+        if(idchkbtn.getText().equals("Reset"))
+        {
+            submitbtn.setEnabled(false);
+            vehcombo.setSelectedIndex(-1);
+            vehcombo.setEnabled(false);
+            vehcombo.removeAllItems();
+            Idtxt.setText("");
+            Idtxt.setEditable(true);
+            idchkbtn.setText("Check");
+        }
+        else if(cus.isCustomerIdExists(Idtxt.getText()) && Idtxt.getText().length()>=1)
+        {
+            veh.setVehicle_ownerid(Integer.parseInt(Idtxt.getText()));
+            if(vehNumUpdate())
+            {
+                Idtxt.setEditable(false);
+                idchkbtn.setText("Reset");
+                vehcombo.setEnabled(true);
+                submitbtn.setEnabled(true);
+            }
+            else
+                MessageBox.infoBox("No Vehicles found.", "Not found");
+        }
+        else
+        {
+            MessageBox.infoBox("Invalid Customer ID", "Try again");
+            Idtxt.setText("");
+        }
 
-    private void vehnumtxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_vehnumtxtKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_vehnumtxtKeyTyped
-
-    private void vehnumtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vehnumtxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_vehnumtxtActionPerformed
+    }//GEN-LAST:event_idchkbtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -402,22 +386,17 @@ public class RemoveVehicle extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel IDlbl;
     private javax.swing.JTextField Idtxt;
     private javax.swing.JLabel OWNERIDLbl;
     private javax.swing.JButton Resetbtn;
+    private javax.swing.JButton idchkbtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private java.awt.Label label1;
-    private javax.swing.JTextField ownerIdtxt;
     private javax.swing.JButton submitbtn;
-    private javax.swing.JLabel vehdesclbl;
-    private javax.swing.JTextField vehdesctxt;
+    private javax.swing.JComboBox<String> vehcombo;
     private javax.swing.JLabel vehnumlbl;
-    private javax.swing.JTextField vehnumtxt;
-    private javax.swing.JLabel vehtypelbl;
-    private javax.swing.JTextField vehtypetxt;
     // End of variables declaration//GEN-END:variables
 }

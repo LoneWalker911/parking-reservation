@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Frontend;
+import Backend.*;
 
 /**
  *
@@ -14,6 +15,17 @@ public class CustomerIF extends javax.swing.JFrame {
     /**
      * Creates new form CustomerIF
      */
+    String mobile;
+    int id;
+    customer cus = new customer();
+    
+    public CustomerIF(String mobile) {
+        initComponents();
+        this.mobile=mobile;
+        this.id= cus.getIdbyMobile(mobile);
+        
+    }
+    
     public CustomerIF() {
         initComponents();
     }
@@ -31,11 +43,11 @@ public class CustomerIF extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        reservebtn = new javax.swing.JButton();
+        addvehbtn = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        pwchngbtn = new javax.swing.JButton();
+        updatecusbtn = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -71,30 +83,50 @@ public class CustomerIF extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(224, 224, 224, 180));
 
-        jButton1.setBackground(new java.awt.Color(34, 167, 240));
-        jButton1.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("RESERVE");
+        reservebtn.setBackground(new java.awt.Color(34, 167, 240));
+        reservebtn.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        reservebtn.setForeground(new java.awt.Color(255, 255, 255));
+        reservebtn.setText("RESERVE");
+        reservebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reservebtnActionPerformed(evt);
+            }
+        });
 
-        jButton2.setBackground(new java.awt.Color(34, 167, 240));
-        jButton2.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("ADD VEHICLE");
+        addvehbtn.setBackground(new java.awt.Color(34, 167, 240));
+        addvehbtn.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        addvehbtn.setForeground(new java.awt.Color(255, 255, 255));
+        addvehbtn.setText("ADD VEHICLE");
+        addvehbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addvehbtnActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(34, 167, 240));
         jButton3.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("MY RESERVATION");
 
-        jButton4.setBackground(new java.awt.Color(34, 167, 240));
-        jButton4.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("CHANGE PWD");
+        pwchngbtn.setBackground(new java.awt.Color(34, 167, 240));
+        pwchngbtn.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        pwchngbtn.setForeground(new java.awt.Color(255, 255, 255));
+        pwchngbtn.setText("CHANGE PWD");
+        pwchngbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pwchngbtnActionPerformed(evt);
+            }
+        });
 
-        jButton5.setBackground(new java.awt.Color(34, 167, 240));
-        jButton5.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("UPDATE MY INFO");
+        updatecusbtn.setBackground(new java.awt.Color(34, 167, 240));
+        updatecusbtn.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        updatecusbtn.setForeground(new java.awt.Color(255, 255, 255));
+        updatecusbtn.setText("UPDATE MY INFO");
+        updatecusbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updatecusbtnActionPerformed(evt);
+            }
+        });
 
         jButton6.setBackground(new java.awt.Color(34, 167, 240));
         jButton6.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
@@ -114,10 +146,10 @@ public class CustomerIF extends javax.swing.JFrame {
                 .addContainerGap(183, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(addvehbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(reservebtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pwchngbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(updatecusbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(164, 164, 164))
@@ -126,15 +158,15 @@ public class CustomerIF extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(reservebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(addvehbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pwchngbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(updatecusbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -163,6 +195,27 @@ public class CustomerIF extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    
+    private void addvehbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addvehbtnActionPerformed
+        Frontend.Staff.Vehicle.AddVehicle addveh = new Frontend.Staff.Vehicle.AddVehicle(id);
+        addveh.setVisible(true);
+    }//GEN-LAST:event_addvehbtnActionPerformed
+
+    private void pwchngbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwchngbtnActionPerformed
+        Frontend.Cus_mng.ChangeCusPassword cuspsw = new Frontend.Cus_mng.ChangeCusPassword(mobile);
+        cuspsw.setVisible(true);
+    }//GEN-LAST:event_pwchngbtnActionPerformed
+
+    private void updatecusbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatecusbtnActionPerformed
+        Frontend.Cus_mng.Updatecustomer upcus = new Frontend.Cus_mng.Updatecustomer(mobile);
+        upcus.setVisible(true);
+    }//GEN-LAST:event_updatecusbtnActionPerformed
+
+    private void reservebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservebtnActionPerformed
+        Frontend.Reservation res = new Frontend.Reservation(id);
+        res.setVisible(true);
+    }//GEN-LAST:event_reservebtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -200,11 +253,8 @@ public class CustomerIF extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton addvehbtn;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
@@ -212,5 +262,8 @@ public class CustomerIF extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JButton pwchngbtn;
+    private javax.swing.JButton reservebtn;
+    private javax.swing.JButton updatecusbtn;
     // End of variables declaration//GEN-END:variables
 }

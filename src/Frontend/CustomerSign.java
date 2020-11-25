@@ -192,7 +192,9 @@ public class CustomerSign extends javax.swing.JFrame {
       cus.setPassword(String.valueOf(pwdtxt.getPassword()));
       if(cus.Login()!=0)
       {
-          
+          CustomerIF cusif= new CustomerIF(cus.getCus_mobile());
+          cusif.setVisible(true);
+          this.dispose();
       }
       else
       {

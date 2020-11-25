@@ -112,7 +112,53 @@ public class customer {
         }
           catch(SQLException e)
         {
-            EventLog.Write("Exception : "+e.getMessage());
+            EventLog.Write("Customer.isCustomerIdExists Exception : "+e.getMessage());
+            return false;
+        }
+    }
+    
+    public int getIdbyMobile(String mobile)
+    {
+        int id = 0;
+        String sql;
+        sql = "SELECT id FROM customer WHERE mobile="+"'"+mobile+"'";
+
+        try{
+
+            Statement st = con.createStatement();
+
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next())
+          {
+            id = rs.getInt("id");       
+          }
+          return id;
+        }
+        catch (SQLException e)
+            {
+              System.err.println("GetRole id Got an exception!+\n"+ sql );
+              System.err.println(e.getMessage());
+              return id;
+            }
+      
+      
+    }
+    
+    public boolean changePassword(){
+        String sql = "UPDATE customer SET password= ? WHERE mobile= ? ";
+        try{
+            PreparedStatement preparedStmt = con.prepareStatement(sql);
+            preparedStmt.setString(1, getPassword());
+            preparedStmt.setString(2, getCus_mobile());
+
+            // execute the java preparedstatement
+            preparedStmt.executeUpdate();
+            return true;
+        }
+        catch(SQLException e)
+        {
+            EventLog.Write("Exception in customer.changePassword : "+e.getMessage());
             return false;
         }
     }

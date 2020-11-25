@@ -61,35 +61,33 @@ public class Vehicle {
         else return false;
     }
     
-    
-    
-    
-    public String[] get()
+    public boolean removeVehicle()
     {
-        try
+        if(getVehicle_ownerid()!=0 && !(getVehicle_num().isEmpty()))
         {
-            String query = "SELECT name FROM roles";
-            String res[] = new String[10];
+            try
+            {       
+                String query = "DELETE FROM vehicles WHERE veh_owner_id = ? AND veh_number = ?";
 
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(query);
-            
-            int i = 0;
+                //using a prepared statement to preven SQL Injection and other simillar attacks
+                PreparedStatement prest = con.prepareStatement(query);
+                prest.setInt (1, getVehicle_ownerid());
+                prest.setString (2, getVehicle_num());
 
-            while(rs.next()) {
-                res[i] = rs.getString("name");
-                i++;
+                // prepared statement execution
+                prest.executeUpdate();
+                EventLog.Write("Veh_num : "+ getVehicle_num ()+" removed from customer id: "+getVehicle_ownerid()+".");
+
+                return true;
             }
-            return res;
-        }
-        catch (SQLException e)
+            catch (SQLException e)
             {
-              System.err.println("Got an exception!");
-              System.err.println(e.getMessage());
-              return null;
+                  EventLog.Write("removeCustomer Exception : "+e.getMessage());
+                  return false;
             }
+        }
+        else return false;
     }
-    
     
     public int getLastid() 
     {
@@ -117,6 +115,31 @@ public class Vehicle {
         return id;
     }
     
+   public String[] getVehNumsFromCusId()
+    {
+        try
+        {
+            String query = "SELECT veh_number FROM vehicles WHERE veh_owner_id="+getVehicle_ownerid();
+            String res[] = new String[20];
+
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            
+            int i = 0;
+
+            while(rs.next()) {
+                res[i] = rs.getString("veh_number");
+                System.out.println(rs.getString("veh_number"));
+                i++;
+            }
+            return res;
+        }
+        catch (SQLException e)
+            {
+              EventLog.Write("Vehicle.getVehNumsFromCusId Exception: "+e.getMessage());
+              return null;
+            }
+    } 
 
     /**
      * @return the vehicle_id

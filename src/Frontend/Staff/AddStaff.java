@@ -31,7 +31,6 @@ public class AddStaff extends javax.swing.JFrame {
               rolecombo.addItem(res[i]);
               i++;
             }while(!(res[i]==null));
- 
     }
 
     /**

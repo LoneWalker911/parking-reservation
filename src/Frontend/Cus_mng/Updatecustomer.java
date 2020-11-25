@@ -29,6 +29,8 @@ public class Updatecustomer extends javax.swing.JFrame {
         mobchkbtn.setEnabled(false);
         Mobiletxt.setText(mobile);
         mobchkbtnActionPerformed(null);
+        idchkbtn.setVisible(false);
+        mobchkbtn.setVisible(false);
     }
     
     public Updatecustomer() {

@@ -4,7 +4,14 @@
  * and open the template in the editor.
  */
 package Frontend;
-
+import Backend.Slot;
+import Backend.Vehicle;
+import java.awt.Cursor;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 /**
  *
  * @author Prashan
@@ -14,6 +21,49 @@ public class Reservation extends javax.swing.JFrame {
     /**
      * Creates new form Reservation
      */
+    
+    String[] res = new String[15];
+    Slot slot = new Slot();
+    Vehicle veh = new Vehicle();
+    ImageIcon ava = new ImageIcon(getClass().getResource("/Frontend/Images/available.png"));
+    ImageIcon unava = new ImageIcon(getClass().getResource("/Frontend/Images/unavailable.png"));
+    JLabel[] slots;
+    String[] veh_no = null;
+    
+    public Reservation(int id) {
+        initComponents();
+        veh.setVehicle_ownerid(id);
+        this.slots = new JLabel[]{Slotlbl1, Slotlbl2, Slotlbl3, Slotlbl4, Slotlbl5, Slotlbl6, Slotlbl7, Slotlbl8, Slotlbl9, Slotlbl10, Slotlbl11, Slotlbl12, Slotlbl13, Slotlbl14, Slotlbl15};
+        res=slot.getStatus();
+        
+        for(int i=0;i<15;i++)
+        {
+            if(res[i].equals("Available"))
+            {
+                slots[i].setIcon(ava);
+                slots[i].addMouseListener(new java.awt.event.MouseAdapter() { public void mouseClicked(java.awt.event.MouseEvent evt) { someNothing(evt);} });
+                Slotcombobox.addItem(Integer.toString(i+1));
+            }
+                
+            else
+            {
+                slots[i].setIcon(unava);
+                slots[i].setCursor(Cursor.getDefaultCursor());
+            }
+        }
+        
+        veh_no = veh.getVehNumsFromCusId();
+        if(veh_no!=null)
+        {
+            int i = 0;
+            do{
+              vehcombo.addItem(veh_no[i]);
+              i++;
+            }while(!(veh_no[i]==null));
+
+        }
+    }
+    
     public Reservation() {
         initComponents();
     }
@@ -46,10 +96,10 @@ public class Reservation extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        Slotcmbbox = new javax.swing.JComboBox<>();
+        Slotcombobox = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        Vehiclecmbbox = new javax.swing.JComboBox<>();
+        vehcombo = new javax.swing.JComboBox<>();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         Startdate = new org.jdesktop.swingx.JXDatePicker();
@@ -57,7 +107,7 @@ public class Reservation extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         reserveimg = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1205, 800));
         setPreferredSize(new java.awt.Dimension(1205, 800));
         setResizable(false);
@@ -68,100 +118,102 @@ public class Reservation extends javax.swing.JFrame {
         jPanel2.setRequestFocusEnabled(false);
         jPanel2.setLayout(null);
 
-        Slotlbl1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/available (2).png"))); // NOI18N
+        Slotlbl1.setText("1");
+        Slotlbl1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel2.add(Slotlbl1);
         Slotlbl1.setBounds(8, 180, 100, 40);
 
-        Slotlbl6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/available (2).png"))); // NOI18N
+        Slotlbl6.setText("6");
+        Slotlbl6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel2.add(Slotlbl6);
         Slotlbl6.setBounds(534, 180, 100, 40);
 
-        Slotlbl2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/unavailable (1).png"))); // NOI18N
-        Slotlbl2.setText("jLabel2");
+        Slotlbl2.setText("2");
+        Slotlbl2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel2.add(Slotlbl2);
         Slotlbl2.setBounds(112, 180, 100, 40);
 
         Slotlbl7.setBackground(new java.awt.Color(0, 204, 0));
         Slotlbl7.setForeground(new java.awt.Color(204, 255, 102));
-        Slotlbl7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/unavailable (1).png"))); // NOI18N
-        Slotlbl7.setText("jLabel4");
+        Slotlbl7.setText("7");
+        Slotlbl7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel2.add(Slotlbl7);
         Slotlbl7.setBounds(640, 180, 100, 40);
 
         Slotlbl4.setBackground(new java.awt.Color(0, 204, 0));
         Slotlbl4.setForeground(new java.awt.Color(204, 255, 102));
-        Slotlbl4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/unavailable (1).png"))); // NOI18N
-        Slotlbl4.setText("jLabel4");
+        Slotlbl4.setText("4");
+        Slotlbl4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel2.add(Slotlbl4);
         Slotlbl4.setBounds(325, 180, 100, 40);
 
         Slotlbl3.setBackground(new java.awt.Color(0, 204, 0));
         Slotlbl3.setForeground(new java.awt.Color(204, 255, 102));
-        Slotlbl3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/unavailable (1).png"))); // NOI18N
-        Slotlbl3.setText("jLabel4");
+        Slotlbl3.setText("3");
+        Slotlbl3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel2.add(Slotlbl3);
         Slotlbl3.setBounds(218, 180, 100, 40);
 
         Slotlbl8.setBackground(new java.awt.Color(0, 204, 0));
         Slotlbl8.setForeground(new java.awt.Color(204, 255, 102));
-        Slotlbl8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/unavailable (1).png"))); // NOI18N
-        Slotlbl8.setText("jLabel4");
+        Slotlbl8.setText("8");
+        Slotlbl8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel2.add(Slotlbl8);
         Slotlbl8.setBounds(745, 180, 100, 40);
 
         Slotlbl9.setBackground(new java.awt.Color(0, 204, 0));
         Slotlbl9.setForeground(new java.awt.Color(204, 255, 102));
-        Slotlbl9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/unavailable.png"))); // NOI18N
-        Slotlbl9.setText("jLabel4");
+        Slotlbl9.setText("9");
+        Slotlbl9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel2.add(Slotlbl9);
         Slotlbl9.setBounds(850, 180, 100, 40);
 
         Slotlbl15.setBackground(new java.awt.Color(0, 204, 0));
         Slotlbl15.setForeground(new java.awt.Color(204, 255, 102));
-        Slotlbl15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/unavailable (1).png"))); // NOI18N
-        Slotlbl15.setText("jLabel4");
+        Slotlbl15.setText("15");
+        Slotlbl15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel2.add(Slotlbl15);
         Slotlbl15.setBounds(90, 470, 100, 40);
 
         Slotlbl14.setBackground(new java.awt.Color(0, 204, 0));
         Slotlbl14.setForeground(new java.awt.Color(204, 255, 102));
-        Slotlbl14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/unavailable (1).png"))); // NOI18N
-        Slotlbl14.setText("jLabel4");
+        Slotlbl14.setText("14");
+        Slotlbl14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel2.add(Slotlbl14);
         Slotlbl14.setBounds(90, 570, 100, 40);
 
         Slotlbl12.setBackground(new java.awt.Color(0, 204, 0));
         Slotlbl12.setForeground(new java.awt.Color(204, 255, 102));
-        Slotlbl12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/unavailable (1).png"))); // NOI18N
-        Slotlbl12.setText("jLabel4");
+        Slotlbl12.setText("12");
+        Slotlbl12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel2.add(Slotlbl12);
         Slotlbl12.setBounds(770, 670, 100, 40);
 
         Slotlbl5.setBackground(new java.awt.Color(0, 204, 0));
         Slotlbl5.setForeground(new java.awt.Color(204, 255, 102));
-        Slotlbl5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/unavailable (1).png"))); // NOI18N
-        Slotlbl5.setText("jLabel4");
+        Slotlbl5.setText("5");
+        Slotlbl5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel2.add(Slotlbl5);
         Slotlbl5.setBounds(430, 180, 100, 40);
 
         Slotlbl13.setBackground(new java.awt.Color(0, 204, 0));
         Slotlbl13.setForeground(new java.awt.Color(204, 255, 102));
-        Slotlbl13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/unavailable (1).png"))); // NOI18N
-        Slotlbl13.setText("jLabel4");
+        Slotlbl13.setText("13");
+        Slotlbl13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel2.add(Slotlbl13);
         Slotlbl13.setBounds(90, 670, 100, 40);
 
         Slotlbl10.setBackground(new java.awt.Color(0, 204, 0));
         Slotlbl10.setForeground(new java.awt.Color(204, 255, 102));
-        Slotlbl10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/unavailable (1).png"))); // NOI18N
-        Slotlbl10.setText("jLabel4");
+        Slotlbl10.setText("10");
+        Slotlbl10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel2.add(Slotlbl10);
         Slotlbl10.setBounds(770, 470, 100, 40);
 
         Slotlbl11.setBackground(new java.awt.Color(0, 204, 0));
         Slotlbl11.setForeground(new java.awt.Color(204, 255, 102));
-        Slotlbl11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/unavailable (1).png"))); // NOI18N
-        Slotlbl11.setText("jLabel4");
+        Slotlbl11.setText("11");
+        Slotlbl11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel2.add(Slotlbl11);
         Slotlbl11.setBounds(770, 570, 100, 40);
 
@@ -188,8 +240,7 @@ public class Reservation extends javax.swing.JFrame {
         jPanel2.add(jPanel1);
         jPanel1.setBounds(0, 0, 1210, 70);
 
-        Slotcmbbox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        Slotcmbbox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        Slotcombobox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("SLOT :");
@@ -197,8 +248,7 @@ public class Reservation extends javax.swing.JFrame {
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel18.setText("VEHICLE :");
 
-        Vehiclecmbbox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        Vehiclecmbbox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        vehcombo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel19.setText("END DATE :");
@@ -227,8 +277,8 @@ public class Reservation extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))
-                            .addComponent(Slotcmbbox, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Vehiclecmbbox, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Slotcombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(vehcombo, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -239,11 +289,11 @@ public class Reservation extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(Slotcmbbox, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Slotcombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel18)
                 .addGap(18, 18, 18)
-                .addComponent(Vehiclecmbbox, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(vehcombo, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel20)
                 .addGap(18, 18, 18)
@@ -281,6 +331,12 @@ public class Reservation extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void doNothing(){}    
+    private void someNothing(java.awt.event.MouseEvent evt){
+    JLabel obj = (JLabel) evt.getSource();
+        Slotcombobox.setSelectedItem(obj.getText());
+    }
+        
     /**
      * @param args the command line arguments
      */
@@ -318,7 +374,7 @@ public class Reservation extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.jdesktop.swingx.JXDatePicker Enddate;
-    private javax.swing.JComboBox<String> Slotcmbbox;
+    private javax.swing.JComboBox<String> Slotcombobox;
     private javax.swing.JLabel Slotlbl1;
     private javax.swing.JLabel Slotlbl10;
     private javax.swing.JLabel Slotlbl11;
@@ -335,7 +391,6 @@ public class Reservation extends javax.swing.JFrame {
     private javax.swing.JLabel Slotlbl8;
     private javax.swing.JLabel Slotlbl9;
     private org.jdesktop.swingx.JXDatePicker Startdate;
-    private javax.swing.JComboBox<String> Vehiclecmbbox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -346,5 +401,6 @@ public class Reservation extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel reserveimg;
+    private javax.swing.JComboBox<String> vehcombo;
     // End of variables declaration//GEN-END:variables
 }

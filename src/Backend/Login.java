@@ -189,7 +189,6 @@ public class Login {
     }
     catch(SQLException e)
     {
-        System.out.println("changePsw error");
         EventLog.Write("Exception in Login.changePassword : "+e.getMessage());
         return false;
     }
