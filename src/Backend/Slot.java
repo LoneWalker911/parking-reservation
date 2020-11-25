@@ -18,38 +18,7 @@ public class Slot {
     private String slot_name = null;
     private String slot_status = "";
     private final Connection con = dbConnection.CreateConn();;
-    EventLog log = new EventLog();
     
-    public boolean addSlot()
-    {
-        if(!(getSlot_name().equals("")) && getIdBySlotName(getSlot_name()) == 0)
-        {
-        try
-        {
-            setSlot_id(getLastid());
-            String query = "INSERT INTO parking_slot VALUES (?, ?, ?)";
-
-            //using a prepared statement to preven SQL Injection and other simillar attacks
-            PreparedStatement prest = con.prepareStatement(query);
-            prest.setInt (1, getSlot_id()+1);
-            prest.setString (2, getSlot_name());
-            prest.setString (3, getSlot_status());
-
-            // execute the preparedstatement
-            prest.execute();
-            log.Write("Slot_ID : "+ Integer.toString(getSlot_id()) + " added to slots table.");
-
-            return true;
-        }
-        catch (SQLException e)
-            {
-              System.err.println("Got an exception!");
-              System.err.println(e.getMessage());
-              return false;
-            }
-        }
-        else return false;
-    }
     
     public String[] getRoles()
     {
@@ -79,32 +48,23 @@ public class Slot {
     
     public boolean updateSlot()
     {
-        if((slot_name!=null || slot_status != null) && slot_id != 0)
+        if(slot_status != null && slot_id != 0)
         {
         try
         {
-            String update = "";
-            if(slot_name != null && slot_status == null)
-            {update = "name='"+slot_name+"'";}
-            if(slot_name == null && slot_status != null)
-            {update = "description='"+slot_status+"'";}
-            if(slot_name != null && slot_status != null)
-            {update = "name='"+slot_name+ "', "+ "description='"+slot_status+"'";}
-            
-            String query = "UPDATE roles SET "+ update + " WHERE id=" + Integer.toString(slot_id);
+            String query = "UPDATE roles SET status='" + getSlot_status() + "WHERE id="+getSlot_id();
 
             Statement st = con.createStatement();
             st.executeUpdate(query);
  
             
-            log.Write("Roles_ID : "+ Integer.toString(slot_id) + " updated "+ update +" on roles table.");
+            EventLog.Write("Slot_ID : "+ getSlot_id() + " updated to '" + getSlot_status() + "'.");
 
             return true;
         }
         catch (SQLException e)
             {
-              System.err.println("Got an exception!");
-              System.err.println(e.getMessage());
+              EventLog.Write("updateSlot Exception :"+e.getMessage());
               return false;
             }
         }
@@ -135,11 +95,10 @@ public class Slot {
       return id;
     }
     
-    public int getIdBySlotName(String name)
+    public String getStatusById(String id)
     {
-        int id = 0;
         String sql;
-        sql = "SELECT id FROM parking_slots WHERE name='"+name+"'";
+        sql = "SELECT status FROM parking_slot WHERE id="+id;
 
         try{
 
@@ -149,15 +108,15 @@ public class Slot {
 
             while (rs.next())
           {
-            id = rs.getInt("id");       
+            return rs.getString("status");       
           }
-          return id;
+          return "";
         }
         catch (SQLException e)
             {
               System.err.println("GetRole id Got an exception!+\n"+ sql );
               System.err.println(e.getMessage());
-              return id;
+              return "";
             }
       
       
