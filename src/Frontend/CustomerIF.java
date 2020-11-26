@@ -213,7 +213,7 @@ public class CustomerIF extends javax.swing.JFrame {
     }//GEN-LAST:event_updatecusbtnActionPerformed
 
     private void reservebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservebtnActionPerformed
-        Frontend.Reservation res = new Frontend.Reservation(id);
+        Frontend.DateCheck res = new Frontend.DateCheck(id);
         res.setVisible(true);
     }//GEN-LAST:event_reservebtnActionPerformed
 

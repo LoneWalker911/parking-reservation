@@ -5,6 +5,11 @@
  */
 package Frontend;
 
+import Backend.Reserve;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  *
  * @author Prashan
@@ -14,8 +19,16 @@ public class DateCheck extends javax.swing.JFrame {
     /**
      * Creates new form DateCheck
      */
-    public DateCheck() {
+    
+    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    int id;
+    Reserve resv = new Reserve();
+    
+    public DateCheck(int id) {
         initComponents();
+        this.id=id;
+        Startdate.getMonthView().setLowerBound(new Date());
+        Enddate.getMonthView().setLowerBound(new Date(System.currentTimeMillis() + 86400000));
     }
 
     /**
@@ -31,16 +44,21 @@ public class DateCheck extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        Stdate = new org.jdesktop.swingx.JXDatePicker();
-        Endate = new org.jdesktop.swingx.JXDatePicker();
+        Startdate = new org.jdesktop.swingx.JXDatePicker();
+        Enddate = new org.jdesktop.swingx.JXDatePicker();
         jLabel3 = new javax.swing.JLabel();
         Chkbtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(300, 200));
 
         jPanel1.setLayout(null);
 
         jLabel2.setText("Start Date");
+
+        Startdate.setFormats(new SimpleDateFormat("yyyy-MM-dd"));
+
+        Enddate.setFormats(new SimpleDateFormat("yyyy-MM-dd"));
 
         jLabel3.setText("End date");
 
@@ -61,13 +79,13 @@ public class DateCheck extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(80, 80, 80)
-                        .addComponent(Stdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Startdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Chkbtn)
-                            .addComponent(Endate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(Enddate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(301, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
@@ -84,10 +102,10 @@ public class DateCheck extends javax.swing.JFrame {
                         .addComponent(jLabel2))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(70, 70, 70)
-                        .addComponent(Stdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Startdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Endate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Enddate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(47, 47, 47)
                 .addComponent(Chkbtn)
@@ -106,18 +124,28 @@ public class DateCheck extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void ChkbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkbtnActionPerformed
-        // TODO add your handling code here:
+        if(Enddate.getDate().after(Startdate.getDate()))
+        {
+            resv.setStdate(Startdate.getDate());
+            resv.setEndate(Enddate.getDate());
+            
+            Reservation res = new Reservation(id,Startdate.getDate(),Enddate.getDate());
+            res.setVisible(true);
+            this.dispose();
+        }
+        else
+            MessageBox.infoBox("Please check your selections and dates", "Invalid Inputs");
     }//GEN-LAST:event_ChkbtnActionPerformed
 
     /**
@@ -150,15 +178,15 @@ public class DateCheck extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DateCheck().setVisible(true);
+                new DateCheck(1).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Chkbtn;
-    private org.jdesktop.swingx.JXDatePicker Endate;
-    private org.jdesktop.swingx.JXDatePicker Stdate;
+    private org.jdesktop.swingx.JXDatePicker Enddate;
+    private org.jdesktop.swingx.JXDatePicker Startdate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

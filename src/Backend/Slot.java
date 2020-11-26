@@ -6,7 +6,6 @@
 package Backend;
 
 import java.sql.*;
-import java.util.Hashtable;
 
 /**
  *
@@ -17,8 +16,7 @@ public class Slot {
     private int slot_id = 0;
     private String slot_name = null;
     private String slot_status = "";
-    private final Connection con = dbConnection.CreateConn();;
-    
+    private final Connection con = dbConnection.CreateConn();
     
     public String[] getRoles()
     {
@@ -52,7 +50,7 @@ public class Slot {
         {
         try
         {
-            String query = "UPDATE roles SET status='" + getSlot_status() + "WHERE id="+getSlot_id();
+            String query = "UPDATE parking_slot SET status='" + getSlot_status() + "' WHERE id="+getSlot_id();
 
             Statement st = con.createStatement();
             st.executeUpdate(query);
@@ -121,34 +119,6 @@ public class Slot {
       
       
     }
-    
-    public String[] getStatus()
-    {
-        String sql = "SELECT status FROM parking_slot ORDER BY id ASC";
-        String res[] = new String[15];
-
-        try{
-
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-
-            int i = 0;
-
-            while(rs.next()) {
-                res[i] = rs.getString("status");
-                i++;
-            }
-            return res;
-        }
-        catch (SQLException e)
-            {
-              EventLog.Write("Slot.getStatus Exception: "+e.getMessage());
-              return null;
-            }
-      
-      
-    }
-    
     
     /**
      * @return the slot_id

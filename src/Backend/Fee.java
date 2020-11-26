@@ -77,9 +77,9 @@ public class Fee {
         return id;
     }
     
-    public int getIdByType(String type) 
+    public int getIdByType() 
     {
-        String sql = "SELECT fee.id FROM fee WHERE fee.veh_type='"+type+"'";
+        String sql = "SELECT fee.id FROM fee WHERE fee.veh_type='"+getVehtype()+"'";
         int id=0;
           try{
         Statement st = con.createStatement();
@@ -92,7 +92,7 @@ public class Fee {
         }
           catch(SQLException e)
         {
-            EventLog.Write("Exception : "+e.getMessage());
+            EventLog.Write("Fee.getIdByType Exception : "+e.getMessage());
             return id;
         } 
     }

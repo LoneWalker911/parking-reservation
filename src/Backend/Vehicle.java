@@ -129,7 +129,6 @@ public class Vehicle {
 
             while(rs.next()) {
                 res[i] = rs.getString("veh_number");
-                System.out.println(rs.getString("veh_number"));
                 i++;
             }
             return res;
@@ -138,6 +137,53 @@ public class Vehicle {
             {
               EventLog.Write("Vehicle.getVehNumsFromCusId Exception: "+e.getMessage());
               return null;
+            }
+    } 
+   
+   public String getVehTypeFromId()
+   {
+       String res = "";
+        try
+        {
+            String query = "SELECT veh_type FROM vehicles WHERE id="+getVehicle_id();
+
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            
+
+            while(rs.next()) {
+                res = rs.getString("veh_type");
+            }
+            return res;
+        }
+        catch (SQLException e)
+            {
+              EventLog.Write("Vehicle.getVehNumsFromCusId Exception: "+e.getMessage());
+              return res;
+            }
+    } 
+   
+   public int getIdFromVehNum()
+    {
+        int id = 0;
+        try
+        {
+
+            String query = "SELECT id FROM vehicles WHERE veh_number='"+getVehicle_num()+"'";
+
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            
+
+            while(rs.next()) {
+                id = rs.getInt("id");
+            }
+            return id;
+        }
+        catch (SQLException e)
+            {
+              EventLog.Write("Vehicle.getIdFromVehNum Exception: "+e.getMessage());
+              return id;
             }
     } 
 

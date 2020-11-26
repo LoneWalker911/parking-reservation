@@ -5,11 +5,17 @@
  */
 package Frontend;
 import Backend.Slot;
+import Backend.Reserve;
 import Backend.Vehicle;
+import Backend.Fee;
 import java.awt.Cursor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 /**
@@ -19,48 +25,70 @@ import javax.swing.JLabel;
 public class Reservation extends javax.swing.JFrame {
 
     /**
-     * Creates new form Reservation
+     * Creates new form Reserve
      */
     
-    String[] res = new String[15];
+    int[] res = null;
     Slot slot = new Slot();
     Vehicle veh = new Vehicle();
+    Reserve resv = new Reserve();
+    Fee fee = new Fee();
     ImageIcon ava = new ImageIcon(getClass().getResource("/Frontend/Images/available.png"));
     ImageIcon unava = new ImageIcon(getClass().getResource("/Frontend/Images/unavailable.png"));
     JLabel[] slots;
     String[] veh_no = null;
+    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    Date Startdate,Enddate;
+    int i=0;
     
-    public Reservation(int id) {
-        initComponents();
-        veh.setVehicle_ownerid(id);
-        this.slots = new JLabel[]{Slotlbl1, Slotlbl2, Slotlbl3, Slotlbl4, Slotlbl5, Slotlbl6, Slotlbl7, Slotlbl8, Slotlbl9, Slotlbl10, Slotlbl11, Slotlbl12, Slotlbl13, Slotlbl14, Slotlbl15};
-        res=slot.getStatus();
+    public Reservation(int id,Date stdate, Date endate) {
         
-        for(int i=0;i<15;i++)
-        {
-            if(res[i].equals("Available"))
-            {
-                slots[i].setIcon(ava);
-                slots[i].addMouseListener(new java.awt.event.MouseAdapter() { public void mouseClicked(java.awt.event.MouseEvent evt) { someNothing(evt);} });
-                Slotcombobox.addItem(Integer.toString(i+1));
-            }
-                
-            else
-            {
-                slots[i].setIcon(unava);
-                slots[i].setCursor(Cursor.getDefaultCursor());
-            }
-        }
+        resv.setStdate(stdate);
+        resv.setEndate(endate);
+        
+        veh.setVehicle_ownerid(id);
+        
+        Startdate=stdate;
+        Enddate=endate;
         
         veh_no = veh.getVehNumsFromCusId();
-        if(veh_no!=null)
+        if(veh_no[0]==null)
         {
+            MessageBox.infoBox("No vehicles found", "Not Found");
+            this.dispose();
+        }
+        
+        else
+        {    
+            initComponents();
+            resv.setCus_id(id);
+            this.slots = new JLabel[]{Slotlbl1, Slotlbl2, Slotlbl3, Slotlbl4, Slotlbl5, Slotlbl6, Slotlbl7, Slotlbl8, Slotlbl9, Slotlbl10, Slotlbl11, Slotlbl12, Slotlbl13, Slotlbl14, Slotlbl15};
+            res=resv.checkDates();
+            
+            while(res[i]!=0)
+            {
+                slots[res[i]-1].setIcon(ava);
+                slots[res[i]-1].addMouseListener(new java.awt.event.MouseAdapter() { public void mouseClicked(java.awt.event.MouseEvent evt) { someNothing(evt);} });
+                slots[res[i]-1].setCursor(Cursor.getPredefinedCursor(12));
+                Slotcombo.addItem(Integer.toString(res[i]));
+                i++;
+            }
+         
             int i = 0;
             do{
               vehcombo.addItem(veh_no[i]);
               i++;
             }while(!(veh_no[i]==null));
 
+            
+            Slotcombo.setSelectedIndex(-1);
+            vehcombo.setSelectedIndex(-1);
+            
+            startdate.setText(dateFormat.format(Startdate));
+            enddate.setText(dateFormat.format(Enddate));
+            
+            startdate.setEditable(false);
+            enddate.setEditable(false);
         }
     }
     
@@ -96,15 +124,15 @@ public class Reservation extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        Slotcombobox = new javax.swing.JComboBox<>();
+        Slotcombo = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         vehcombo = new javax.swing.JComboBox<>();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        Startdate = new org.jdesktop.swingx.JXDatePicker();
-        Enddate = new org.jdesktop.swingx.JXDatePicker();
-        jLabel22 = new javax.swing.JLabel();
+        reservebtn = new javax.swing.JLabel();
+        startdate = new javax.swing.JTextField();
+        enddate = new javax.swing.JTextField();
         reserveimg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -118,16 +146,19 @@ public class Reservation extends javax.swing.JFrame {
         jPanel2.setRequestFocusEnabled(false);
         jPanel2.setLayout(null);
 
+        Slotlbl1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/unavailable.png"))); // NOI18N
         Slotlbl1.setText("1");
         Slotlbl1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel2.add(Slotlbl1);
         Slotlbl1.setBounds(8, 180, 100, 40);
 
+        Slotlbl6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/unavailable.png"))); // NOI18N
         Slotlbl6.setText("6");
         Slotlbl6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel2.add(Slotlbl6);
         Slotlbl6.setBounds(534, 180, 100, 40);
 
+        Slotlbl2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/unavailable.png"))); // NOI18N
         Slotlbl2.setText("2");
         Slotlbl2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel2.add(Slotlbl2);
@@ -135,6 +166,7 @@ public class Reservation extends javax.swing.JFrame {
 
         Slotlbl7.setBackground(new java.awt.Color(0, 204, 0));
         Slotlbl7.setForeground(new java.awt.Color(204, 255, 102));
+        Slotlbl7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/unavailable.png"))); // NOI18N
         Slotlbl7.setText("7");
         Slotlbl7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel2.add(Slotlbl7);
@@ -142,6 +174,7 @@ public class Reservation extends javax.swing.JFrame {
 
         Slotlbl4.setBackground(new java.awt.Color(0, 204, 0));
         Slotlbl4.setForeground(new java.awt.Color(204, 255, 102));
+        Slotlbl4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/unavailable.png"))); // NOI18N
         Slotlbl4.setText("4");
         Slotlbl4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel2.add(Slotlbl4);
@@ -149,6 +182,7 @@ public class Reservation extends javax.swing.JFrame {
 
         Slotlbl3.setBackground(new java.awt.Color(0, 204, 0));
         Slotlbl3.setForeground(new java.awt.Color(204, 255, 102));
+        Slotlbl3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/unavailable.png"))); // NOI18N
         Slotlbl3.setText("3");
         Slotlbl3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel2.add(Slotlbl3);
@@ -156,6 +190,7 @@ public class Reservation extends javax.swing.JFrame {
 
         Slotlbl8.setBackground(new java.awt.Color(0, 204, 0));
         Slotlbl8.setForeground(new java.awt.Color(204, 255, 102));
+        Slotlbl8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/unavailable.png"))); // NOI18N
         Slotlbl8.setText("8");
         Slotlbl8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel2.add(Slotlbl8);
@@ -163,6 +198,7 @@ public class Reservation extends javax.swing.JFrame {
 
         Slotlbl9.setBackground(new java.awt.Color(0, 204, 0));
         Slotlbl9.setForeground(new java.awt.Color(204, 255, 102));
+        Slotlbl9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/unavailable.png"))); // NOI18N
         Slotlbl9.setText("9");
         Slotlbl9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel2.add(Slotlbl9);
@@ -170,6 +206,7 @@ public class Reservation extends javax.swing.JFrame {
 
         Slotlbl15.setBackground(new java.awt.Color(0, 204, 0));
         Slotlbl15.setForeground(new java.awt.Color(204, 255, 102));
+        Slotlbl15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/unavailable.png"))); // NOI18N
         Slotlbl15.setText("15");
         Slotlbl15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel2.add(Slotlbl15);
@@ -177,6 +214,7 @@ public class Reservation extends javax.swing.JFrame {
 
         Slotlbl14.setBackground(new java.awt.Color(0, 204, 0));
         Slotlbl14.setForeground(new java.awt.Color(204, 255, 102));
+        Slotlbl14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/unavailable.png"))); // NOI18N
         Slotlbl14.setText("14");
         Slotlbl14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel2.add(Slotlbl14);
@@ -184,6 +222,7 @@ public class Reservation extends javax.swing.JFrame {
 
         Slotlbl12.setBackground(new java.awt.Color(0, 204, 0));
         Slotlbl12.setForeground(new java.awt.Color(204, 255, 102));
+        Slotlbl12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/unavailable.png"))); // NOI18N
         Slotlbl12.setText("12");
         Slotlbl12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel2.add(Slotlbl12);
@@ -191,6 +230,7 @@ public class Reservation extends javax.swing.JFrame {
 
         Slotlbl5.setBackground(new java.awt.Color(0, 204, 0));
         Slotlbl5.setForeground(new java.awt.Color(204, 255, 102));
+        Slotlbl5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/unavailable.png"))); // NOI18N
         Slotlbl5.setText("5");
         Slotlbl5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel2.add(Slotlbl5);
@@ -198,6 +238,7 @@ public class Reservation extends javax.swing.JFrame {
 
         Slotlbl13.setBackground(new java.awt.Color(0, 204, 0));
         Slotlbl13.setForeground(new java.awt.Color(204, 255, 102));
+        Slotlbl13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/unavailable.png"))); // NOI18N
         Slotlbl13.setText("13");
         Slotlbl13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel2.add(Slotlbl13);
@@ -205,6 +246,7 @@ public class Reservation extends javax.swing.JFrame {
 
         Slotlbl10.setBackground(new java.awt.Color(0, 204, 0));
         Slotlbl10.setForeground(new java.awt.Color(204, 255, 102));
+        Slotlbl10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/unavailable.png"))); // NOI18N
         Slotlbl10.setText("10");
         Slotlbl10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel2.add(Slotlbl10);
@@ -212,6 +254,7 @@ public class Reservation extends javax.swing.JFrame {
 
         Slotlbl11.setBackground(new java.awt.Color(0, 204, 0));
         Slotlbl11.setForeground(new java.awt.Color(204, 255, 102));
+        Slotlbl11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/unavailable.png"))); // NOI18N
         Slotlbl11.setText("11");
         Slotlbl11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel2.add(Slotlbl11);
@@ -240,7 +283,7 @@ public class Reservation extends javax.swing.JFrame {
         jPanel2.add(jPanel1);
         jPanel1.setBounds(0, 0, 1210, 70);
 
-        Slotcombobox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Slotcombo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("SLOT :");
@@ -256,10 +299,15 @@ public class Reservation extends javax.swing.JFrame {
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel20.setText("START DATE :");
 
-        jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/reserve (2).png"))); // NOI18N
-        jLabel22.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jLabel22.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabel22.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        reservebtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/reserve (2).png"))); // NOI18N
+        reservebtn.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        reservebtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        reservebtn.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        reservebtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                reservebtnMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -268,20 +316,18 @@ public class Reservation extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Startdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Enddate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))
-                            .addComponent(Slotcombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(vehcombo, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))
+                    .addComponent(Slotcombo, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(reservebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(vehcombo, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(startdate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                        .addComponent(enddate, javax.swing.GroupLayout.Alignment.LEADING)))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -289,7 +335,7 @@ public class Reservation extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(Slotcombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Slotcombo, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel18)
                 .addGap(18, 18, 18)
@@ -297,13 +343,13 @@ public class Reservation extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel20)
                 .addGap(18, 18, 18)
-                .addComponent(Startdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(startdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel19)
-                .addGap(18, 18, 18)
-                .addComponent(Enddate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(119, 119, 119)
-                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(enddate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(131, 131, 131)
+                .addComponent(reservebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(155, Short.MAX_VALUE))
         );
 
@@ -331,10 +377,49 @@ public class Reservation extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void reservebtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reservebtnMouseClicked
+        if(Slotcombo.getSelectedIndex()!=-1 && vehcombo.getSelectedIndex()!=-1)
+        {
+            resv.setSlot_id(Integer.parseInt(Slotcombo.getSelectedItem().toString()));
+            slot.setSlot_id(Integer.parseInt(Slotcombo.getSelectedItem().toString()));
+        
+        
+            veh.setVehicle_num(vehcombo.getSelectedItem().toString());
+            resv.setVeh_id(veh.getIdFromVehNum());
+
+            veh.setVehicle_id(resv.getVeh_id());
+            fee.setVehtype(veh.getVehTypeFromId());
+            resv.setFee_id(fee.getIdByType());
+
+            resv.setDuration(dateDiff(Startdate,Enddate));
+            
+            resv.setStatus("PENDING");
+            
+            resv.CreateReservation();
+                     
+        }
+        else
+        {
+            MessageBox.infoBox("Please check your selections and dates", "Invalid Inputs");
+        }
+
+        
+        
+    }//GEN-LAST:event_reservebtnMouseClicked
+
     private void doNothing(){}    
+    
     private void someNothing(java.awt.event.MouseEvent evt){
-    JLabel obj = (JLabel) evt.getSource();
-        Slotcombobox.setSelectedItem(obj.getText());
+        JLabel obj = (JLabel) evt.getSource();
+        Slotcombo.setSelectedItem(obj.getText());
+    }
+    
+    private int dateDiff(Date a,Date b)
+    {
+        int diff =0;
+        long diffInMillies = Math.abs(b.getTime() - a.getTime());
+        long diffInDays= TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+        return (int) diffInDays;
     }
         
     /**
@@ -373,8 +458,7 @@ public class Reservation extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private org.jdesktop.swingx.JXDatePicker Enddate;
-    private javax.swing.JComboBox<String> Slotcombobox;
+    private javax.swing.JComboBox<String> Slotcombo;
     private javax.swing.JLabel Slotlbl1;
     private javax.swing.JLabel Slotlbl10;
     private javax.swing.JLabel Slotlbl11;
@@ -390,17 +474,18 @@ public class Reservation extends javax.swing.JFrame {
     private javax.swing.JLabel Slotlbl7;
     private javax.swing.JLabel Slotlbl8;
     private javax.swing.JLabel Slotlbl9;
-    private org.jdesktop.swingx.JXDatePicker Startdate;
+    private javax.swing.JTextField enddate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel reservebtn;
     private javax.swing.JLabel reserveimg;
+    private javax.swing.JTextField startdate;
     private javax.swing.JComboBox<String> vehcombo;
     // End of variables declaration//GEN-END:variables
 }
