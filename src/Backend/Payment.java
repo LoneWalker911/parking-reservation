@@ -180,6 +180,21 @@ public class Payment {
         }
     }
     
+    public boolean isResvIdExists(int id)
+    {
+        String sql = "SELECT reservation_id FROM reservation WHERE reservation_id="+id;
+          try{
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        return rs.next();
+        }
+          catch(SQLException e)
+        {
+            EventLog.Write("Exception : "+e.getMessage());
+            return false;
+        }
+    }
+    
     public ResultSet searchById(String id) 
     {
         String sql = "SELECT login.username, staff.name, address, email, mobile, roles.name AS role FROM staff,login,roles WHERE staff.id="+id+" AND login.staff_id = staff.id AND roles.id = login.role_id";

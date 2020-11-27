@@ -5,6 +5,15 @@
  */
 package Frontend;
 
+import Backend.Payment;
+import Backend.Reserve;
+import java.awt.Desktop;
+import java.net.URI;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Prashan
@@ -14,8 +23,18 @@ public class Waiting extends javax.swing.JFrame {
     /**
      * Creates new form Waiting
      */
+    int id;
+    double amount;
+    Payment pay = new Payment();
+    Reserve resv = new Reserve();
+    
     public Waiting() {
         initComponents();
+    }
+    public Waiting(int id, double amount) {
+        initComponents();
+        this.id=id;
+        this.amount=amount;
     }
 
     /**
@@ -77,6 +96,9 @@ public class Waiting extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    protected void
+    
+    
     /**
      * @param args the command line arguments
      */

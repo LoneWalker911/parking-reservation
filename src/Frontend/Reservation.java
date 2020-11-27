@@ -9,9 +9,6 @@ import Backend.Reserve;
 import Backend.Vehicle;
 import Backend.Fee;
 import java.awt.Cursor;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -34,7 +31,6 @@ public class Reservation extends javax.swing.JFrame {
     Reserve resv = new Reserve();
     Fee fee = new Fee();
     ImageIcon ava = new ImageIcon(getClass().getResource("/Frontend/Images/available.png"));
-    ImageIcon unava = new ImageIcon(getClass().getResource("/Frontend/Images/unavailable.png"));
     JLabel[] slots;
     String[] veh_no = null;
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -148,19 +144,19 @@ public class Reservation extends javax.swing.JFrame {
 
         Slotlbl1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/unavailable.png"))); // NOI18N
         Slotlbl1.setText("1");
-        Slotlbl1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Slotlbl1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel2.add(Slotlbl1);
         Slotlbl1.setBounds(8, 180, 100, 40);
 
         Slotlbl6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/unavailable.png"))); // NOI18N
         Slotlbl6.setText("6");
-        Slotlbl6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Slotlbl6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel2.add(Slotlbl6);
         Slotlbl6.setBounds(534, 180, 100, 40);
 
         Slotlbl2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/unavailable.png"))); // NOI18N
         Slotlbl2.setText("2");
-        Slotlbl2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Slotlbl2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel2.add(Slotlbl2);
         Slotlbl2.setBounds(112, 180, 100, 40);
 
@@ -168,7 +164,7 @@ public class Reservation extends javax.swing.JFrame {
         Slotlbl7.setForeground(new java.awt.Color(204, 255, 102));
         Slotlbl7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/unavailable.png"))); // NOI18N
         Slotlbl7.setText("7");
-        Slotlbl7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Slotlbl7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel2.add(Slotlbl7);
         Slotlbl7.setBounds(640, 180, 100, 40);
 
@@ -176,7 +172,7 @@ public class Reservation extends javax.swing.JFrame {
         Slotlbl4.setForeground(new java.awt.Color(204, 255, 102));
         Slotlbl4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/unavailable.png"))); // NOI18N
         Slotlbl4.setText("4");
-        Slotlbl4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Slotlbl4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel2.add(Slotlbl4);
         Slotlbl4.setBounds(325, 180, 100, 40);
 
@@ -184,7 +180,7 @@ public class Reservation extends javax.swing.JFrame {
         Slotlbl3.setForeground(new java.awt.Color(204, 255, 102));
         Slotlbl3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/unavailable.png"))); // NOI18N
         Slotlbl3.setText("3");
-        Slotlbl3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Slotlbl3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel2.add(Slotlbl3);
         Slotlbl3.setBounds(218, 180, 100, 40);
 
@@ -192,7 +188,7 @@ public class Reservation extends javax.swing.JFrame {
         Slotlbl8.setForeground(new java.awt.Color(204, 255, 102));
         Slotlbl8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/unavailable.png"))); // NOI18N
         Slotlbl8.setText("8");
-        Slotlbl8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Slotlbl8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel2.add(Slotlbl8);
         Slotlbl8.setBounds(745, 180, 100, 40);
 
@@ -200,7 +196,7 @@ public class Reservation extends javax.swing.JFrame {
         Slotlbl9.setForeground(new java.awt.Color(204, 255, 102));
         Slotlbl9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/unavailable.png"))); // NOI18N
         Slotlbl9.setText("9");
-        Slotlbl9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Slotlbl9.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel2.add(Slotlbl9);
         Slotlbl9.setBounds(850, 180, 100, 40);
 
@@ -208,7 +204,7 @@ public class Reservation extends javax.swing.JFrame {
         Slotlbl15.setForeground(new java.awt.Color(204, 255, 102));
         Slotlbl15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/unavailable.png"))); // NOI18N
         Slotlbl15.setText("15");
-        Slotlbl15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Slotlbl15.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel2.add(Slotlbl15);
         Slotlbl15.setBounds(90, 470, 100, 40);
 
@@ -216,7 +212,7 @@ public class Reservation extends javax.swing.JFrame {
         Slotlbl14.setForeground(new java.awt.Color(204, 255, 102));
         Slotlbl14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/unavailable.png"))); // NOI18N
         Slotlbl14.setText("14");
-        Slotlbl14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Slotlbl14.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel2.add(Slotlbl14);
         Slotlbl14.setBounds(90, 570, 100, 40);
 
@@ -224,7 +220,7 @@ public class Reservation extends javax.swing.JFrame {
         Slotlbl12.setForeground(new java.awt.Color(204, 255, 102));
         Slotlbl12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/unavailable.png"))); // NOI18N
         Slotlbl12.setText("12");
-        Slotlbl12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Slotlbl12.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel2.add(Slotlbl12);
         Slotlbl12.setBounds(770, 670, 100, 40);
 
@@ -232,7 +228,7 @@ public class Reservation extends javax.swing.JFrame {
         Slotlbl5.setForeground(new java.awt.Color(204, 255, 102));
         Slotlbl5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/unavailable.png"))); // NOI18N
         Slotlbl5.setText("5");
-        Slotlbl5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Slotlbl5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel2.add(Slotlbl5);
         Slotlbl5.setBounds(430, 180, 100, 40);
 
@@ -240,7 +236,7 @@ public class Reservation extends javax.swing.JFrame {
         Slotlbl13.setForeground(new java.awt.Color(204, 255, 102));
         Slotlbl13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/unavailable.png"))); // NOI18N
         Slotlbl13.setText("13");
-        Slotlbl13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Slotlbl13.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel2.add(Slotlbl13);
         Slotlbl13.setBounds(90, 670, 100, 40);
 
@@ -248,7 +244,7 @@ public class Reservation extends javax.swing.JFrame {
         Slotlbl10.setForeground(new java.awt.Color(204, 255, 102));
         Slotlbl10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/unavailable.png"))); // NOI18N
         Slotlbl10.setText("10");
-        Slotlbl10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Slotlbl10.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel2.add(Slotlbl10);
         Slotlbl10.setBounds(770, 470, 100, 40);
 
@@ -256,7 +252,7 @@ public class Reservation extends javax.swing.JFrame {
         Slotlbl11.setForeground(new java.awt.Color(204, 255, 102));
         Slotlbl11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/unavailable.png"))); // NOI18N
         Slotlbl11.setText("11");
-        Slotlbl11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Slotlbl11.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel2.add(Slotlbl11);
         Slotlbl11.setBounds(770, 570, 100, 40);
 
@@ -395,19 +391,20 @@ public class Reservation extends javax.swing.JFrame {
             
             resv.setStatus("PENDING");
             
-            resv.CreateReservation();
+            PayOption PO = new PayOption(resv.Create());
+            PO.setVisible(true);
+            this.dispose();
                      
         }
         else
         {
-            MessageBox.infoBox("Please check your selections and dates", "Invalid Inputs");
+            MessageBox.infoBox("Please check your selections", "Invalid Inputs");
         }
 
         
         
     }//GEN-LAST:event_reservebtnMouseClicked
-
-    private void doNothing(){}    
+  
     
     private void someNothing(java.awt.event.MouseEvent evt){
         JLabel obj = (JLabel) evt.getSource();

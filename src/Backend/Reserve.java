@@ -33,7 +33,7 @@ public class Reserve {
     EventLog log = new EventLog();
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-    public int CreateReservation()
+    public int Create()
     {
         if(getCus_id()!=0 && getSlot_id()!=0 && getVeh_id()!=0 && getFee_id()!=0 && getDuration()!=0 && getStdate()!=null && getEndate()!=null && !getStatus().equals(""))
         {
@@ -72,6 +72,35 @@ public class Reserve {
             }
         }
         else return 0;
+    }
+    
+    public boolean Cancel()
+    {
+        if(getId()!=0)
+        {
+            
+        try
+        {       
+            String query = "UPDATE reservations SET status='CANCELLED' WHERE id=?";
+
+            //using a prepared statement to preven SQL Injection and other simillar attacks
+            PreparedStatement prest = con.prepareStatement(query);
+            prest.setInt (1, getId());
+
+            //execute the preparedstatement
+            prest.executeUpdate();
+            EventLog.Write("Resertion_ID : "+ getId() + " calcelled. status: CANCELLED");
+
+            return true;
+        }
+        catch (SQLException e)
+            {
+              EventLog.Write("CreateReservation Got an exception!\n"+e.toString());
+              System.err.println(e.toString());
+              return false;
+            }
+        }
+        else return false;
     }
     
     public int[] checkDates()

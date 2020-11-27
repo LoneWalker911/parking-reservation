@@ -5,6 +5,15 @@
  */
 package Frontend;
 
+import Backend.EventLog;
+import Backend.dbConnection;
+import java.awt.Desktop;
+import java.net.URI;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 /**
  *
  * @author Prashan
@@ -14,8 +23,39 @@ public class PayOption extends javax.swing.JFrame {
     /**
      * Creates new form PayOption
      */
+    
+    private final Connection con = dbConnection.CreateConn();
+    int id;
+    double amount;
     public PayOption() {
         initComponents();
+    }
+    
+    public PayOption(int resv_id) {
+        initComponents();
+        this.id=resv_id;
+        pay_idlbl.setText(Integer.toString(resv_id));
+                
+        String sql = "SELECT fee.fee,reservation.duration,reservation.amount FROM reservation,fee WHERE reservation.fee_id=fee.id AND reservation.id="+resv_id;
+        
+        try{
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next())
+                {
+                  rate_lbl.setText("Rs."+rs.getString("fee"));
+                  totallbl.setText("Rs."+rs.getString("amount"));
+                  amount=rs.getDouble("amount");
+                  durationlbl.setText(rs.getString("duration")+" days");
+                }
+            st.close();
+        }
+        catch(SQLException e)
+        {
+            EventLog.Write("PayOption Exception : "+e.getMessage());
+        }
+        
     }
 
     /**
@@ -35,11 +75,11 @@ public class PayOption extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        payherebtn = new javax.swing.JLabel();
+        pay_idlbl = new javax.swing.JLabel();
+        rate_lbl = new javax.swing.JLabel();
+        durationlbl = new javax.swing.JLabel();
+        totallbl = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -69,19 +109,25 @@ public class PayOption extends javax.swing.JFrame {
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/cash (2).png"))); // NOI18N
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/card (1).png"))); // NOI18N
+        payherebtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/card (1).png"))); // NOI18N
+        payherebtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        payherebtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                payherebtnMouseClicked(evt);
+            }
+        });
 
-        jLabel10.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
-        jLabel10.setText("ERROR404");
+        pay_idlbl.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        pay_idlbl.setText("ERROR404");
 
-        jLabel11.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
-        jLabel11.setText("ERROR404");
+        rate_lbl.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        rate_lbl.setText("ERROR404");
 
-        jLabel12.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
-        jLabel12.setText("ERROR404");
+        durationlbl.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        durationlbl.setText("ERROR404");
 
-        jLabel13.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
-        jLabel13.setText("ERROR404");
+        totallbl.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        totallbl.setText("ERROR404");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -103,14 +149,14 @@ public class PayOption extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(86, 86, 86)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel13))
+                            .addComponent(rate_lbl)
+                            .addComponent(pay_idlbl)
+                            .addComponent(durationlbl)
+                            .addComponent(totallbl))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 158, Short.MAX_VALUE)
-                        .addComponent(jLabel8)
+                        .addComponent(payherebtn)
                         .addGap(85, 85, 85))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -119,23 +165,23 @@ public class PayOption extends javax.swing.JFrame {
                 .addGap(51, 51, 51)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel10))
+                    .addComponent(pay_idlbl))
                 .addGap(28, 28, 28)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel11))
+                    .addComponent(rate_lbl))
                 .addGap(28, 28, 28)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel12))
+                    .addComponent(durationlbl))
                 .addGap(28, 28, 28)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jLabel13))
+                    .addComponent(totallbl))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(payherebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
@@ -168,6 +214,10 @@ public class PayOption extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void payherebtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_payherebtnMouseClicked
+       Waiting wait = new Waiting(id,amount);
+    }//GEN-LAST:event_payherebtnMouseClicked
 
     /**
      * @param args the command line arguments
@@ -205,20 +255,20 @@ public class PayOption extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel durationlbl;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel pay_idlbl;
+    private javax.swing.JLabel payherebtn;
+    private javax.swing.JLabel rate_lbl;
+    private javax.swing.JLabel totallbl;
     // End of variables declaration//GEN-END:variables
 }
