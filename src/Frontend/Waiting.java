@@ -96,7 +96,41 @@ public class Waiting extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    protected void
+    protected void process()
+    {              
+         try {
+                Desktop desktop = java.awt.Desktop.getDesktop();
+                String address = "https://carparknsbm.000webhostapp.com/?order_id="+id+"&amount="+amount;
+                URI oURL = new URI(address);
+                desktop.browse(oURL);
+            } 
+        catch (Exception e) {
+                Backend.EventLog.Write("Waiting Exception: " + e.toString());
+                MessageBox.infoBox("Something went wrong", "Contact Admin");
+        }
+
+        this.setVisible(true);
+        long aftertime = System.currentTimeMillis() + 900000;
+        long now = System.currentTimeMillis();
+        while(pay.isResvIdExists(id) || now<aftertime)
+        {
+            try {
+                TimeUnit.SECONDS.sleep(5);
+            } catch (InterruptedException e) {
+                Backend.EventLog.Write("Waiting Exception: " + e.toString());
+            }
+        }
+        if(pay.isResvIdExists(id))
+        {
+            System.out.println("GG THISARA");
+        }
+        else
+        {
+            resv.setId(id);
+            resv.Cancel();
+            this.dispose();
+        }
+    }
     
     
     /**
