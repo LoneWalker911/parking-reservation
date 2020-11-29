@@ -6,12 +6,8 @@
 package Frontend.Cus_mng;
 import Frontend.*;
 import Backend.*;
-import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import javax.swing.JOptionPane;
-import java.util.logging.Logger;
 /**
  *
  * @author Prashan
