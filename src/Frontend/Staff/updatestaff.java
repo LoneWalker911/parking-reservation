@@ -95,7 +95,7 @@ public class updatestaff extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(44, 62, 80));
 
         emailtxt.setBackground(new java.awt.Color(108, 122, 137));
-        emailtxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        emailtxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         idchkbtn.setBackground(new java.awt.Color(34, 167, 240));
         idchkbtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -117,7 +117,7 @@ public class updatestaff extends javax.swing.JFrame {
         jScrollPane1.setViewportView(addresstxt);
 
         mobiletxt.setBackground(new java.awt.Color(108, 122, 137));
-        mobiletxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        mobiletxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         mobiletxt.setToolTipText("Ex: 0788323221");
         mobiletxt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -130,7 +130,7 @@ public class updatestaff extends javax.swing.JFrame {
         IDlbl.setText("ID :");
 
         Idtxt.setBackground(new java.awt.Color(108, 122, 137));
-        Idtxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        Idtxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         Idtxt.setToolTipText("Enter the staff id");
         Idtxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,7 +159,7 @@ public class updatestaff extends javax.swing.JFrame {
         nameLbl.setText("Name");
 
         nametxt.setBackground(new java.awt.Color(108, 122, 137));
-        nametxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        nametxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         rolelbl.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         rolelbl.setForeground(new java.awt.Color(236, 240, 241));
@@ -178,7 +178,7 @@ public class updatestaff extends javax.swing.JFrame {
         emaillbl.setText("Email");
 
         unametxt.setBackground(new java.awt.Color(108, 122, 137));
-        unametxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        unametxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         unametxt.setToolTipText("Ex: 0788323221");
 
         Resetbtn.setBackground(new java.awt.Color(242, 38, 19));
@@ -209,41 +209,44 @@ public class updatestaff extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(unamelbl)
-                        .addGap(37, 37, 37)
-                        .addComponent(unametxt, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(unamechkbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(addresslbl)
-                            .addComponent(nameLbl)
-                            .addComponent(emaillbl)
-                            .addComponent(phonelbl))
-                        .addGap(58, 58, 58)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(emailtxt)
-                            .addComponent(mobiletxt)
-                            .addComponent(nametxt)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(Resetbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(submitbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(IDlbl)
-                                .addComponent(rolelbl))
-                            .addGap(89, 89, 89)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(rolecombo, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(Idtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(idchkbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGap(68, 68, 68))))
-                .addContainerGap(121, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(IDlbl)
+                                            .addComponent(rolelbl))
+                                        .addGap(89, 89, 89)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(rolecombo, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(Idtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(unamelbl)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(129, 129, 129)
+                                        .addComponent(unametxt)))
+                                .addGap(0, 30, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(addresslbl)
+                                    .addComponent(nameLbl)
+                                    .addComponent(emaillbl)
+                                    .addComponent(phonelbl))
+                                .addGap(58, 58, 58)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(emailtxt, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nametxt)
+                                    .addComponent(mobiletxt))
+                                .addGap(27, 27, 27)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(unamechkbtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(idchkbtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(Resetbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(submitbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(74, 74, 74))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -271,18 +274,20 @@ public class updatestaff extends javax.swing.JFrame {
                     .addComponent(emaillbl)
                     .addComponent(emailtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(mobiletxt, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
+                        .addGap(1, 1, 1))
+                    .addComponent(phonelbl))
+                .addGap(17, 17, 17)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(phonelbl)
-                    .addComponent(mobiletxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(rolecombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rolelbl))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rolelbl)
-                    .addComponent(rolecombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(92, 92, 92)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Resetbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(submitbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addGap(35, 35, 35))
         );
 
         jPanel3.setBackground(new java.awt.Color(248, 148, 6));
@@ -324,7 +329,8 @@ public class updatestaff extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -341,6 +347,7 @@ public class updatestaff extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void mobiletxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mobiletxtKeyTyped

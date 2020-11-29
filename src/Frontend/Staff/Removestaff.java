@@ -94,7 +94,7 @@ public class Removestaff extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(44, 62, 80));
 
         emailtxt.setBackground(new java.awt.Color(108, 122, 137));
-        emailtxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        emailtxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         unamechkbtn.setBackground(new java.awt.Color(34, 167, 240));
         unamechkbtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -116,7 +116,7 @@ public class Removestaff extends javax.swing.JFrame {
         jScrollPane1.setViewportView(addresstxt);
 
         mobiletxt.setBackground(new java.awt.Color(108, 122, 137));
-        mobiletxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        mobiletxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         mobiletxt.setToolTipText("Ex: 0788323221");
         mobiletxt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -129,7 +129,7 @@ public class Removestaff extends javax.swing.JFrame {
         IDlbl.setText("ID :");
 
         Idtxt.setBackground(new java.awt.Color(108, 122, 137));
-        Idtxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        Idtxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         Idtxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 IdtxtActionPerformed(evt);
@@ -152,7 +152,7 @@ public class Removestaff extends javax.swing.JFrame {
         nameLbl.setText("Name");
 
         nametxt.setBackground(new java.awt.Color(108, 122, 137));
-        nametxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        nametxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         rolelbl.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         rolelbl.setForeground(new java.awt.Color(236, 240, 241));
@@ -171,7 +171,7 @@ public class Removestaff extends javax.swing.JFrame {
         emaillbl.setText("Email");
 
         unametxt.setBackground(new java.awt.Color(108, 122, 137));
-        unametxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        unametxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         unametxt.setToolTipText("Ex: 0788323221");
 
         Resetbtn.setBackground(new java.awt.Color(242, 38, 19));
@@ -201,41 +201,36 @@ public class Removestaff extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(Resetbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(submitbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(IDlbl)
-                                .addComponent(unamelbl)
-                                .addComponent(rolelbl))
-                            .addGap(37, 37, 37)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(rolecombo, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(Idtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(idchkbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(unametxt, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(unamechkbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGap(6, 6, 6)))
+                    .addComponent(addresslbl)
+                    .addComponent(nameLbl)
+                    .addComponent(emaillbl)
+                    .addComponent(phonelbl)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(Resetbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(169, 169, 169)
+                        .addComponent(submitbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(addresslbl)
-                            .addComponent(nameLbl)
-                            .addComponent(emaillbl)
-                            .addComponent(phonelbl))
+                            .addComponent(IDlbl)
+                            .addComponent(unamelbl)
+                            .addComponent(rolelbl))
                         .addGap(37, 37, 37)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(emailtxt)
-                            .addComponent(mobiletxt)
-                            .addComponent(nametxt)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(51, Short.MAX_VALUE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(nametxt, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
+                                .addComponent(emailtxt, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(mobiletxt, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(rolecombo, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(unametxt, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Idtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(idchkbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(unamechkbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addGap(0, 18, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -287,12 +282,12 @@ public class Removestaff extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 533, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addGap(138, 138, 138)
                     .addComponent(jLabel1)
-                    .addContainerGap(100, Short.MAX_VALUE)))
+                    .addContainerGap(149, Short.MAX_VALUE)))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -308,15 +303,11 @@ public class Removestaff extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, 0))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -341,6 +332,7 @@ public class Removestaff extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void mobiletxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mobiletxtKeyTyped
