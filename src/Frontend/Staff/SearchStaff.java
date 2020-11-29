@@ -217,6 +217,7 @@ public class SearchStaff extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void SetData(Object obj, int row_index, int col_index){
