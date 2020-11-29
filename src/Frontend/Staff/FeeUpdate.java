@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Frontend.Staff;
+import Backend.Fee;
 
 /**
  *
@@ -14,8 +15,14 @@ public class FeeUpdate extends javax.swing.JFrame {
     /**
      * Creates new form FeeUpdate
      */
+    
+    Fee fee = new Fee();
+    
     public FeeUpdate() {
         initComponents();
+        getTypes();
+        feetxt.setEditable(false);
+        
     }
 
     /**
@@ -32,9 +39,9 @@ public class FeeUpdate extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         IDlbl = new javax.swing.JLabel();
-        feecmbobox = new javax.swing.JComboBox<>();
+        typecombo = new javax.swing.JComboBox<>();
         feechkbtn = new javax.swing.JButton();
-        ownerIdtxt = new javax.swing.JTextField();
+        feetxt = new javax.swing.JTextField();
         IDlbl1 = new javax.swing.JLabel();
         updatebtn = new javax.swing.JButton();
         cancelbtn = new javax.swing.JButton();
@@ -77,8 +84,7 @@ public class FeeUpdate extends javax.swing.JFrame {
         IDlbl.setForeground(new java.awt.Color(236, 240, 241));
         IDlbl.setText("FEE :");
 
-        feecmbobox.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
-        feecmbobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        typecombo.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
 
         feechkbtn.setBackground(new java.awt.Color(34, 167, 240));
         feechkbtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -91,8 +97,8 @@ public class FeeUpdate extends javax.swing.JFrame {
             }
         });
 
-        ownerIdtxt.setBackground(new java.awt.Color(108, 122, 137));
-        ownerIdtxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        feetxt.setBackground(new java.awt.Color(108, 122, 137));
+        feetxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         IDlbl1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         IDlbl1.setForeground(new java.awt.Color(236, 240, 241));
@@ -102,6 +108,7 @@ public class FeeUpdate extends javax.swing.JFrame {
         updatebtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         updatebtn.setForeground(new java.awt.Color(255, 255, 255));
         updatebtn.setText("UPDATE");
+        updatebtn.setEnabled(false);
         updatebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updatebtnActionPerformed(evt);
@@ -129,11 +136,11 @@ public class FeeUpdate extends javax.swing.JFrame {
                     .addComponent(IDlbl1))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(feecmbobox, 0, 188, Short.MAX_VALUE)
-                    .addComponent(ownerIdtxt))
+                    .addComponent(typecombo, 0, 188, Short.MAX_VALUE)
+                    .addComponent(feetxt))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(feechkbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+                .addGap(25, 25, 25))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(cancelbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -144,16 +151,16 @@ public class FeeUpdate extends javax.swing.JFrame {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(29, 29, 29)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(IDlbl1)
-                    .addComponent(feecmbobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(typecombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(feechkbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(IDlbl)
-                    .addComponent(ownerIdtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(feechkbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(72, 72, 72)
+                    .addComponent(feetxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(74, 74, 74)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(updatebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -179,8 +186,34 @@ public class FeeUpdate extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void feechkbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_feechkbtnActionPerformed
+    private void getTypes()
+    {
+        String[] res = fee.getTypes();
+        int i = 0;
+             do{
+              typecombo.addItem(res[i]);
+              i++;
+            }while(!(res[i]==null));
+        typecombo.setSelectedIndex(-1);
+    }
     
+    private void feechkbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_feechkbtnActionPerformed
+        if(feechkbtn.getText().equals("Check"))
+        {
+            feetxt.setEditable(true);
+            feetxt.setText(fee.getFeeByType(typecombo.getSelectedItem().toString()));
+            typecombo.setEnabled(false);
+            updatebtn.setEnabled(true);
+            feechkbtn.setText("Reset");
+        }
+        else if(feechkbtn.getText().equals("Reset"))
+        {
+            feetxt.setText("");
+            feetxt.setEditable(false);
+            typecombo.setEnabled(true);
+            updatebtn.setEnabled(false);
+            feechkbtn.setText("Check");
+        }
 
     }//GEN-LAST:event_feechkbtnActionPerformed
 
@@ -238,11 +271,11 @@ public class FeeUpdate extends javax.swing.JFrame {
     private javax.swing.JButton Resetbtn;
     private javax.swing.JButton cancelbtn;
     private javax.swing.JButton feechkbtn;
-    private javax.swing.JComboBox<String> feecmbobox;
+    private javax.swing.JTextField feetxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JTextField ownerIdtxt;
+    private javax.swing.JComboBox<String> typecombo;
     private javax.swing.JButton updatebtn;
     // End of variables declaration//GEN-END:variables
 }

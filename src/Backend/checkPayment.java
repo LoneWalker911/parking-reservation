@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
  *
  * @author thisa
  */
-public class checkPayment implements Runnable {
+public class checkPayment extends Payment implements Runnable {
    private Thread t=null;
    Reserve resv = new Reserve();
    long aftertime = System.currentTimeMillis() + 900000;
@@ -20,6 +20,7 @@ public class checkPayment implements Runnable {
    double amount;
    
   public checkPayment(int id, double amount) {
+      super();
       this.id = id;
       this.amount=amount;
    }

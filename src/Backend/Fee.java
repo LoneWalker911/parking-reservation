@@ -96,6 +96,26 @@ public class Fee {
             return id;
         } 
     }
+    
+    public String getFeeByType(String Type) 
+    {
+        String sql = "SELECT fee FROM fee WHERE fee.veh_type='"+Type+"'";
+          try{
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        while(rs.next())
+        {
+            return Double.toString(rs.getDouble("fee"));
+        }
+        return null;
+        }
+          catch(SQLException e)
+        {
+            EventLog.Write("Fee.getFeeByType Exception : "+e.getMessage());
+            MessageBox.infoBox("Error", "Process Failed");
+            return null;
+        } 
+    }
 
     /**
      * @return the fee_id

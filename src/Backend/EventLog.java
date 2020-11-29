@@ -53,8 +53,7 @@ public class EventLog {
             try
             {
                 System.out.println("new File created"); //for debugging purposes
-                EventLog nw = new EventLog();
-                if(log.createNewFile()) nw.Write(msg);
+                if(log.createNewFile()) EventLog.Write(msg);
             }
             
             catch (IOException e) 
