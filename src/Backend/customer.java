@@ -146,7 +146,7 @@ public class customer {
     public static String getMobilebyId(int id)
     {
         String sql;
-        sql = "SELECT mobile FROM customer WHERE id="+id+"' AND email!='removed'";
+        sql = "SELECT mobile FROM customer WHERE id="+id+" AND email!='removed'";
 
         try{
 
