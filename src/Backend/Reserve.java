@@ -29,7 +29,7 @@ public class Reserve {
     private Date endate=null;
     private String status="";
     
-    private final Connection con = dbConnection.CreateConn();
+    private final static Connection con = dbConnection.CreateConn();
     EventLog log = new EventLog();
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -81,7 +81,7 @@ public class Reserve {
             
         try
         {       
-            String query = "UPDATE reservations SET status='CANCELLED' WHERE id=?";
+            String query = "UPDATE reservation SET status='CANCELLED' WHERE id=?";
 
             //using a prepared statement to preven SQL Injection and other simillar attacks
             PreparedStatement prest = con.prepareStatement(query);
@@ -95,7 +95,36 @@ public class Reserve {
         }
         catch (SQLException e)
             {
-              EventLog.Write("CreateReservation Got an exception!\n"+e.toString());
+              EventLog.Write("CancelReservation Got an exception!\n"+e.toString());
+              System.err.println(e.toString());
+              return false;
+            }
+        }
+        else return false;
+    }
+    
+    public boolean setReserve()
+    {
+        if(getId()!=0 && Payment.isResvIdExists(getId()))
+        {
+            
+        try
+        {       
+            String query = "UPDATE reservation SET status='RESERVED' WHERE id=?";
+
+            //using a prepared statement to preven SQL Injection and other simillar attacks
+            PreparedStatement prest = con.prepareStatement(query);
+            prest.setInt (1, getId());
+
+            //execute the preparedstatement
+            prest.executeUpdate();
+            EventLog.Write("Resertion_ID : "+ getId() + " reserved. status: RESERVED");
+
+            return true;
+        }
+        catch (SQLException e)
+            {
+              EventLog.Write("setReserve Got an exception!\n"+e.toString());
               System.err.println(e.toString());
               return false;
             }
@@ -134,6 +163,70 @@ public class Reserve {
       
     }
     
+    public ResultSet getResbyCusId(int name_id) 
+    {
+        String sql = "SELECT reservation.id,veh_number,slot_id,duration,amount,status FROM reservation, vehicles WHERE reservation.veh_id = vehicles.id AND reservation.customer_id = ? ORDER BY reservation.id DESC";
+        try{
+                //using a prepared statement to preven SQL Injection and other simillar attacks
+                PreparedStatement prest = con.prepareStatement(sql);
+                prest.setInt (1, name_id);
+
+                ResultSet rs = prest.executeQuery();
+                return rs;
+            }
+          catch(SQLException e)
+        {
+            EventLog.Write("searchStaff Exception : "+e.getMessage());
+            return null;
+        } 
+    }
+    
+    public static double getAmountbyId(int id) 
+    {
+        String sql = "SELECT amount FROM reservation WHERE id=?";
+        try{
+                //using a prepared statement to preven SQL Injection and other simillar attacks
+                PreparedStatement prest = con.prepareStatement(sql);
+                prest.setInt (1, id);
+
+                ResultSet rs = prest.executeQuery();
+                while(rs.next())
+                {
+                    return rs.getDouble("amount");
+                }
+                    
+                return 0;
+            }
+          catch(SQLException e)
+        {
+            EventLog.Write("getAmountbyId Exception : "+e.getMessage());
+            return 0;
+        } 
+    }
+    
+    public static String getStatusbyId(int id) 
+    {
+        String sql = "SELECT status FROM reservation WHERE id=?";
+        try{
+                //using a prepared statement to preven SQL Injection and other simillar attacks
+                PreparedStatement prest = con.prepareStatement(sql);
+                prest.setInt (1, id);
+
+                ResultSet rs = prest.executeQuery();
+                while(rs.next())
+                {
+                    return rs.getString("status");
+                }
+                    
+                return null;
+            }
+          catch(SQLException e)
+        {
+            EventLog.Write("getAmountbyId Exception : "+e.getMessage());
+            return null;
+        } 
+    }
+    
     public int getLastid() 
     {
         int id = 0;
@@ -154,6 +247,30 @@ public class Reserve {
             EventLog.Write("Exception : "+e.getMessage());
         }
         return id;
+    }
+    
+    public ResultSet searchReservation(String id,String cus_id, String veh_num) 
+    {
+        String sql = "SELECT reservation.id, customer_id, slot_id, veh_number, fee, duration, amount, start_date, end_date, status "
+                + "FROM reservation,vehicles,fee "
+                + "WHERE reservation.fee_id=fee.id AND reservation.veh_id=vehicles.id AND ( reservation.id LIKE ? AND reservation.customer_id LIKE ? AND veh_number LIKE ?) ORDER BY reservation.id DESC";
+        try{
+                //using a prepared statement to preven SQL Injection and other simillar attacks
+                PreparedStatement prest = con.prepareStatement(sql);
+                prest.setString (1, "%"+id+"%");
+                prest.setString (2, "%"+cus_id+"%");
+                prest.setString (3, "%"+veh_num+"%");
+
+
+
+                ResultSet rs = prest.executeQuery();
+                return rs;
+            }
+          catch(SQLException e)
+        {
+            EventLog.Write("searchReservation Exception : "+e.getMessage());
+            return null;
+        } 
     }
     
     /**

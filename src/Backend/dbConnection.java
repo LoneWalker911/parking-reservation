@@ -15,7 +15,7 @@ import java.sql.SQLException;
  */
 public class dbConnection {
     
-    private final static String conn_string = "jdbc:mysql://nsbmpark.mysql.database.azure.com:3306/nsbmpark?useSSL=true&requireSSL=false";
+    private final static String conn_string = "jdbc:mysql://nsbmpark.mysql.database.azure.com:3306/nsbmpark?useSSL=true&requireSSL=false&autoReconnect=true";
     private final static String username = "parkadmin@nsbmpark";
     private final static String password = "Nsbmpark@2020";
     

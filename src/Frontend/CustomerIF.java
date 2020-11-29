@@ -23,6 +23,7 @@ public class CustomerIF extends javax.swing.JFrame {
         initComponents();
         this.mobile=mobile;
         this.id= cus.getIdbyMobile(mobile);
+        EventLog.Write("Customer : "+id+" logged in.");
         
     }
     
@@ -53,6 +54,11 @@ public class CustomerIF extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jPanel1.setLayout(null);
 
@@ -107,6 +113,11 @@ public class CustomerIF extends javax.swing.JFrame {
         jButton3.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("MY RESERVATION");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         pwchngbtn.setBackground(new java.awt.Color(34, 167, 240));
         pwchngbtn.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
@@ -132,11 +143,21 @@ public class CustomerIF extends javax.swing.JFrame {
         jButton6.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("PAY NOW ");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton7.setBackground(new java.awt.Color(242, 38, 19));
         jButton7.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         jButton7.setForeground(new java.awt.Color(255, 255, 255));
-        jButton7.setText("BACK");
+        jButton7.setText("SIGN OUT");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -198,7 +219,7 @@ public class CustomerIF extends javax.swing.JFrame {
 
     
     private void addvehbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addvehbtnActionPerformed
-        Frontend.Staff.Vehicle.AddVehicle addveh = new Frontend.Staff.Vehicle.AddVehicle(id);
+        Frontend.Staff.Vehicle.AddVehicle addveh = new Frontend.Staff.Vehicle.AddVehicle(id,false);
         addveh.setVisible(true);
     }//GEN-LAST:event_addvehbtnActionPerformed
 
@@ -216,6 +237,23 @@ public class CustomerIF extends javax.swing.JFrame {
         Frontend.DateCheck res = new Frontend.DateCheck(id);
         res.setVisible(true);
     }//GEN-LAST:event_reservebtnActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        new Frontend.MyReservation(id).setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        new PayNow().setVisible(true);
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        new CustomerSign().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        EventLog.Write("Customer : "+id+" logged out.");
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments

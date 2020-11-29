@@ -25,7 +25,7 @@ public class customer {
     private String cus_address = "";
     private String password = null;
     EventLog log = new EventLog();
-    private final Connection con = dbConnection.CreateConn();
+    private static final Connection con = dbConnection.CreateConn();
 
     public boolean addCustomer()
     {
@@ -65,7 +65,7 @@ public class customer {
         try
         {
             int id = getLastid();
-            String query = "SELECT * FROM customer";
+            String query = "SELECT * FROM customer WHERE email!='removed'";
 
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -104,7 +104,7 @@ public class customer {
     
     public boolean isCustomerIdExists(String id)
     {
-        String sql = "SELECT id FROM customer WHERE id="+id;
+        String sql = "SELECT id FROM customer WHERE id="+id+"' AND email!='removed'";
           try{
         Statement st = con.createStatement();
         ResultSet rs = st.executeQuery(sql);
@@ -121,7 +121,7 @@ public class customer {
     {
         int id = 0;
         String sql;
-        sql = "SELECT id FROM customer WHERE mobile="+"'"+mobile+"'";
+        sql = "SELECT id FROM customer WHERE mobile="+"'"+mobile+"' AND email!='removed'";
 
         try{
 
@@ -141,8 +141,32 @@ public class customer {
               System.err.println(e.getMessage());
               return id;
             }
-      
-      
+    }
+        
+    public static String getMobilebyId(int id)
+    {
+        String sql;
+        sql = "SELECT mobile FROM customer WHERE id="+id+"' AND email!='removed'";
+
+        try{
+
+            Statement st = con.createStatement();
+
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next())
+          {
+            return rs.getString("mobile");       
+          }
+          return null;
+        }
+        catch (SQLException e)
+            {
+              System.err.println("GetRole id Got an exception!+\n"+ sql );
+              System.err.println(e.getMessage());
+              return null;
+            }
+
     }
     
     public boolean changePassword(){
@@ -165,7 +189,7 @@ public class customer {
     
     public boolean isMobileExists(String mobile)
     {
-        String sql = "SELECT mobile FROM customer WHERE mobile='" + mobile + "'";
+        String sql = "SELECT mobile FROM customer WHERE mobile='" + mobile + "' AND email!='removed'";
         boolean ret = false;
         try{
         Statement st = con.createStatement();
@@ -182,7 +206,7 @@ public class customer {
     
     public ResultSet searchById(String id) 
     {
-        String sql = "SELECT name, mobile, address, email FROM customer WHERE id="+id;
+        String sql = "SELECT name, mobile, address, email FROM customer WHERE id="+id+" AND email!='removed'";
           try{
         Statement st = con.createStatement();
         ResultSet rs = st.executeQuery(sql);
@@ -197,7 +221,7 @@ public class customer {
     
     public ResultSet searchByMobile(String mobile) 
     {
-        String sql = "SELECT id, name, address, email FROM customer WHERE mobile='" + mobile + "'";
+        String sql = "SELECT id, name, address, email FROM customer WHERE mobile='" + mobile + "' AND email!='removed'";
           try{
         Statement st = con.createStatement();
         ResultSet rs = st.executeQuery(sql);
@@ -246,7 +270,7 @@ public class customer {
         {
         try
         {       
-            String query = "DELETE FROM customer WHERE id = ?";
+            String query = "UPDATE customer SET email='removed' WHERE id = ?";
 
             //using a prepared statement to preven SQL Injection and other simillar attacks
             PreparedStatement prest = con.prepareStatement(query);
@@ -270,7 +294,7 @@ public class customer {
     public int Login()
     {
         try {
-            String sql = "SELECT id FROM customer WHERE mobile='" + getCus_mobile() + "' AND password='" + getPassword() + "'";
+            String sql = "SELECT id FROM customer WHERE mobile='" + getCus_mobile() + "' AND password='" + getPassword() + "' AND email!='removed'";
             
             Statement st = con.createStatement();
             

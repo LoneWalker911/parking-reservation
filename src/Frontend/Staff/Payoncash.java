@@ -5,6 +5,12 @@
  */
 package Frontend.Staff;
 
+import Backend.EventLog;
+import Backend.Payment;
+import Backend.Reserve;
+import Frontend.MessageBox;
+import java.awt.Color;
+
 /**
  *
  * @author Prashan
@@ -14,9 +20,16 @@ public class Payoncash extends javax.swing.JFrame {
     /**
      * Creates new form Payoncash
      */
+    
+     Backend.Reserve resv = new Backend.Reserve();
+     Payment pay = new Payment();
+     Color jk;
+     int id=0;
     public Payoncash() {
         initComponents();
+        this.jk = paybtn.getBackground();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -34,7 +47,7 @@ public class Payoncash extends javax.swing.JFrame {
         Residtxt = new javax.swing.JTextField();
         paybtn = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel3.setBackground(new java.awt.Color(248, 148, 6));
 
@@ -124,8 +137,62 @@ public class Payoncash extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
+    
     private void paybtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paybtnActionPerformed
-     
+        try{
+        if(paybtn.getText().equals("PAY"))
+        {
+         
+            id=Integer.parseInt(Residtxt.getText());
+            
+            if(id!=0)
+            {
+                Residtxt.setEditable(false);
+                paybtn.setText("CONFIRM");
+                paybtn.setBackground(Color.red);
+            }
+        }
+        else if(paybtn.getText().equals("CONFIRM") && Reserve.getStatusbyId(id).equals("PENDING"))
+        {
+            resv.setId(id);
+            if(pay.cashPay(id))
+                if(resv.setReserve())
+                {
+                    MessageBox.infoBox("Payment updated", "Success");
+                    this.dispose();
+                }
+            else
+                {
+                    MessageBox.infoBox("Payment updated.\nReservation update error.", "Contact admin");
+                    this.dispose();
+                }
+            else
+            {
+                MessageBox.infoBox("Process Failed", "Failed");
+                Residtxt.setEditable(true);
+                paybtn.setText("PAY");
+                paybtn.setBackground(Color.getHSBColor(34,167,240));
+            }
+        }
+        else
+        {
+            MessageBox.infoBox("Invalid Reservation ID", "RESERVED OR CANCELLED");
+            Residtxt.setEditable(true);
+            paybtn.setText("PAY");
+            paybtn.setBackground(Color.getHSBColor(34,167,240));
+        }
+        
+        }
+        catch(Exception e)
+        {
+            MessageBox.infoBox("Something Went Wrong...", "Error");
+            Residtxt.setEditable(true);
+            paybtn.setText("PAY");
+            paybtn.setBackground(jk);
+        }    
+        
+        
 
     }//GEN-LAST:event_paybtnActionPerformed
 

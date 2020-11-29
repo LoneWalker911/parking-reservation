@@ -53,7 +53,7 @@ public class DateCheck extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -68,6 +68,10 @@ public class DateCheck extends javax.swing.JFrame {
                 Chkbtn8ChkbtnActionPerformed(evt);
             }
         });
+
+        Enddate.setFormats(new SimpleDateFormat("yyyy-MM-dd"));
+
+        Startdate.setFormats(new SimpleDateFormat("yyyy-MM-dd"));
 
         jLabel19.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         jLabel19.setText("Start Date");

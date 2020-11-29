@@ -46,11 +46,18 @@ public class CustomerSign extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Sign in");
 
         jPanel1.setLayout(null);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/staff (2).png"))); // NOI18N
         jLabel5.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
         jPanel1.add(jLabel5);
         jLabel5.setBounds(10, 350, 90, 90);
 
@@ -69,10 +76,22 @@ public class CustomerSign extends javax.swing.JFrame {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/newsign.png"))); // NOI18N
         jLabel8.setText("jLabel5");
         jLabel8.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel8MouseClicked(evt);
+            }
+        });
 
         LOGINBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/sign22.png"))); // NOI18N
-        LOGINBTN.setText("jLabel5");
+        LOGINBTN.setText("LOGINBTN");
         LOGINBTN.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        LOGINBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        LOGINBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LOGINBTNMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -164,6 +183,31 @@ public class CustomerSign extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void LOGINBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LOGINBTNMouseClicked
+      cus.setCus_mobile(mobiletxt.getText());
+      cus.setPassword(String.valueOf(pwdtxt.getPassword()));
+      if(cus.Login()!=0)
+      {
+          new CustomerIF(cus.getCus_mobile()).setVisible(true);
+          this.dispose();
+      }
+      else
+      {
+          MessageBox.infoBox("Invalid Credentials. Try again", "Failed");
+          pwdtxt.setText("");
+      }
+    }//GEN-LAST:event_LOGINBTNMouseClicked
+
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+        new CustomerRegister().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel8MouseClicked
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        new Frontend.StaffLogin().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel5MouseClicked
 
     /**
      * @param args the command line arguments

@@ -112,8 +112,8 @@ public class ChangeCusPassword extends javax.swing.JFrame {
         newpswtxt.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         newpswtxt.setToolTipText("Minimum 8 characters ");
         newpswtxt.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                newpswtxtKeyTyped(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                newpswtxtKeyReleased(evt);
             }
         });
 
@@ -252,17 +252,17 @@ public class ChangeCusPassword extends javax.swing.JFrame {
 
     }//GEN-LAST:event_formWindowClosing
 
-    private void newpswtxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_newpswtxtKeyTyped
+    private void ResetbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetbtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ResetbtnActionPerformed
+
+    private void newpswtxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_newpswtxtKeyReleased
         boolean max = newpswtxt.getText().length() > 7;
         if ( max )
         submitbtn.setEnabled(true);
         else
         submitbtn.setEnabled(false);
-    }//GEN-LAST:event_newpswtxtKeyTyped
-
-    private void ResetbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetbtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ResetbtnActionPerformed
+    }//GEN-LAST:event_newpswtxtKeyReleased
 
     /**
      * @param args the command line arguments

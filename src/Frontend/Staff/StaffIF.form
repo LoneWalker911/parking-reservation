@@ -18,6 +18,9 @@
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="windowClosed" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowClosed"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -348,6 +351,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="DELETE CUSROMER"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deletecusbtnActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="updatecusbtn">
                   <Properties>
@@ -359,6 +365,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="UPDATE CUSTOMER"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updatecusbtnActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -376,10 +385,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="235" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="slotupdatebtn" min="-2" pref="237" max="-2" attributes="0"/>
-                              <Component id="slotaddbtn" min="-2" pref="237" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="slotupdatebtn" min="-2" pref="237" max="-2" attributes="0"/>
                           <EmptySpace pref="253" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -387,9 +393,7 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
-                          <Component id="slotaddbtn" min="-2" pref="40" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
                           <Component id="slotupdatebtn" min="-2" pref="40" max="-2" attributes="0"/>
                           <EmptySpace pref="313" max="32767" attributes="0"/>
                       </Group>
@@ -397,17 +401,6 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JButton" name="slotaddbtn">
-                  <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="7f" green="ff" red="0" type="rgb"/>
-                    </Property>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="14" style="1"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="ADD"/>
-                  </Properties>
-                </Component>
                 <Component class="javax.swing.JButton" name="slotupdatebtn">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -418,6 +411,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="UPDATE"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="slotupdatebtnActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -437,7 +433,6 @@
                           <EmptySpace min="-2" pref="235" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="rescancelbtn" min="-2" pref="237" max="-2" attributes="0"/>
-                              <Component id="resviewbtn" min="-2" pref="237" max="-2" attributes="0"/>
                               <Component id="resserchbtn" alignment="0" min="-2" pref="237" max="-2" attributes="0"/>
                               <Component id="resupdatebtn" alignment="0" min="-2" pref="237" max="-2" attributes="0"/>
                               <Component id="respayementbtn" alignment="0" min="-2" pref="237" max="-2" attributes="0"/>
@@ -449,9 +444,7 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                          <Component id="resviewbtn" min="-2" pref="40" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
                           <Component id="resserchbtn" min="-2" pref="40" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                           <Component id="resupdatebtn" min="-2" pref="40" max="-2" attributes="0"/>
@@ -465,17 +458,6 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JButton" name="resviewbtn">
-                  <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="7f" green="ff" red="0" type="rgb"/>
-                    </Property>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="14" style="1"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="VIEW"/>
-                  </Properties>
-                </Component>
                 <Component class="javax.swing.JButton" name="resserchbtn">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -486,6 +468,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="SEARCH"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="resserchbtnActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="respayementbtn">
                   <Properties>
@@ -497,6 +482,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="PAYMENT"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="respayementbtnActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="resupdatebtn">
                   <Properties>
@@ -539,10 +527,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="235" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="payviewbtn" min="-2" pref="237" max="-2" attributes="0"/>
-                              <Component id="paysearchbtn" min="-2" pref="237" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="paysearchbtn" min="-2" pref="237" max="-2" attributes="0"/>
                           <EmptySpace pref="253" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -552,9 +537,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
                           <Component id="paysearchbtn" min="-2" pref="40" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                          <Component id="payviewbtn" min="-2" pref="40" max="-2" attributes="0"/>
-                          <EmptySpace pref="307" max="32767" attributes="0"/>
+                          <EmptySpace pref="379" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -570,17 +553,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="SEARCH"/>
                   </Properties>
-                </Component>
-                <Component class="javax.swing.JButton" name="payviewbtn">
-                  <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="7f" green="ff" red="0" type="rgb"/>
-                    </Property>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="14" style="1"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="VIEW"/>
-                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="paysearchbtnActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -599,11 +574,8 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="235" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="vehsearchbtn" alignment="1" min="-2" pref="237" max="-2" attributes="0"/>
-                              <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                  <Component id="vehremovebtn" min="-2" pref="237" max="-2" attributes="0"/>
-                                  <Component id="vehaddbtn" min="-2" pref="237" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="vehremovebtn" min="-2" pref="237" max="-2" attributes="0"/>
+                              <Component id="vehaddbtn" min="-2" pref="237" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="253" max="32767" attributes="0"/>
                       </Group>
@@ -616,9 +588,7 @@
                           <Component id="vehaddbtn" min="-2" pref="40" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                           <Component id="vehremovebtn" min="-2" pref="40" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                          <Component id="vehsearchbtn" min="-2" pref="40" max="-2" attributes="0"/>
-                          <EmptySpace pref="252" max="32767" attributes="0"/>
+                          <EmptySpace pref="324" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -634,6 +604,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="ADD"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="vehaddbtnActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="vehremovebtn">
                   <Properties>
@@ -645,17 +618,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="REMOVE"/>
                   </Properties>
-                </Component>
-                <Component class="javax.swing.JButton" name="vehsearchbtn">
-                  <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="7f" green="ff" red="0" type="rgb"/>
-                    </Property>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="14" style="1"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="SEARCH"/>
-                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="vehremovebtnActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -836,6 +801,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="EXIT"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="staffexitbtnActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

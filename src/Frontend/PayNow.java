@@ -5,6 +5,10 @@
  */
 package Frontend;
 
+import Backend.EventLog;
+import Backend.Payment;
+import Backend.Reserve;
+
 /**
  *
  * @author Prashan
@@ -14,6 +18,7 @@ public class PayNow extends javax.swing.JFrame {
     /**
      * Creates new form PayNow
      */
+    private int id=0;
     public PayNow() {
         initComponents();
     }
@@ -35,7 +40,7 @@ public class PayNow extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setLayout(null);
 
@@ -47,6 +52,12 @@ public class PayNow extends javax.swing.JFrame {
         Residtxt.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/card (1).png"))); // NOI18N
+        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Arial Black", 1, 36)); // NOI18N
@@ -109,6 +120,30 @@ public class PayNow extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        try
+        {
+            id=Integer.parseInt(Residtxt.getText());
+            if(Reserve.getStatusbyId(id).equals("PENDING")&& !Payment.isResvIdExists(id))
+            {
+                new PayOption(id).setVisible(true);
+                this.dispose();
+            }
+            else
+            {
+                MessageBox.infoBox("Invalid Reservation ID", "RESERVED OR CANCELLED");
+                Residtxt.setText("");
+            }
+            
+        }
+        catch(Exception e)
+        {
+            MessageBox.infoBox("Invalid Reservation ID", "RESERVED OR CANCELLED");
+            Residtxt.setText("");
+        }
+        
+    }//GEN-LAST:event_jLabel3MouseClicked
 
     /**
      * @param args the command line arguments

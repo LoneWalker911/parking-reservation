@@ -5,6 +5,11 @@
  */
 package Frontend;
 
+import Backend.EventLog;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Prashan
@@ -14,8 +19,18 @@ public class MyReservation extends javax.swing.JFrame {
     /**
      * Creates new form MyReservation
      */
+    private int id;
+    Backend.Reserve resv = new Backend.Reserve();
+    
+    
     public MyReservation() {
         initComponents();
+    }
+    
+    public MyReservation(int cus_id) {
+        initComponents();
+        this.id=cus_id;
+        process();
     }
 
     /**
@@ -33,7 +48,12 @@ public class MyReservation extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setPreferredSize(new java.awt.Dimension(940, 535));
         jPanel1.setLayout(null);
@@ -41,13 +61,10 @@ public class MyReservation extends javax.swing.JFrame {
         jTable1.setBackground(new java.awt.Color(224, 224, 224, 180));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "RESERVATION ID", "VEHICLE NUMBER", "SLOT ID", "DURATION", "TOTAL (LKR)"
+                "RESERVATION ID", "VEHICLE NUMBER", "SLOT ID", "DURATION", "TOTAL (LKR)", "STATUS"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -82,6 +99,39 @@ public class MyReservation extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+       
+    }//GEN-LAST:event_formWindowOpened
+
+    private void process()
+    {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel(); 
+        model.setRowCount(0);
+        
+        ResultSet rs = resv.getResbyCusId(id);
+        int row=0;
+        try {
+                while(rs.next())
+                {
+                    model.setRowCount(row+1);
+                    SetData(rs.getString("id"),row,0);
+                    SetData(rs.getString("veh_number"),row,1);
+                    SetData(rs.getString("slot_id"),row,2);
+                    SetData(rs.getString("duration")+" days",row,3);
+                    SetData(rs.getString("amount"),row,4);
+                    SetData(rs.getString("status"),row,5);
+                    row++;
+                }
+        } catch (SQLException e) {
+            EventLog.Write("MyReservation IF Exception : "+e.getMessage());
+            MessageBox.infoBox("No Reservations found.", "Not found");
+        }
+    }
+    
+    private void SetData(Object obj, int row_index, int col_index){
+        jTable1.getModel().setValueAt(obj,row_index,col_index);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -112,10 +162,11 @@ public class MyReservation extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MyReservation().setVisible(true);
+                new MyReservation(1).setVisible(true);
             }
         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

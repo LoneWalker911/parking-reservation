@@ -44,7 +44,7 @@ public class UpdateParkingSlot extends javax.swing.JFrame {
         idchkbtn = new javax.swing.JButton();
         statuscombo = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(248, 148, 6));
 

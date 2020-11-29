@@ -20,8 +20,10 @@ public class AddVehicle extends javax.swing.JFrame {
     String[] res = new String[10];
     Vehicle veh = new Vehicle();
     boolean isCus;
+    boolean fromReg;
     
-    public AddVehicle(int cus_id) {
+    public AddVehicle(int cus_id,boolean reg) {
+        fromReg=reg;
         isCus=true;
         veh.setVehicle_ownerid(cus_id);
         initComponents();
@@ -271,7 +273,12 @@ public class AddVehicle extends javax.swing.JFrame {
         if(veh.addVehicle())
         {
             MessageBox.infoBox("Vehicle: "+veh.getVehicle_num()+" added to customer id: "+veh.getVehicle_ownerid(), "Success");
-            if(isCus)
+            if(fromReg)
+            {
+                new Frontend.CustomerIF(Backend.customer.getMobilebyId(veh.getVehicle_ownerid())).setVisible(true);
+                this.dispose();
+            }
+            else if (isCus)
                 this.dispose();
             ResetbtnActionPerformed(evt);
         }
@@ -283,7 +290,8 @@ public class AddVehicle extends javax.swing.JFrame {
     }//GEN-LAST:event_submitbtnActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-
+        if(fromReg)
+                new Frontend.CustomerIF(Backend.customer.getMobilebyId(veh.getVehicle_ownerid())).setVisible(true);
     }//GEN-LAST:event_formWindowClosing
 
     private void ResetbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetbtnActionPerformed

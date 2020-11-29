@@ -6,8 +6,12 @@
 package Frontend;
 
 import Backend.Payment;
+import Backend.checkPayment;
 import Backend.Reserve;
 import java.awt.Desktop;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.net.URI;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
@@ -27,6 +31,10 @@ public class Waiting extends javax.swing.JFrame {
     double amount;
     Payment pay = new Payment();
     Reserve resv = new Reserve();
+    public boolean res=false;
+    String address;
+    
+    
     
     public Waiting() {
         initComponents();
@@ -35,6 +43,17 @@ public class Waiting extends javax.swing.JFrame {
         initComponents();
         this.id=id;
         this.amount=amount;
+        try {
+                Desktop desktop = java.awt.Desktop.getDesktop();
+                address = "https://carparknsbm.000webhostapp.com/?order_id="+id+"&amount="+amount;
+                URI oURL = new URI(address);
+                desktop.browse(oURL);
+            } 
+        catch (Exception e) {
+                Backend.EventLog.Write("Waiting Exception: " + e.toString());
+                MessageBox.infoBox("Something went wrong", "Contact Admin");
+        }
+        this.setVisible(true);
     }
 
     /**
@@ -54,7 +73,15 @@ public class Waiting extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -71,6 +98,12 @@ public class Waiting extends javax.swing.JFrame {
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, -1, -1));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/click (2).png"))); // NOI18N
+        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 350, 200, 80));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/tenor (1).gif"))); // NOI18N
@@ -96,41 +129,39 @@ public class Waiting extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    protected void process()
-    {              
-         try {
-                Desktop desktop = java.awt.Desktop.getDesktop();
-                String address = "https://carparknsbm.000webhostapp.com/?order_id="+id+"&amount="+amount;
-                URI oURL = new URI(address);
-                desktop.browse(oURL);
-            } 
-        catch (Exception e) {
-                Backend.EventLog.Write("Waiting Exception: " + e.toString());
-                MessageBox.infoBox("Something went wrong", "Contact Admin");
-        }
-
-        this.setVisible(true);
-        long aftertime = System.currentTimeMillis() + 900000;
-        long now = System.currentTimeMillis();
-        while(pay.isResvIdExists(id) || now<aftertime)
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        if(res)
         {
-            try {
-                TimeUnit.SECONDS.sleep(5);
-            } catch (InterruptedException e) {
-                Backend.EventLog.Write("Waiting Exception: " + e.toString());
-            }
-        }
-        if(pay.isResvIdExists(id))
-        {
-            System.out.println("GG THISARA");
+            new ThankYou(id).setVisible(true);
         }
         else
         {
             resv.setId(id);
             resv.Cancel();
-            this.dispose();
         }
-    }
+    }//GEN-LAST:event_formWindowClosing
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        if(res)
+        {
+            new ThankYou(id).setVisible(true);
+        }
+        else
+        {
+            resv.setId(id);
+            resv.Cancel();
+        }
+    }//GEN-LAST:event_formWindowClosed
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        String myString = address;
+        StringSelection stringSelection = new StringSelection(myString);
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+        clipboard.setContents(stringSelection, null);
+        MessageBox.infoBox("Payment link is copied.\nPaste it in the browser to make your Payment", "Copied");
+    }//GEN-LAST:event_jLabel6MouseClicked
+
+    
     
     
     /**
@@ -163,7 +194,7 @@ public class Waiting extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Waiting().setVisible(true);
+                new Waiting().setVisible(true);              
             }
         });
     }

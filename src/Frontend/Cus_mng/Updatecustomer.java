@@ -443,7 +443,7 @@ public class Updatecustomer extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Updatecustomer().setVisible(true);
+                new Updatecustomer("0788323221").setVisible(true);
             }
         });
     }

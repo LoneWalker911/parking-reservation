@@ -400,9 +400,7 @@ public class Reservation extends javax.swing.JFrame {
         {
             MessageBox.infoBox("Please check your selections", "Invalid Inputs");
         }
-
-        
-        
+ 
     }//GEN-LAST:event_reservebtnMouseClicked
   
     

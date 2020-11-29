@@ -44,6 +44,7 @@ public class StaffLogin extends javax.swing.JFrame {
         txtPsw = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Staff Login");
         setBackground(new java.awt.Color(44, 62, 80));
 
         jPanel1.setBackground(new java.awt.Color(248, 148, 6));

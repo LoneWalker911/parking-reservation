@@ -6,6 +6,7 @@
 package Frontend;
 
 import Backend.EventLog;
+import Backend.checkPayment;
 import Backend.dbConnection;
 import java.awt.Desktop;
 import java.net.URI;
@@ -27,6 +28,7 @@ public class PayOption extends javax.swing.JFrame {
     private final Connection con = dbConnection.CreateConn();
     int id;
     double amount;
+    boolean paylater=false;
     public PayOption() {
         initComponents();
     }
@@ -74,7 +76,7 @@ public class PayOption extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        paylaterbtn = new javax.swing.JLabel();
         payherebtn = new javax.swing.JLabel();
         pay_idlbl = new javax.swing.JLabel();
         rate_lbl = new javax.swing.JLabel();
@@ -83,7 +85,12 @@ public class PayOption extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel1.setLayout(null);
 
@@ -107,7 +114,13 @@ public class PayOption extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         jLabel6.setText("TOTAL                    :");
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/cash (2).png"))); // NOI18N
+        paylaterbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/cash (2).png"))); // NOI18N
+        paylaterbtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        paylaterbtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                paylaterbtnMouseClicked(evt);
+            }
+        });
 
         payherebtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/card (1).png"))); // NOI18N
         payherebtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -144,7 +157,7 @@ public class PayOption extends javax.swing.JFrame {
                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(93, 93, 93)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(paylaterbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(86, 86, 86)
@@ -184,7 +197,7 @@ public class PayOption extends javax.swing.JFrame {
                         .addComponent(payherebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(32, 32, 32)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                        .addComponent(paylaterbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -216,8 +229,25 @@ public class PayOption extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void payherebtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_payherebtnMouseClicked
-       Waiting wait = new Waiting(id,amount);
+       checkPayment chkpay = new checkPayment(id,amount);
+       chkpay.start();
+       this.dispose();
     }//GEN-LAST:event_payherebtnMouseClicked
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        if(!paylater)
+        {
+            Backend.Reserve resv=new Backend.Reserve();
+            resv.setId(id);
+            resv.Cancel();
+        }
+    }//GEN-LAST:event_formWindowClosing
+
+    private void paylaterbtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paylaterbtnMouseClicked
+        new PayLater(id).setVisible(true);
+        paylater=true;
+        this.dispose();
+    }//GEN-LAST:event_paylaterbtnMouseClicked
 
     /**
      * @param args the command line arguments
@@ -262,12 +292,12 @@ public class PayOption extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel pay_idlbl;
     private javax.swing.JLabel payherebtn;
+    private javax.swing.JLabel paylaterbtn;
     private javax.swing.JLabel rate_lbl;
     private javax.swing.JLabel totallbl;
     // End of variables declaration//GEN-END:variables

@@ -6,6 +6,7 @@
 package Frontend.Staff;
 
 
+import Backend.EventLog;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,6 +30,11 @@ public class StaffIF extends javax.swing.JFrame {
         this.uname=uname;
         unamelbl.setText(uname);
         UserType.setText(ut);
+        if(usertype.toLowerCase().equals("user"))
+        {
+            addstaffbtn.setEnabled(false);
+            removestaffbtn.setEnabled(false);
+        }
         
     }
     public StaffIF() {
@@ -60,21 +66,17 @@ public class StaffIF extends javax.swing.JFrame {
         deletecusbtn = new javax.swing.JButton();
         updatecusbtn = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        slotaddbtn = new javax.swing.JButton();
         slotupdatebtn = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        resviewbtn = new javax.swing.JButton();
         resserchbtn = new javax.swing.JButton();
         respayementbtn = new javax.swing.JButton();
         resupdatebtn = new javax.swing.JButton();
         rescancelbtn = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         paysearchbtn = new javax.swing.JButton();
-        payviewbtn = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         vehaddbtn = new javax.swing.JButton();
         vehremovebtn = new javax.swing.JButton();
-        vehsearchbtn = new javax.swing.JButton();
         UserType = new javax.swing.JLabel();
         mngstaffbtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -97,6 +99,11 @@ public class StaffIF extends javax.swing.JFrame {
         });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jPanel8.setBackground(new java.awt.Color(44, 62, 80));
 
@@ -203,10 +210,20 @@ public class StaffIF extends javax.swing.JFrame {
         deletecusbtn.setBackground(new java.awt.Color(0, 255, 127));
         deletecusbtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         deletecusbtn.setText("DELETE CUSROMER");
+        deletecusbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deletecusbtnActionPerformed(evt);
+            }
+        });
 
         updatecusbtn.setBackground(new java.awt.Color(0, 255, 127));
         updatecusbtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         updatecusbtn.setText("UPDATE CUSTOMER");
+        updatecusbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updatecusbtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -231,13 +248,14 @@ public class StaffIF extends javax.swing.JFrame {
 
         tabpane.addTab("CUSTOMER", jPanel1);
 
-        slotaddbtn.setBackground(new java.awt.Color(0, 255, 127));
-        slotaddbtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        slotaddbtn.setText("ADD");
-
         slotupdatebtn.setBackground(new java.awt.Color(0, 255, 127));
         slotupdatebtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         slotupdatebtn.setText("UPDATE");
+        slotupdatebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                slotupdatebtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -245,34 +263,36 @@ public class StaffIF extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(235, 235, 235)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(slotupdatebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(slotaddbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(slotupdatebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(253, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addComponent(slotaddbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(140, 140, 140)
                 .addComponent(slotupdatebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(313, Short.MAX_VALUE))
         );
 
         tabpane.addTab("SLOT", jPanel2);
 
-        resviewbtn.setBackground(new java.awt.Color(0, 255, 127));
-        resviewbtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        resviewbtn.setText("VIEW");
-
         resserchbtn.setBackground(new java.awt.Color(0, 255, 127));
         resserchbtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         resserchbtn.setText("SEARCH");
+        resserchbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resserchbtnActionPerformed(evt);
+            }
+        });
 
         respayementbtn.setBackground(new java.awt.Color(0, 255, 127));
         respayementbtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         respayementbtn.setText("PAYMENT");
+        respayementbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                respayementbtnActionPerformed(evt);
+            }
+        });
 
         resupdatebtn.setBackground(new java.awt.Color(0, 255, 127));
         resupdatebtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -295,7 +315,6 @@ public class StaffIF extends javax.swing.JFrame {
                 .addGap(235, 235, 235)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(rescancelbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(resviewbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(resserchbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(resupdatebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(respayementbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -304,9 +323,7 @@ public class StaffIF extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(resviewbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(95, 95, 95)
                 .addComponent(resserchbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(resupdatebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -322,10 +339,11 @@ public class StaffIF extends javax.swing.JFrame {
         paysearchbtn.setBackground(new java.awt.Color(0, 255, 127));
         paysearchbtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         paysearchbtn.setText("SEARCH");
-
-        payviewbtn.setBackground(new java.awt.Color(0, 255, 127));
-        payviewbtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        payviewbtn.setText("VIEW");
+        paysearchbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                paysearchbtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -333,9 +351,7 @@ public class StaffIF extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(235, 235, 235)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(payviewbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(paysearchbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(paysearchbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(253, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -343,9 +359,7 @@ public class StaffIF extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(74, 74, 74)
                 .addComponent(paysearchbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(payviewbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(307, Short.MAX_VALUE))
+                .addContainerGap(379, Short.MAX_VALUE))
         );
 
         tabpane.addTab("PAYEMNT", jPanel5);
@@ -353,14 +367,20 @@ public class StaffIF extends javax.swing.JFrame {
         vehaddbtn.setBackground(new java.awt.Color(0, 255, 127));
         vehaddbtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         vehaddbtn.setText("ADD");
+        vehaddbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vehaddbtnActionPerformed(evt);
+            }
+        });
 
         vehremovebtn.setBackground(new java.awt.Color(0, 255, 127));
         vehremovebtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         vehremovebtn.setText("REMOVE");
-
-        vehsearchbtn.setBackground(new java.awt.Color(0, 255, 127));
-        vehsearchbtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        vehsearchbtn.setText("SEARCH");
+        vehremovebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vehremovebtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -369,10 +389,8 @@ public class StaffIF extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(235, 235, 235)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(vehsearchbtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(vehremovebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(vehaddbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(vehremovebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(vehaddbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(253, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -382,9 +400,7 @@ public class StaffIF extends javax.swing.JFrame {
                 .addComponent(vehaddbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(vehremovebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(vehsearchbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(252, Short.MAX_VALUE))
+                .addContainerGap(324, Short.MAX_VALUE))
         );
 
         tabpane.addTab("VEHICLE", jPanel4);
@@ -482,6 +498,11 @@ public class StaffIF extends javax.swing.JFrame {
         staffexitbtn.setBackground(new java.awt.Color(242, 38, 19));
         staffexitbtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         staffexitbtn.setText("EXIT");
+        staffexitbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                staffexitbtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -560,10 +581,7 @@ public class StaffIF extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mngstaffbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mngstaffbtnActionPerformed
-        tabpane.setSelectedIndex(0);
-            
-            
-        
+        tabpane.setSelectedIndex(0);       
     }//GEN-LAST:event_mngstaffbtnActionPerformed
 
     private void changepswbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changepswbtnActionPerformed
@@ -577,23 +595,23 @@ public class StaffIF extends javax.swing.JFrame {
     }//GEN-LAST:event_addstaffbtnActionPerformed
 
     private void cusmngbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cusmngbtnActionPerformed
-        // TODO add your handling code here:
+        tabpane.setSelectedIndex(1); 
     }//GEN-LAST:event_cusmngbtnActionPerformed
 
     private void vehiclebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vehiclebtnActionPerformed
-        // TODO add your handling code here:
+        tabpane.setSelectedIndex(4);
     }//GEN-LAST:event_vehiclebtnActionPerformed
 
     private void slotcontrolbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_slotcontrolbtnActionPerformed
-        // TODO add your handling code here:
+        tabpane.setSelectedIndex(2); 
     }//GEN-LAST:event_slotcontrolbtnActionPerformed
 
     private void reservbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservbtnActionPerformed
-        // TODO add your handling code here:
+        tabpane.setSelectedIndex(3);
     }//GEN-LAST:event_reservbtnActionPerformed
 
     private void payemntbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payemntbtnActionPerformed
-        // TODO add your handling code here:
+        tabpane.setSelectedIndex(5);
     }//GEN-LAST:event_payemntbtnActionPerformed
 
     private void addstaffbtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addstaffbtn1ActionPerformed
@@ -618,6 +636,48 @@ public class StaffIF extends javax.swing.JFrame {
         Frontend.Staff.SearchStaff upstf = new Frontend.Staff.SearchStaff();
         upstf.setVisible(true);
     }//GEN-LAST:event_searchstaffbtnActionPerformed
+
+    private void respayementbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_respayementbtnActionPerformed
+        new Payoncash().setVisible(true);
+        
+    }//GEN-LAST:event_respayementbtnActionPerformed
+
+    private void updatecusbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatecusbtnActionPerformed
+        new Frontend.Cus_mng.Updatecustomer().setVisible(true);
+    }//GEN-LAST:event_updatecusbtnActionPerformed
+
+    private void deletecusbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletecusbtnActionPerformed
+        new Frontend.Cus_mng.DeleteCustomer().setVisible(true);
+    }//GEN-LAST:event_deletecusbtnActionPerformed
+
+    private void slotupdatebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_slotupdatebtnActionPerformed
+        new Frontend.Staff.Slots.UpdateParkingSlot().setVisible(true);
+    }//GEN-LAST:event_slotupdatebtnActionPerformed
+
+    private void resserchbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resserchbtnActionPerformed
+        new Frontend.Searchreservation().setVisible(true);
+    }//GEN-LAST:event_resserchbtnActionPerformed
+
+    private void paysearchbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paysearchbtnActionPerformed
+        new Frontend.Staff.Payments.Searchpayement().setVisible(true);
+    }//GEN-LAST:event_paysearchbtnActionPerformed
+
+    private void vehaddbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vehaddbtnActionPerformed
+        new Frontend.Staff.Vehicle.AddVehicle().setVisible(true);
+    }//GEN-LAST:event_vehaddbtnActionPerformed
+
+    private void vehremovebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vehremovebtnActionPerformed
+        new Frontend.Staff.Vehicle.RemoveVehicle().setVisible(true);
+    }//GEN-LAST:event_vehremovebtnActionPerformed
+
+    private void staffexitbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_staffexitbtnActionPerformed
+        new Frontend.CustomerSign().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_staffexitbtnActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        EventLog.Write("User: "+uname+" Logged out.");
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments
@@ -650,7 +710,7 @@ public class StaffIF extends javax.swing.JFrame {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new StaffIF().setVisible(true);
+                new StaffIF("admin","thisara").setVisible(true);
             }
         });
     }
@@ -676,16 +736,13 @@ public class StaffIF extends javax.swing.JFrame {
     private javax.swing.JPanel mngstaffpanel;
     private javax.swing.JButton payemntbtn;
     private javax.swing.JButton paysearchbtn;
-    private javax.swing.JButton payviewbtn;
     private javax.swing.JButton removestaffbtn;
     private javax.swing.JButton rescancelbtn;
     private javax.swing.JButton reservbtn;
     private javax.swing.JButton respayementbtn;
     private javax.swing.JButton resserchbtn;
     private javax.swing.JButton resupdatebtn;
-    private javax.swing.JButton resviewbtn;
     private javax.swing.JButton searchstaffbtn;
-    private javax.swing.JButton slotaddbtn;
     private javax.swing.JButton slotcontrolbtn;
     private javax.swing.JButton slotupdatebtn;
     private javax.swing.JButton staffexitbtn;
@@ -696,6 +753,5 @@ public class StaffIF extends javax.swing.JFrame {
     private javax.swing.JButton vehaddbtn;
     private javax.swing.JButton vehiclebtn;
     private javax.swing.JButton vehremovebtn;
-    private javax.swing.JButton vehsearchbtn;
     // End of variables declaration//GEN-END:variables
 }
