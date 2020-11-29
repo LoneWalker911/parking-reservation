@@ -74,6 +74,7 @@ public class StaffIF extends javax.swing.JFrame {
         rescancelbtn = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         paysearchbtn = new javax.swing.JButton();
+        updatefeebtn = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         vehaddbtn = new javax.swing.JButton();
         vehremovebtn = new javax.swing.JButton();
@@ -345,13 +346,24 @@ public class StaffIF extends javax.swing.JFrame {
             }
         });
 
+        updatefeebtn.setBackground(new java.awt.Color(0, 255, 127));
+        updatefeebtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        updatefeebtn.setText("UPDATE FEE");
+        updatefeebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updatefeebtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(235, 235, 235)
-                .addComponent(paysearchbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(updatefeebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(paysearchbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(253, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -359,7 +371,9 @@ public class StaffIF extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(74, 74, 74)
                 .addComponent(paysearchbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(379, Short.MAX_VALUE))
+                .addGap(168, 168, 168)
+                .addComponent(updatefeebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(171, Short.MAX_VALUE))
         );
 
         tabpane.addTab("PAYEMNT", jPanel5);
@@ -679,6 +693,10 @@ public class StaffIF extends javax.swing.JFrame {
         EventLog.Write("User: "+uname+" Logged out.");
     }//GEN-LAST:event_formWindowClosed
 
+    private void updatefeebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatefeebtnActionPerformed
+        new Frontend.Staff.FeeUpdate().setVisible(true);
+    }//GEN-LAST:event_updatefeebtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -749,6 +767,7 @@ public class StaffIF extends javax.swing.JFrame {
     private javax.swing.JTabbedPane tabpane;
     private javax.swing.JLabel unamelbl;
     private javax.swing.JButton updatecusbtn;
+    private javax.swing.JButton updatefeebtn;
     private javax.swing.JButton updatestaffbtn;
     private javax.swing.JButton vehaddbtn;
     private javax.swing.JButton vehiclebtn;
