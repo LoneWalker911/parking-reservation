@@ -6,7 +6,6 @@
 package Backend;
 
 import java.sql.*;
-import java.util.Hashtable;
 
 /**
  *
@@ -26,38 +25,6 @@ public class Role {
     {
         role_name = name;
         role_des = des;
-    }
-    
-    public boolean addRole()
-    {
-        if(!(getRole_name().equals("") || getRole_des().equals("")) && getId(getRole_name()) == 0)
-        {
-        try
-        {
-            int id = getLastid();
-            String query = "INSERT INTO roles "
-                         + " values (?, ?, ?)";
-
-            //using a prepared statement to preven SQL Injection and other simillar attacks
-            PreparedStatement prest = con.prepareStatement(query);
-            prest.setInt (1, id+1);
-            prest.setString (2, role_name);
-            prest.setString (3, role_des);
-
-            // execute the preparedstatement
-            prest.execute();
-            log.Write("Roles_ID : "+ Integer.toString(id+1) + " added to roles table.");
-
-            return true;
-        }
-        catch (SQLException e)
-            {
-              System.err.println("Got an exception!");
-              System.err.println(e.getMessage());
-              return false;
-            }
-        }
-        else return false;
     }
     
     public String[] getRoles()

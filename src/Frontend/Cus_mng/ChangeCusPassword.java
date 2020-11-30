@@ -254,7 +254,7 @@ public class ChangeCusPassword extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void ResetbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetbtnActionPerformed
-        // TODO add your handling code here:
+        newpswtxt.setText("");
     }//GEN-LAST:event_ResetbtnActionPerformed
 
     private void newpswtxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_newpswtxtKeyReleased

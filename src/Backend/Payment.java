@@ -21,8 +21,9 @@ import java.util.concurrent.TimeUnit;
 public class Payment {
     
     private int resv_id=0;
-    private String name=null;
-    private String email=null;
+    private int id=0;
+    private String pg_id=null;
+    private String method=null;
     private String mobile=null;
     private String address=null;
 
@@ -99,47 +100,6 @@ public class Payment {
         }
     }
     
-    
-    public int getIdByUsername(String username) 
-    {
-        String sql = "SELECT staff.id FROM staff,login WHERE login.username='"+username+"' AND login.staff_id = staff.id";
-        int id=0;
-          try{
-        Statement st = con.createStatement();
-        ResultSet rs = st.executeQuery(sql);
-        while(rs.next())
-        {
-            id = rs.getInt("id");
-        }
-        return id;
-        }
-          catch(SQLException e)
-        {
-            EventLog.Write("Exception : "+e.getMessage());
-            return id;
-        } 
-    }
-    
-    public String getUsernameById(int id) 
-    {
-        String sql = "SELECT login.username FROM staff,login WHERE staff.id="+id+" AND login.staff_id = staff.id";
-        String username = null;
-          try{
-        Statement st = con.createStatement();
-        ResultSet rs = st.executeQuery(sql);
-        while(rs.next())
-        {
-            username = rs.getString("username");
-        }
-        return username;
-        }
-          catch(SQLException e)
-        {
-            EventLog.Write("Exception : "+e.getMessage());
-            return username;
-        } 
-    }
-    
 
     public int getResv_id() {
         return resv_id;
@@ -152,23 +112,23 @@ public class Payment {
 
 
 
-    public String getName() {
-        return name;
+    public String getPg_id() {
+        return pg_id;
     }
 
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPg_id(String pg_id) {
+        this.pg_id = pg_id;
     }
 
 
-    public String getEmail() {
-        return email;
+    public String getMethod() {
+        return method;
     }
 
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setMethod(String method) {
+        this.method = method;
     }
 
 

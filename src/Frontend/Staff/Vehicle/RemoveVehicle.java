@@ -23,7 +23,7 @@ public class RemoveVehicle extends javax.swing.JFrame {
     public RemoveVehicle(int cus_id) {
         initComponents(); 
         this.isCus=true;
-        Idtxt.setText(String.valueOf(cus_id));
+        Idtxt.setText(Integer.toString(cus_id));
         idchkbtn.setVisible(false);
         idchkbtnActionPerformed(null);
     }
@@ -376,7 +376,7 @@ public class RemoveVehicle extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RemoveVehicle().setVisible(true);
+                new RemoveVehicle(1).setVisible(true);
                 
                 
                 

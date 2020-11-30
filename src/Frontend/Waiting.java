@@ -6,7 +6,7 @@
 package Frontend;
 
 import Backend.Payment;
-import Backend.checkPayment;
+import Backend.cardPayment;
 import Backend.Reserve;
 import java.awt.Desktop;
 import java.awt.Toolkit;

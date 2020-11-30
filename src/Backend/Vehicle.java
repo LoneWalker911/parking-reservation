@@ -67,22 +67,22 @@ public class Vehicle {
         {
             try
             {       
-                String query = "DELETE FROM vehicles WHERE veh_owner_id = ? AND veh_number = ?";
+                String query = "UPDATE vehicles SET veh_desc = 'removed' WHERE veh_owner_id=? AND veh_number=?";
 
                 //using a prepared statement to preven SQL Injection and other simillar attacks
                 PreparedStatement prest = con.prepareStatement(query);
                 prest.setInt (1, getVehicle_ownerid());
                 prest.setString (2, getVehicle_num());
-
-                // prepared statement execution
+                
                 prest.executeUpdate();
+
                 EventLog.Write("Veh_num : "+ getVehicle_num ()+" removed from customer id: "+getVehicle_ownerid()+".");
 
                 return true;
             }
             catch (SQLException e)
             {
-                  EventLog.Write("removeCustomer Exception : "+e.getMessage());
+                  EventLog.Write("removeVehicle Exception : "+e.getMessage());
                   return false;
             }
         }
@@ -119,7 +119,7 @@ public class Vehicle {
     {
         try
         {
-            String query = "SELECT veh_number FROM vehicles WHERE veh_owner_id="+getVehicle_ownerid();
+            String query = "SELECT veh_number FROM vehicles WHERE veh_owner_id="+getVehicle_ownerid()+" AND veh_desc!='removed'";
             String res[] = new String[20];
 
             Statement st = con.createStatement();
@@ -145,7 +145,7 @@ public class Vehicle {
        String res = "";
         try
         {
-            String query = "SELECT veh_type FROM vehicles WHERE id="+getVehicle_id();
+            String query = "SELECT veh_type FROM vehicles WHERE id="+getVehicle_id()+" AND veh_desc!='removed'";
 
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -169,7 +169,7 @@ public class Vehicle {
         try
         {
 
-            String query = "SELECT id FROM vehicles WHERE veh_number='"+getVehicle_num()+"'";
+            String query = "SELECT id FROM vehicles WHERE veh_number='"+getVehicle_num()+"' AND veh_desc!='removed'";
 
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(query);

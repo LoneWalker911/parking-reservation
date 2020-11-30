@@ -6,7 +6,7 @@
 package Frontend;
 
 import Backend.EventLog;
-import Backend.checkPayment;
+import Backend.cardPayment;
 import Backend.dbConnection;
 import java.awt.Desktop;
 import java.net.URI;
@@ -229,7 +229,7 @@ public class PayOption extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void payherebtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_payherebtnMouseClicked
-       checkPayment chkpay = new checkPayment(id,amount);
+       cardPayment chkpay = new cardPayment(id,amount);
        chkpay.start();
        this.dispose();
     }//GEN-LAST:event_payherebtnMouseClicked

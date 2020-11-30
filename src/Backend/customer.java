@@ -104,7 +104,7 @@ public class customer {
     
     public boolean isCustomerIdExists(String id)
     {
-        String sql = "SELECT id FROM customer WHERE id="+id+"' AND email!='removed'";
+        String sql = "SELECT id FROM customer WHERE id="+id+" AND email!='removed'";
           try{
         Statement st = con.createStatement();
         ResultSet rs = st.executeQuery(sql);

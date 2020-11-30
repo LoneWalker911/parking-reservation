@@ -19,7 +19,7 @@ import java.sql.Statement;
 public class Fee {
     
     private int fee_id=0;
-    private String vehtype="";
+    private String vehtype=null;
     private double fee=0;
     
     private final Connection con = dbConnection.CreateConn();
@@ -48,6 +48,34 @@ public class Fee {
               System.err.println(e.getMessage());
               return null;
             }
+    }
+    
+    public boolean updateFee()
+    {
+        if(getFee()!=0 && getVehtype()!=null)
+        {
+        try
+        {       
+            String query = "UPDATE fee SET fee = ? WHERE veh_type = ?";
+
+            //using a prepared statement to preven SQL Injection and other simillar attacks
+            PreparedStatement prest = con.prepareStatement(query);
+            prest.setDouble (1, getFee());
+            prest.setString (2, getVehtype());
+
+            // prepared statement execution
+            prest.executeUpdate();
+            EventLog.Write(getVehtype() + " Changed to : Rs."+ getFee());
+
+            return true;
+        }
+        catch (SQLException e)
+            {
+              EventLog.Write("updateFee Exception : "+e.getMessage());
+              return false;
+            }
+        }
+        else return false;
     }
       
     

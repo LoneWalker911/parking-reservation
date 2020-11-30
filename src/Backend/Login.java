@@ -45,6 +45,7 @@ public class Login {
     public void setRole_id(int role_id) {
         this.role_id = role_id;
     }
+    private int id;
     private String username="";
     private String password="";
     private int staff_id=0;
@@ -89,30 +90,6 @@ public class Login {
       return "";
     
     }
-            
-    public void displayUsers(String login_id, String password) {
-        try {
-            String query = "SELECT user_id, pwd FROM login";
-            Statement st = con.createStatement();
-            ResultSet results = st.executeQuery(query);
-
-            while (results.next()) {
-            String user_id = results.getString("user_id");
-            String pwd =  results.getString("pwd");
-
-               if ((login_id.equals(user_id)) && (password.equals(pwd))) {
-
-                   System.out.println("Username and Password exist");  
-            }else {
-
-                   System.out.println("Please Check Username and Password");
-            }
-            results.close();
-        }} catch (SQLException sql) {
-
-            System.out.println(sql);
-        }
-    }
     
     public boolean CreateLogin(){
         
@@ -122,7 +99,7 @@ public class Login {
       {
        if(!isUsernameStaffExists(username,staff_id) && stf.isStaffIdExists(Integer.toString(getStaff_id())))
        {
-           int id = getLastid()+1;
+           id = getLastid()+1;
 
             Random random = new Random();
             int aLimit = 97; // limit to 'a'

@@ -5,6 +5,7 @@
  */
 package Frontend.Staff;
 import Backend.Fee;
+import Frontend.MessageBox;
 
 /**
  *
@@ -218,7 +219,29 @@ public class FeeUpdate extends javax.swing.JFrame {
     }//GEN-LAST:event_feechkbtnActionPerformed
 
     private void updatebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatebtnActionPerformed
-     
+        fee.setVehtype(typecombo.getSelectedItem().toString());
+        fee.setFee(Double.parseDouble(feetxt.getText()));
+        if(fee.updateFee())
+        {
+            MessageBox.infoBox("Fee Updated", "Sucess");
+            typecombo.setSelectedIndex(-1);
+            feetxt.setText("");
+            feetxt.setEditable(false);
+            typecombo.setEnabled(true);
+            updatebtn.setEnabled(false);
+            feechkbtn.setText("Check");           
+        }
+        else
+        {
+            MessageBox.infoBox("Something went wrong", "Failed");
+            typecombo.setSelectedIndex(-1);
+            feetxt.setText("");
+            feetxt.setEditable(false);
+            typecombo.setEnabled(true);
+            updatebtn.setEnabled(false);
+            feechkbtn.setText("Check"); 
+        }
+            
 
     }//GEN-LAST:event_updatebtnActionPerformed
 
@@ -227,7 +250,7 @@ public class FeeUpdate extends javax.swing.JFrame {
     }//GEN-LAST:event_ResetbtnActionPerformed
 
     private void cancelbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelbtnActionPerformed
-       
+       this.dispose();
     }//GEN-LAST:event_cancelbtnActionPerformed
 
     /**
