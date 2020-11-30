@@ -59,6 +59,7 @@ public class Reservation extends javax.swing.JFrame {
             initComponents();
             resv.setCus_id(id);
             this.slots = new JLabel[]{Slotlbl1, Slotlbl2, Slotlbl3, Slotlbl4, Slotlbl5, Slotlbl6, Slotlbl7, Slotlbl8, Slotlbl9, Slotlbl10, Slotlbl11, Slotlbl12, Slotlbl13, Slotlbl14, Slotlbl15};
+            
             res=resv.checkDates();
             
             while(res[i]!=0)

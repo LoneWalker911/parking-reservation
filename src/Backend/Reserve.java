@@ -89,9 +89,12 @@ public class Reserve {
 
             //execute the preparedstatement
             prest.executeUpdate();
+            
+            
+            
             EventLog.Write("Resertion_ID : "+ getId() + " calcelled. status: CANCELLED");
-
-            return true;
+            
+            return getStatusbyId(getId()).equals("CANCELLED");
         }
         catch (SQLException e)
             {
@@ -218,12 +221,12 @@ public class Reserve {
                     return rs.getString("status");
                 }
                     
-                return null;
+                return "";
             }
           catch(SQLException e)
         {
             EventLog.Write("getAmountbyId Exception : "+e.getMessage());
-            return null;
+            return "";
         } 
     }
     

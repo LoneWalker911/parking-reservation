@@ -7,9 +7,6 @@ package Frontend.Staff;
 
 
 import Backend.EventLog;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -30,7 +27,7 @@ public class StaffIF extends javax.swing.JFrame {
         this.uname=uname;
         unamelbl.setText(uname);
         UserType.setText(ut);
-        if(usertype.toLowerCase().equals("user"))
+        if(usertype.toLowerCase().equals("staff"))
         {
             addstaffbtn.setEnabled(false);
             removestaffbtn.setEnabled(false);
@@ -307,6 +304,11 @@ public class StaffIF extends javax.swing.JFrame {
         rescancelbtn.setBackground(new java.awt.Color(0, 255, 127));
         rescancelbtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         rescancelbtn.setText("CANCEL");
+        rescancelbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rescancelbtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -697,6 +699,10 @@ public class StaffIF extends javax.swing.JFrame {
     private void updatefeebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatefeebtnActionPerformed
         new Frontend.Staff.FeeUpdate().setVisible(true);
     }//GEN-LAST:event_updatefeebtnActionPerformed
+
+    private void rescancelbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rescancelbtnActionPerformed
+        new Frontend.Staff.Cancelreservation().setVisible(true);
+    }//GEN-LAST:event_rescancelbtnActionPerformed
 
     /**
      * @param args the command line arguments

@@ -28,7 +28,9 @@ public static Connection CreateConn()
     }
     catch(SQLException e)
     {
-        System.out.println(e); return null;
+        System.out.println(e); 
+        return null;
+        
     }  
 }
 

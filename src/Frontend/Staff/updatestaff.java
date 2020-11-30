@@ -46,6 +46,7 @@ public class updatestaff extends javax.swing.JFrame {
             unamechkbtn.setEnabled(false);
             idchkbtn.setEnabled(false);
             Resetbtn.setEnabled(false);
+            rolecombo.setEnabled(false);
         }
     }
 

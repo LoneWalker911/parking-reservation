@@ -37,7 +37,7 @@ public class Staff {
         try
         {       
             String query = "INSERT INTO staff "
-                         + " values (?,?, ?, ?, ?)";
+                         + " values (?, ?, ?, ?, ?,'')";
 
             //using a prepared statement to preven SQL Injection and other simillar attacks
             PreparedStatement prest = con.prepareStatement(query);

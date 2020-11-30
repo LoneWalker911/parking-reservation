@@ -5,6 +5,9 @@
  */
 package Frontend.Staff;
 
+import Backend.Reserve;
+import Frontend.MessageBox;
+
 /**
  *
  * @author Prashan
@@ -14,6 +17,8 @@ public class Cancelreservation extends javax.swing.JFrame {
     /**
      * Creates new form Cancelreservation
      */
+    Reserve res = new Reserve();
+    
     public Cancelreservation() {
         initComponents();
     }
@@ -31,7 +36,7 @@ public class Cancelreservation extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         IDlbl1 = new javax.swing.JLabel();
-        feetxt = new javax.swing.JTextField();
+        residtxt = new javax.swing.JTextField();
         cancelbtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -47,9 +52,9 @@ public class Cancelreservation extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(67, 67, 67)
+                .addGap(79, 79, 79)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -62,8 +67,8 @@ public class Cancelreservation extends javax.swing.JFrame {
         IDlbl1.setForeground(new java.awt.Color(236, 240, 241));
         IDlbl1.setText("RESERVATION ID :");
 
-        feetxt.setBackground(new java.awt.Color(108, 122, 137));
-        feetxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        residtxt.setBackground(new java.awt.Color(108, 122, 137));
+        residtxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         cancelbtn.setBackground(new java.awt.Color(242, 38, 19));
         cancelbtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -83,7 +88,7 @@ public class Cancelreservation extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(IDlbl1)
                 .addGap(26, 26, 26)
-                .addComponent(feetxt, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                .addComponent(residtxt, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
                 .addGap(39, 39, 39))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(137, 137, 137)
@@ -96,7 +101,7 @@ public class Cancelreservation extends javax.swing.JFrame {
                 .addGap(68, 68, 68)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(IDlbl1)
-                    .addComponent(feetxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(residtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(51, 51, 51)
                 .addComponent(cancelbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(100, Short.MAX_VALUE))
@@ -118,10 +123,30 @@ public class Cancelreservation extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancelbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelbtnActionPerformed
-        this.dispose();
+        try{
+            res.setId(Integer.parseInt(residtxt.getText()));
+        
+        if(res.Cancel())
+        {
+            MessageBox.infoBox("Reservation Cancelled", "Success");
+            this.dispose();
+        }
+        else
+        {
+            res.setId(0);
+            residtxt.setText("");
+            MessageBox.infoBox("Something went wrong", "Failed");
+        }
+        }
+        catch(Exception e)
+        {
+            residtxt.setText("");
+            MessageBox.infoBox("Something went wrong", "Failed");
+        }
     }//GEN-LAST:event_cancelbtnActionPerformed
 
     /**
@@ -162,9 +187,9 @@ public class Cancelreservation extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel IDlbl1;
     private javax.swing.JButton cancelbtn;
-    private javax.swing.JTextField feetxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JTextField residtxt;
     // End of variables declaration//GEN-END:variables
 }
