@@ -6,6 +6,7 @@
 package Frontend.Staff;
 
 
+import Frontend.Staff.Reservation.Payoncash;
 import Backend.EventLog;
 
 /**
@@ -697,11 +698,11 @@ public class StaffIF extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosed
 
     private void updatefeebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatefeebtnActionPerformed
-        new Frontend.Staff.FeeUpdate().setVisible(true);
+        new Frontend.Staff.Fee.FeeUpdate().setVisible(true);
     }//GEN-LAST:event_updatefeebtnActionPerformed
 
     private void rescancelbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rescancelbtnActionPerformed
-        new Frontend.Staff.Cancelreservation().setVisible(true);
+        new Frontend.Staff.Reservation.Cancelreservation().setVisible(true);
     }//GEN-LAST:event_rescancelbtnActionPerformed
 
     /**

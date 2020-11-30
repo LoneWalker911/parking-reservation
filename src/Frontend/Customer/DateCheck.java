@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Frontend;
+package Frontend.Customer;
 
+import Frontend.Customer.Reservation;
 import Backend.Reserve;
+import Frontend.MessageBox;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;

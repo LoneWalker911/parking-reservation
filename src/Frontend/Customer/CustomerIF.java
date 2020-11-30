@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Frontend;
+package Frontend.Customer;
 import Backend.*;
+import Frontend.CustomerSign;
 
 /**
  *
@@ -249,12 +250,12 @@ public class CustomerIF extends javax.swing.JFrame {
     }//GEN-LAST:event_updatecusbtnActionPerformed
 
     private void reservebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservebtnActionPerformed
-        Frontend.DateCheck res = new Frontend.DateCheck(id);
+        Frontend.Customer.DateCheck res = new Frontend.Customer.DateCheck(id);
         res.setVisible(true);
     }//GEN-LAST:event_reservebtnActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        new Frontend.MyReservation(id).setVisible(true);
+        new Frontend.Customer.MyReservation(id).setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -271,7 +272,7 @@ public class CustomerIF extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
+        new Frontend.Staff.Vehicle.RemoveVehicle(id).setVisible(true);
     }//GEN-LAST:event_jButton8ActionPerformed
 
     /**

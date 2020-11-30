@@ -25,7 +25,7 @@ public class cardPayment extends Payment implements Runnable {
    }
    
    public void run() {
-      Frontend.Waiting wait = new Frontend.Waiting(id,amount);
+      Frontend.Customer.Waiting wait = new Frontend.Customer.Waiting(id,amount);
       while(!Payment.isResvIdExists(id) && System.currentTimeMillis()<aftertime)
         {
             

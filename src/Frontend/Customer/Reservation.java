@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Frontend;
+package Frontend.Customer;
 import Backend.Slot;
 import Backend.Reserve;
 import Backend.Vehicle;
 import Backend.Fee;
+import Frontend.MessageBox;
 import java.awt.Cursor;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -134,7 +135,6 @@ public class Reservation extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1205, 800));
-        setPreferredSize(new java.awt.Dimension(1205, 800));
         setResizable(false);
 
         jPanel2.setMaximumSize(new java.awt.Dimension(1205, 771));

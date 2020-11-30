@@ -5,6 +5,8 @@
  */
 package Frontend;
 
+import Frontend.Customer.CustomerRegister;
+import Frontend.Customer.CustomerIF;
 import java.util.Arrays;
 
 /**
@@ -74,7 +76,6 @@ public class CustomerSign extends javax.swing.JFrame {
         pwdtxt.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/newsign.png"))); // NOI18N
-        jLabel8.setText("jLabel5");
         jLabel8.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -84,7 +85,7 @@ public class CustomerSign extends javax.swing.JFrame {
         });
 
         LOGINBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/sign22.png"))); // NOI18N
-        LOGINBTN.setText("LOGINBTN");
+        LOGINBTN.setToolTipText("");
         LOGINBTN.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         LOGINBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         LOGINBTN.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -205,7 +206,7 @@ public class CustomerSign extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel8MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        new Frontend.StaffLogin().setVisible(true);
+        new Frontend.Staff.StaffLogin().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel5MouseClicked
 

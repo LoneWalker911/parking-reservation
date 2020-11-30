@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Frontend;
+package Frontend.Customer;
 
 import Backend.Payment;
 import Backend.cardPayment;
 import Backend.Reserve;
+import Frontend.MessageBox;
 import java.awt.Desktop;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
